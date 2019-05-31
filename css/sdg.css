@@ -1,0 +1,543 @@
+
+body > div.sdg_container > nav > div > a.brand-logo.center.hide-on-med-and-down{
+    color: #444!important;
+}
+
+
+ .tables_container
+      {
+        display: none;
+      }
+.select-dropdown .disabled
+{
+  display: none;
+}
+.hovered_class_from_table
+{
+  stroke: '#141312';
+                    stroke-dasharray: 10,5;
+                    /*'stroke-linecap': 'butt',*/
+                    stroke-width: 30;
+                    opacity: 0.5;
+}
+ .toast_target
+      {
+        font-weight: bolder!important;
+        font-size: 1.1em!important;
+         /*border-bottom: 1px solid currentColor;*/
+        display: block;
+        line-height: 1.1;
+      }
+}
+.target_toast_direction_title
+{
+        display: block;
+    font-size: 1.3em;
+    margin-bottom: 10px;
+
+    text-align: center;
+}
+
+.goal_card_sel
+{
+  opacity: 0.2;
+}
+.side-nav .input-field.col .dropdown-content [type="checkbox"]+label
+{
+  top:-10px!important;
+}
+    .side-nav .collapsible [type="checkbox"]+label
+    {
+       top: 10px!important;
+        margin-left: 16px!important;
+    }
+
+
+  .side-nav .collapsible-body ul
+  {
+    max-height: 450px;
+    overflow: auto;
+  }
+
+
+   .group_toast_container {
+  top: auto !important;
+  /*left: 25% !important;*/
+  bottom: 86%!important;
+  /*left:7%;*/
+  right:75%!important;
+}
+
+.card_toast.blue
+{
+  min-width: 340px!important;
+  max-width: 350px!important;
+}
+.card_toast_container
+{
+    top: auto !important;
+    bottom: 29%!important;
+    right: 25%!important;
+    min-width: 150px!important;
+
+}
+.chart_container
+{
+  padding-left: 100px;
+ /*   display: grid;
+    align-items: center;
+    justify-content: center;
+*/
+}
+
+table.highlight > tbody > tr:hover {
+
+  background-color: rgba(255, 181, 145, 0.5);
+
+}
+
+
+
+.text_highlight {
+    font-weight: bold;
+    color:yellow;
+}
+      @import url(https://fonts.googleapis.com/css?family=Roboto);
+
+
+.svg-container {
+    display: inline-block;
+    position: relative;
+    width: 100%;
+    padding-bottom: 100%; /* aspect ratio */
+    vertical-align: top;
+    overflow: hidden;
+}
+.svg-content-responsive {
+    display: inline-block;
+    position: absolute;
+    top: 10px;
+    left: 0;
+}
+
+
+
+
+
+.close_tooltip {
+    background-position: 50% 50%;
+    bottom: 267px;
+    color: rgb(0, 120, 168);
+    display: block;
+    height: 28px;
+    left: 0px;
+    position: absolute;
+    right: -12px;
+    text-decoration: none solid rgb(0, 120, 168);
+    text-size-adjust: 100%;
+    top: -13px;
+    width: 28px;
+    column-rule-color: rgb(0, 120, 168);
+    perspective-origin: 14px 14px;
+    transform: matrix(0.707107, 0.707107, -0.707107, 0.707107, 0, 0);
+    transform-origin: 14px 14px;
+    caret-color: rgb(0, 120, 168);
+    background: rgb(255, 255, 255) url(http://environmentaldemocracyindex.org/sites/all/themes/edi/images/icons/icon-close-inf.svg) no-repeat scroll 50% 50% / auto padding-box border-box;
+    border: 0px none rgb(0, 120, 168);
+    border-radius: 50% 50% 50% 50%;
+    font: normal normal 600 normal 0px / 0px Segoe;
+    outline: rgb(0, 120, 168) none 0px;
+}
+
+.targets_list
+{
+  display: none;
+}
+
+.collapsible-header
+{
+  color:black;
+}
+    #container
+    {
+
+    }
+      #container > div
+      {
+        display: inline-block;
+      }
+
+/*#chart svg
+      {
+
+        width: 60%;
+      }*/
+
+
+      /*    #graphic
+    {
+      display: inline-block;
+      width: 400px;
+      height: 250px;
+      background-color:grey;
+    }*/
+    #chart_legend
+    {
+      margin-top: 50px;
+
+    max-height: 740px;
+    overflow: auto;
+
+    }
+      #chart
+      {
+        /*padding-left:40px;*/
+        /*margin-left:370px;*/
+
+        height: auto;
+
+      }
+   /*   .mdl-button .material-icons {
+
+    top: 11px!important;
+}
+      .mdl-button--icon
+      {
+        float:right!important;
+      }*/
+      .group_container
+      {
+        background-color: #3988c6;
+        /*min-width: 300px;*/
+        padding: 10px;
+        margin: 2px;
+      }
+
+      .card-sdg-goal
+      {
+      	font-weight: bolder;
+      	font-size:1.3em;
+      }
+/*      #info
+      {
+
+            margin-top: 50px;
+     float: left;
+    max-width: 50%;
+    font-size: 1em;
+    color:white;
+
+    margin-left: 30px;
+      }*/
+
+      rect.bordered {
+        stroke: #E6E6E6;
+        stroke-width:2px;
+
+      }
+
+      rect:hover
+      {
+        cursor: pointer;
+      }
+
+      #dropdown_legend  text.mono {
+        fill: grey;
+
+        color:grey;
+
+      }
+
+      .card_toast
+      text.mono,#chart text.mono {
+ fill: white;
+
+        color:white;
+
+      }
+      text.mono {
+        font-size: 11px;
+        font-family: Consolas, courier;
+        fill: white;
+
+        color:grey;
+      }
+
+      .legend_tooltip text
+      {
+        font-size: 14px;
+      }
+
+      #legend
+      {
+        font-size:12px;
+        padding: 30px;
+        padding-top: 50px;
+        min-width: 100px;
+      }
+      #legend text
+      {
+        font-size: 14px;
+      }
+
+      text.axis-x,text.axis-y {
+        fill: white;
+      }
+
+      .d3-tip {
+        line-height: 1;
+
+        padding: 12px;
+        font-size: 1em;
+        background: black;
+        color: #fff;
+        min-width: 310px;
+            max-width: 330px;
+        border-radius: 2px;
+      }
+
+      /* Creates a small triangle extender for the tooltip */
+      .d3-tip:after {
+        box-sizing: border-box;
+        display: inline;
+        font-size: 10px;
+        width: 100%;
+        line-height: 1;
+        color: rgba(0, 0, 0, 0.8);
+        content: "\25BC";
+        position: absolute;
+        text-align: center;
+      }
+
+      /* Style northward tooltips differently */
+      .d3-tip.n:after {
+        margin: -1px 0 0 0;
+        top: 100%;
+        left: 0;
+
+      }
+
+
+  .d3-tip.animate {
+    animation: bounceIn 0s ease-out;
+    -webkit-animation: bounceIn 0s ease-out;
+  }
+
+
+
+      @-webkit-keyframes bounceIn {
+    0% {
+      opacity: 0;
+      -webkit-transform: scale(.3);
+    }
+
+    50% {
+      opacity: 1;
+      -webkit-transform: scale(1.05);
+    }
+
+    70% {
+      -webkit-transform: scale(.9);
+    }
+
+    100% {
+      -webkit-transform: scale(1);
+    }
+  }
+
+  @keyframes bounceIn {
+    0% {
+      opacity: 0;
+      transform: scale(.3);
+    }
+
+    50% {
+      opacity: 1;
+      transform: scale(1.05);
+    }
+
+    70% {
+      transform: scale(.9);
+    }
+
+    100% {
+      transform: scale(1);
+    }
+  }
+
+
+    #goals_list:hover
+    {
+      cursor: pointer;
+    }
+    .selected
+    {
+      background-color:#ff5722;
+
+    }
+    #goals_list div > div,#goals_list div > h5
+    {
+      display: inline-block;
+      margin: 7px;
+    }
+    #goals_list
+    {
+      font-size: 1em;
+      max-height: 700px;
+      overflow: auto;
+    }
+
+      #legend_tooltip
+      {
+
+
+        padding-top: 10px;
+            margin-top: 20px;
+    margin-left: 5px;
+        min-width: 210px;
+        height: auto;
+
+      }
+
+      .svg-container
+      {
+        max-height: 850px!important;
+      }
+      #chart_info
+      {
+
+
+        padding-left: 130px;
+                 margin-top: 20px;
+                 overflow: auto;
+
+
+      }
+
+      #right_container
+     {
+      max-height: 700px;
+      overflow: -webkit-paged-y;
+    }
+
+    #right_container table tr:hover
+    {
+      cursor: pointer;
+    }
+
+      .table_wrapper
+      {
+        max-height: 500px;
+        overflow: auto;
+      }
+
+      #dropdown_legend
+      {
+      margin-top:50px!important;
+      width: auto!important;
+      height: auto;
+      }
+
+      .dropdown_legend_btn
+      {
+        background-color: #00bcd4:;
+      }
+
+
+      #chart_info table
+      {
+        border-collapse: collapse;
+
+
+        max-width: 480px;
+        max-height: 500px;
+        overflow: auto;
+      }
+      .horizontal
+      {
+        max-height: 170;
+      }
+      .card .card-content
+      {
+        padding: 10px!important;
+
+      }
+
+      #dropdown1
+      {
+        top:50px!important;
+      }
+      .side-nav
+      {
+        top:60px!important;
+      }
+      .wrapper
+      {
+
+        margin-left: 300px;
+        max-width: 200px;
+      }
+
+.side-nav .collapsible-header
+{
+  font-size:150%;
+}
+.side-nav li
+{
+  padding: 10px!important;
+
+  line-height: 24px!important;
+}
+      .side-nav .collapsible-header div
+{
+  position:relative;
+  width: 100%;
+  pointer-events: none;
+}
+table.striped > tbody > tr:nth-child(odd) {
+
+  background-color: rgba(170, 213, 213, 0.5);
+
+}
+
+.side-nav .input-field
+ {
+  margin-left: 25px;
+  max-width: 250px;
+ }
+
+
+body > div.sdg_container{
+ background: #212121e3;
+}
+#sdg_cards_container > div > div > div > div.card-stacked{
+ background-color: #efeadcf5;
+ color: #616161;
+}
+
+
+#card-sdg-name{
+min-height: 100px;
+}
+
+
+.morecontent span {
+    display: none;
+}
+.morelink {
+    display: block;
+}
+
+#targets_count {
+    background: #e0dcd1;
+    padding: 10px;
+    border-radius: 2px;
+    margin-top: 5px;
+}
+#sdg_cards_container > div > div > div > div.card-stacked > div > div.card-action > a {
+    background-color: #636363;
+    padding: 10px;
+    margin-left: -24px!important;
+    color: #f0ebdd;
+    border-radius: 2px;
+}
