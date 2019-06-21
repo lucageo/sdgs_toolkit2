@@ -1,0 +1,3390 @@
+<!DOCTYPE html>
+<html><head>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <script src="./jquery-3.3.1.min.js"></script>
+    <script src="./sdg_info.js"></script>
+    <link rel="stylesheet" href="./css/sdg_new.css"></link>
+    <!-- <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"/ > -->
+     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"/>
+    <script src="./materialize.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+     <script src="./d3_v5.min.js"></script>
+     <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
+    <!-- <script src="https://d3js.org/d3.v3.js"></script> -->
+
+
+    <script src="./d3-multi-styles.js"></script>
+
+    <script src="./popper.min.js"></script>
+
+
+     <script src="https://d3js.org/colorbrewer.v1.min.js"></script>
+    <style type="text/css">
+
+    .card.horizontal .card-image {
+    max-width: 30%!important;
+}
+#toast-container {
+    display: block;
+    position: absolute;
+    z-index: 10000;
+}
+#nav-mobile{
+  padding-left: 73px!important;
+}
+html {
+
+    font-family: 'Montserrat', sans-serif!important;
+}
+.blue {
+    background-color: #788f9c !important;
+}
+nav ul a {
+
+    color: #444!important;
+}
+    .flow-text-test
+    {
+      padding: 5px;
+    }
+
+    .target_toast_direction_title
+    {
+  padding: 5px;
+    font-size: 1.2rem!important;
+    font-weight: bold;
+color: #374752;
+    }
+    .toast
+    {
+      font-size: 0.9rem!important;
+    }
+    .sel_table_value
+    {
+    	    padding: 5px;
+    }
+    .sel_table_value:hover
+    {
+      cursor: pointer;
+    }
+    body > div.sdg_container > nav > div > a.brand-logo.center.hide-on-med-and-down{
+        color: #444!important;
+    }
+       #right_container
+       {
+        display: none;
+       }
+
+       .dropdown_config_div .form p
+       {
+       	margin: 10px!important;
+       }
+      .goal_stats_container .collapsible-body
+      {
+        padding: 10px!important;
+      }
+
+      .progress_num_rec
+      {
+        font-weight: bold;
+        font-size: 1.2em;
+        color: #2196f3;
+      }
+
+#toast-container > div > div > div:nth-child(3) > div > i.material-icons.edit-icon{
+  position: relative;
+float: right;
+margin-top: -3px;
+}
+#toast-container > div > div > div:nth-child(3) > div > i.delete_card_icon.material-icons{
+  position: relative;
+float: right;
+margin-top: -3px;
+}
+      .progress_category
+      {
+        font-size: 1.2em;
+      }
+
+      .edit-icon:hover,.delete_card_icon:hover
+      {
+        cursor: pointer;
+      }
+
+      .card_legend_tooltip_container
+      {
+
+        display: none;
+      }
+      .val_title
+      {
+        background-color: #6f8796;
+        padding: 10px;
+        margin: 5px;
+        height: 44px;
+      }
+      .card_val_title
+      {
+        font-weight: bold;
+        color: white;
+        position: absolute;
+        float: right;
+        margin-right: 51px;
+      }
+      .progress_test
+      {
+
+        height: auto;
+      }
+
+      .progress_test .progress,.determinate
+      {
+        height: 18px!important;
+      }
+
+
+    </style>
+</head>
+<body>
+<div class="wrapper">
+   <ul id="slide-out" class="side-nav">
+      <div>
+         <ul class="collapsible" data-collapsible="accordion"></ul>
+      </div>
+      <div class="input-field col s4 m6"> <select multiple class="icons"> <option value="wisehd" disabled selected>Add Goals or Targets and build your matrix</option> </select></div>
+    </ul>
+</div>
+<div class="sdg_container">
+      <nav>
+        <div class="nav-wrapper white darken-4">
+          <a href="" class="brand-logo left"><img src="./img/sdgs_logo_60.png"></a>
+          <a href="" class="brand-logo center hide-on-med-and-down">SDGS Interlikages Toolkit</a>
+          <ul id="nav-mobile">
+            <li><a href="#" data-activates="slide-out" class="sidenav_trigger btn-floating btn-small waves-effect waves-light blue-grey lighten-1"><i class="material-icons">apps</i></a>
+            </li>
+                <ul id="dropdown_legend" class="dropdown-content">
+                  <li>
+                    <div id="legend_tooltip"></div>
+                  </li>
+                </ul>
+                 <li>
+                 <a href="#" class="btn-floating btn-small waves-effect waves-light blue-grey lighten-1 dropdown-button  dropdown_legend_btn" data-activates="dropdown_legend"><i class="material-icons md-light">layers</i></a>
+                </li>
+
+                <li><a href="#" class="sidenav_trigger btn-floating btn-small waves-effect waves-light blue-grey lighten-1"><i class="material-icons attach_csv">attachment</i></a>
+                </li>
+               <ul id="dropdown_config" class="dropdown-content">
+                  <li>
+                    <div class='dropdown_config_div'>
+                      <p>General tool settings</p>
+                      <form id="dropdown_config_form" action="#">
+                        <p>
+                          <input type="checkbox" id="opt_click" />
+                          <label for="opt_click">Get info only if a card is clicked</label>
+                        </p>
+                      </form>
+                   </div>
+                  </li>
+                </ul>
+            <li> <a href="#" class="btn-floating btn-small waves-effect waves-light blue-grey lighten-1 waves-effect waves-light dropdown-button btn dropdown_config_btn" data-activates="dropdown_config"><i class="material-icons md-light">settings</i></a></li>
+
+          </ul>
+          <ul class="right hide-on-med-and-down">
+            <li><a href="https://lucageo.github.io/sdg_home/">PROJECT</a></li>
+            <li><a href="https://lucageo.github.io/sdg_home/#learn">LEARN</a></li>
+            <li><a href="#">SDGS</a></li>
+            <li><a href="#">EVENTS</a></li>
+            <li><a href="#">WHO WE ARE</a></li>
+            <li> <nav class="white">
+              </nav>
+            </li>
+          </ul>
+        </div>
+      </nav>
+      <div class='row' id="info">
+         <div style='display: none' class="col s3">
+             <div class="form-goal  targets_by_text">
+              <input type="text" required="required"/>
+              <label for="input" class="control-label">Search targets by text</label><i class="bar"></i>
+            </div>
+              <div id="goals_list">
+              </div>
+         </div>
+       </div>
+    <div id="sdg_cards_container">
+    <div class="row"></div>
+      <div style="display:none;" class="row chart_container">
+        <div id="chart" class="left col s6 offset-s3">
+          <div class='svg-container'></div>
+        </div>
+          <div id="right_container" class="left col s12">
+            <div id="graph"></div>
+            <div class="right_container_cards">
+               <ul class="collapsible" data-collapsible="accordion">
+                  <li class="goal_stats_container">
+                      <div class="collapsible-header">
+                          <div class="card horizontal">
+                              <div class="card-image"> <i class="material-icons md-light">equalizer</i></div>
+                              <div class="card-stacked">
+                                  <div class="card-content">
+                                      <div>Statistics</div>
+                                  </div>
+                                </div>
+                            </div>
+                        </div>
+                          <div class="collapsible-body white">
+                              <ul>
+                                  <li>
+                                    <div class="row progress_test card-panel">
+                                    </div>
+                                  </li>
+                              </ul>
+                          </div>
+                    </li>
+                </ul>
+            </div>
+          <div id="sel_info_matrix"></div>
+        </div>
+      <div class='col s5' style="display: none;" id="chart_info"></div>
+    </div>  <!-- chart_container -->
+  </div>  <!-- sdg_cards_container -->
+</div>   <!-- end of sdg_container -->
+
+
+<script type="text/javascript">
+
+var selected_goals_arr=[];
+
+var sdg_params={};
+
+ colors = colorbrewer.RdYlGn[7]; // alternatively colorbrewer.YlGnBu[9]
+
+
+
+
+      var colors_obj={total_records:0,data:[{legend_val:-3,counts:0,percent_val:0,color:"#d73027",legend_text:"Strongly restricting"}, {legend_val:-2,counts:0,percent_val:0,color:"#fc8d59",legend_text:"Moderately restricting"}, {legend_val:-1,counts:0,percent_val:0,color:"#fee08b",legend_text:"Weakly restricting"}, {legend_val:0,counts:0,percent_val:0,color:"#ffffbf",legend_text:"No influence"}, {legend_val:1,counts:0,percent_val:0,color:"#d9ef8b",legend_text:"Weakly promoting"}, {legend_val:2,counts:0,percent_val:0,color:"#91cf60",legend_text:"Moderately promoting"}, {legend_val:3,counts:0,percent_val:0,color:"#1a9850",legend_text:"Strongly promoting"}]};
+var xmouse, ymouse;
+
+
+
+var test_data=[{"data":"2.1-2.4","visualized":true,"title":"<span class='toast_target'>Target 2.1</span>By 2030, end hunger and ensure accessy all people, in particular the poor and people in vulnerable situations, including infants, to safe, nutritious and sufficient food all year round.  <hr><span class='toast_target'>Target 2.4</span>By 2030, ensure sustainable food production systems and implement resilient agricultural practices that increase productivity and production, that help maintain ecosystems, that strengthen capacity for adaptation to climate change, extreme weather, drought, flooding and other disasters and that progressively improve land and soil quality. ","from_title":"<span class='toast_target'>Target 2.1</span>By 2030, end hunger and ensure accessy all people, in particular the poor and people in vulnerable situations, including infants, to safe, nutritious and sufficient food all year round. ","to_title":"<span class='toast_target'>Target 2.4</span>By 2030, ensure sustainable food production systems and implement resilient agricultural practices that increase productivity and production, that help maintain ecosystems, that strengthen capacity for adaptation to climate change, extreme weather, drought, flooding and other disasters and that progressively improve land and soil quality. ","from_id":"2.1","to_id":"2.4","goal":2,"value":-3,"row":"2.1","column":"2.4","x":285,"y":0,"same_targets":false},{"data":"2.2-2.a","visualized":true,"title":"<span class='toast_target'>Target 2.2</span>By 2030, end all forms of malnutrition, including achieving, </span>By 2025, the internationally agreed targets on stunting and wasting in children under 5 years of age, and address the nutritional needs of adolescent girls, pregnant and lactating women and older persons.  <hr><span class='toast_target'>Target 2.a</span> Increase investment, including through enhanced international cooperation, in rural infrastructure, agricultural research and extension services, technology development and plant and livestock gene banks in order to enhance agricultural productive capacity in developing countries, in particular least developed countries. ","from_title":"<span class='toast_target'>Target 2.2</span>By 2030, end all forms of malnutrition, including achieving, </span>By 2025, the internationally agreed targets on stunting and wasting in children under 5 years of age, and address the nutritional needs of adolescent girls, pregnant and lactating women and older persons. ","to_title":"<span class='toast_target'>Target 2.a</span> Increase investment, including through enhanced international cooperation, in rural infrastructure, agricultural research and extension services, technology development and plant and livestock gene banks in order to enhance agricultural productive capacity in developing countries, in particular least developed countries. ","from_id":"2.2","to_id":"2.a","goal":2,"row":"2.2","column":"2.a","x":475,"y":95,"same_targets":false,"value":1}];
+
+
+
+
+
+var test_arr=[{data:"2.1-2.4",value:-3},{data:"2.2-2.a",value:1},{data:"5.2-1.a",value:1},{data:"4.2-2.a",value:1}]
+
+    var chart={};
+    var options={config:{opt_right:true,opt_click:false,from_csv:false}};
+    console.log(options.config)
+
+    var sel_from_sidenav=false;
+     var clicked_card=false;
+   var clicked_card_data,tip;
+   var clicked_card_data=null;
+
+   selected_targets_arr=[];
+   var goal_stats=[];
+   var unique_id_arr={ids:[],values:[]}
+
+     $(document).ready(function(){
+
+      $('.attach_csv').click(function()
+      {
+        if ($(this).hasClass('csv_active'))
+        {
+          $(this).removeClass('csv_active yellow');
+          options.config.from_csv=false;
+        }
+        else
+        {
+         $(this).addClass('csv_active yellow');
+          options.config.from_csv=true; 
+          get_individual_target();
+
+          
+        }
+      });
+
+     console.log(options.config)
+
+        var orig_fadeOut = $.fn.fadeOut;
+
+       $.fn.fadeOut = function(){
+           $(this).trigger('fadeOut');
+           if ($(this).hasClass('.card_toast.blue'))
+           {
+              console.log('applyging fadeout from triggering on CARD TOAST');
+              clicked_card=false;
+              clicked_card_data=null;
+           }
+
+           orig_fadeOut.apply(this, arguments);
+       };
+
+       $('.dropdown_legend_btn').hide();
+
+
+       //rev_card_val,clicked_card_data
+        function check_update (new_card_val,prev_card_val,data,filtered_data,goal)
+                                       {
+                                         console.warn(unique_id_arr.ids)
+                                         console.info(arguments)
+                                         var pos=unique_id_arr.ids.indexOf(filtered_data.data);
+                                         console.trace();
+                                         if (pos==-1)
+                                         {
+                                           console.warn('first time for this value')
+                                           unique_id_arr.ids.push(filtered_data.data)
+                                           unique_id_arr.values.push(filtered_data.value);
+
+                                           //tabulate_clicked already include update_progress_bar
+                                           tabulate_clicked(data,'add');
+
+
+                                         }
+                                         else
+                                         {
+                                             unique_id_arr.values[pos]=new_card_val;
+                                             console.log(filtered_data.data+' EXISTING already, just changing COLOR-DATA, also val in table');
+
+                                             $('.sel_table_goal.goal_'+goal+' tbody tr').each(function(i,tr)
+                                             {
+                                               console.log($(tr))
+                                               if ($(tr).attr('data_val')==filtered_data.data)
+                                               {
+
+                                                 $(tr).find('h5.sel_table_value').text(function()
+                                                   {
+                                                     return sel_color(filtered_data).legend_text;
+                                                   })
+                                                   .css('background-color',function(div)
+                                                   {
+                                                     //return {legend_val:null,color:"#c6c4c4"}
+                                                     return sel_color(filtered_data).color;
+                                                   })
+                                               }
+                                             })
+
+                                             console.log('trying to update an existing rect info');
+
+                                             colors_obj.data.forEach(function(color,i)
+                                               {
+                                                 if (parseInt(color.legend_val)==parseInt(new_card_val))
+                                                 {
+                                                   //selected(updated color)
+                                                   console.log('update counts for new_rect_val '+new_card_val)
+                                                   color.counts=parseInt(color.counts)+1;
+
+                                                   console.warn(color)
+
+
+                                                 }
+
+                                                 if (parseInt(color.legend_val)==parseInt(prev_card_val))
+                                                 {
+                                                   //selected(updated color)
+                                                   console.log('update counts for prev_rect_val '+prev_card_val)
+
+                                                    if (color.counts!==0)
+                                                       color.counts=color.counts-1;
+
+                                                 }
+
+                                               });
+
+                                             console.log(colors_obj)
+
+                                           update_progress_bars('update',filtered_data);
+
+                                         }
+                                         console.log(colors_obj)
+                                         $('i.delete_card_icon').removeClass('right').show();
+                                         console.log(sel_color(filtered_data).color)
+                                       return sel_color(filtered_data).color;
+                                     }
+
+           function delete_card_info (clicked_card_data)
+                       {
+                         var target=$('.toast .delete_card_icon');
+                         var prev_card_val=parseInt(clicked_card_data.value);
+
+
+                          target.hide();
+                          console.info(clicked_card_data)
+
+                          // ?????????????
+                          clicked_card_data.with_data=false;
+                         // clicked_card_data.visualized=false;
+
+                          var filtered=d3.selectAll('.link').filter(function(d)
+                                   {
+
+                                     if (d.data==clicked_card_data.data)
+                                     {
+                                       return this;
+                                     }
+                                   });
+                           filtered.style("fill", function(d) {
+
+                                         //we apply later, have to keep in memory the value to be removed
+                                         //d.value=null;
+
+                                         clicked_card_data=d;
+                                         console.info(d)
+
+                                          $('.card_val_title').css('color',function()
+                                          {
+
+
+                                            return "#c6c4c4";
+                                          }).text(function()
+                                          {
+                                           return 'No value assigned';
+                                          });
+
+                                          var pos=unique_id_arr.ids.indexOf(d.data);
+
+
+                                          for (var p in unique_id_arr)
+                                           {
+                                             unique_id_arr[p].splice(pos,1);
+                                           }
+                                           console.log(clicked_card_data)
+
+                                           tabulate_clicked(clicked_card_data,'remove');
+
+                                           //yLabels are HORIZONTAL. we have to count the SUM_COLS
+                                           d3.selectAll(".yLabels_counter").filter(function(d)
+                                             {
+                                               console.info(d)
+                                               if (d.id==clicked_card_data.to_id)
+                                               {
+                                                 d.sum_col=d.sum_col-(prev_card_val)
+                                                 //d.sum_col=d.sum_col;
+                                                 //d.col_number=col_number;
+                                                 return this;
+                                               }
+                                               console.info(d)
+                                             })
+                                             .text(function(d)
+                                             {
+                                               //if ()
+                                               return d.sum_col;
+                                             });
+
+
+
+                                       var x_sel_labels=d3.selectAll(".xLabels_counter").filter(function(d)
+                                             {
+                                               console.info(d)
+                                               if (d.id==clicked_card_data.from_id)
+                                               {
+                                                 d.sum_rows=d.sum_rows-(prev_card_val)
+
+                                                 return this;
+                                               }
+                                               console.info(d)
+                                             })
+                                             .text(function(d)
+                                             {
+                                               //if ()
+                                               return d.sum_rows;
+                                             })
+
+                                          //to remove table
+                                          // to update progressing tabs
+
+                                         $.when(update_progress_bars('remove',d)).then(function(result)
+                                           {
+
+                                             d.value=null;
+                                             console.info(d)
+                                             $('.edit-icon').show();
+                                             if (colors_obj.total_records>0)
+                                                   {
+                                                     $('.goal_stats_container').fadeIn();
+                                                   }
+                                                   else
+                                                   {
+                                                      $('.goal_stats_container').fadeOut();
+                                                   }
+
+
+                                           })
+                                     return "#c6c4c4";
+                                 })
+                             }  // END fx delete_card_info
+
+       $('body').on('click',function(e)
+                    {
+                     var target=$(e.target);
+                     
+                     if (target.is(':checkbox'))
+                     {
+                       if (target.parent().parent().attr('id')=='dropdown_config_form')
+                       {
+                         var opt=target.attr('id');
+                         if (opt=='opt_right')
+                         {
+                           if (target.prop('checked'))
+                             options.config.opt_right=true;
+                           else
+                             options.config.opt_right=false;
+                         }
+
+                         if (opt=='opt_click')
+                         {
+                           if (target.prop('checked'))
+                             options.config.opt_click=true;
+                           else
+                             options.config.opt_click=false;
+                         }
+
+
+                        // opt_click
+                       }
+                     }
+
+                     // $('#dropdown_config_div').on('click',function(e)
+                     // {
+                     //   $('#dropdown_config_div')
+                     //   var target=$(e.target);
+                     //   console.log(target)
+                     // })
+                     if (target.hasClass('delete_card_icon'))
+                     {
+                       delete_card_info (clicked_card_data)
+
+                     }
+
+                     if (target.hasClass('edit-icon'))
+                     {
+                          console.info(clicked_card_data)
+                             if (!$('.card_legend_tooltip_container').is(':visible'))
+                             {
+                               $('.card_legend_tooltip_container').fadeIn();
+                               $('i.edit-icon').hide();
+                               $('i.delete_card_icon').removeClass('right');
+                             }
+                           return false;
+                     }
+                     if (target.hasClass('close_tooltip'))
+                       {
+                         if ($('.card_toast.blue').length>0)
+                         {
+                           $('.card_toast.blue').fadeOut()
+                           $('.card_toast.blue').remove();
+                         }
+
+                         $('.editing_card_toast').remove()
+
+                         clicked_card=false;
+                         clicked_card_data=null;
+                       }
+
+                       else
+                       {
+                           //rectangles on the LEGEND
+                             if (target.is('rect') && target.parent().hasClass('legend'))
+                             {
+                                   var val=parseInt(target.attr('value'));
+                                   var filtered=d3.selectAll('.link').filter(function(d)
+                                   {
+
+                                     if (d.data==clicked_card_data.data)
+                                     {
+                                       return this;
+                                     }
+
+                                   })
+
+                                   console.info(filtered)
+
+                                   filtered.style("fill", function(d) {
+
+                                         $('#right_container').show();
+                                         var prev_card_val=parseInt(d.value);
+                                         d.value=val;
+                                         clicked_card_data=d;
+                                         var data=clicked_card_data.data;
+
+                                         var goal=d.goal;
+
+                                          $('.card_val_title').css('color',function()
+                                          {
+                                            return sel_color(d).color;
+                                          }).text(function()
+                                          {
+                                           return sel_color(d).legend_text;
+                                          });
+
+                                          $('i.delete_card_icon').removeClass('right').show();
+
+                                          $('i.edit-icon').hide();
+
+                                          //var color=
+                                          check_update (val,prev_card_val,clicked_card_data,d,goal);
+
+
+                                          console.info('rect changed from table to '+sel_color(d).color)
+                                          console.info(sel_color(d).color);
+
+                                          return sel_color(d).color;
+                                     });
+
+                                    filtered.style("opacity",1);
+
+
+                                     var row_sum=0;
+                                     var row_number=0;
+                                     var all_vis_data=[]
+
+                                     var row_filtered=d3.selectAll('.link').filter(function(d)
+                                     {
+
+                                      if ( d.value!==null)
+                                      {
+                                        all_vis_data.push(d)
+                                      }
+                                       if (d.from_id==clicked_card_data.from_id && d.value!==null)
+                                       {
+                                         console.info(d.value)
+                                         row_number++;
+                                         row_sum+=d.value;
+                                         return this;
+                                       }
+
+                                     });
+
+                                     console.info(JSON.stringify(all_vis_data))
+
+                                     var x_sel_labels=d3.selectAll(".xLabels_counter").filter(function(d)
+                                     {
+                                       console.info(d)
+                                       if (d.id==clicked_card_data.from_id)
+                                       {
+                                         d.sum_rows=row_sum;
+                                         d.row_number=row_number;
+                                         return this;
+                                       }
+                                     });
+
+                                     x_sel_labels.classed('with_data',true);
+                                     console.info(x_sel_labels)
+
+                                     x_sel_labels.text(row_sum);
+                                     var y_sel_labels=d3.selectAll(".yLabels_counter");
+
+
+                                     var sum_col=0;
+                                     var col_number=0;
+
+                                     var col_filtered=d3.selectAll('.link').filter(function(d)
+                                     {
+
+
+                                       if (d.to_id==clicked_card_data.to_id && d.value!==null)
+                                       {
+
+                                         col_number++;
+                                         sum_col+=d.value;
+                                         return this;
+                                       }
+
+                                     });
+
+                                     var y_sel_labels=d3.selectAll(".yLabels_counter").filter(function(d)
+                                     {
+
+                                       if (d.id==clicked_card_data.to_id)
+                                       {
+
+                                         d.sum_col=sum_col;
+                                         d.col_number=col_number;
+                                         return this;
+                                       }
+                                     });
+
+                                     y_sel_labels.classed('with_data',true);
+                                     y_sel_labels.text(sum_col);
+
+                               }
+
+
+                                 else
+                                 {
+                                   // return false;
+                                 }
+                               }
+
+                   })
+
+
+
+
+       function stripHTML(text){
+          var regex = /(<([^>]+)>)/ig;
+          return text.replace(regex, "");
+       }
+
+
+ function generate_select (data,row)
+ {
+
+   //data from selected_card
+   //row from table generation
+   var obj=sel_color(data.value);
+
+   var html='<div data_val="'+row.data+'" class="input-field"> <select><option value="" disabled>Choose your option</option>';
+
+
+
+   for (var p in colors_obj.data)
+   {
+
+    var t=colors_obj.data[p];
+
+    if (parseInt(data.value)==parseInt(t.legend_val))
+    {
+      html+='<option selected style="color:'+t.color+';font-weight:bold;" value="'+t.legend_val+'">'+t.legend_text+'</option>';
+    }
+    else
+    {
+     html+='<option style="color:'+t.color+';" value="'+t.legend_val+'">'+t.legend_text+'</option>';
+    }
+   }
+   html+='</select></div>';
+   //console.info(html)
+   return html;
+
+
+
+ }
+
+
+
+                             function sel_color(d)
+                             {
+                                
+                                if(d.value===null)
+                                           {
+                                            // console.info('nulll at the beginning')
+                                             return {legend_val:null,color:"#c6c4c4"}
+                                           }
+                                 else
+                                 {
+
+                                     var _sel=colors_obj.data.filter(function(info)
+                                               {
+                                                 //console.warn(info)
+                                                 //{legend_val: 2, color: "#91cf60"}
+
+                                                 /*
+                                                 column: "1.a"
+                                                     data: "1.b-1.a"
+                                                     goal: 1
+                                                     row: "1.b",
+                                                     value:null
+                                                     */
+                                           /*      console.log(info)
+                                                 console.log(d)*/
+
+                                                   if(info.legend_val==d.value)
+                                                   {
+                                                     return info
+                                                   }
+                                               })[0]
+
+                                     
+                                     return _sel
+                                   }
+                             }
+
+
+
+
+               var all_data=[];
+   var goals_obj=[];
+   var all_t_val=[];
+              var from_ids_arr;
+
+   
+   function get_targets(visualized)
+       {
+         console.info(arguments)
+
+
+             //if(typeof selected_goals_arr=='undefined')
+             $('.checkbox_all_goal').find(':checked')
+
+
+            if (options.config.from_csv==false)
+              {
+                selected_goals_arr=$('.side-nav .input-field select').val()
+                   .map(function(d)
+                     {
+                       return d-1;
+                     });
+              }
+              else
+              {
+                var selected_goals_arr=d3.range(1,18);
+              }             
+             //defined on adding/removing
+             console.log(selected_goals_arr)            
+             var these_targets=[];
+             var these_targets_data=[]             
+             //goals_obj contains ALL info refereing GOALS and TARGETS for creating the chart
+                  goals_obj.forEach(function(d,i)
+                  {
+                   // if (selected_goals_arr.indexOf(i)!==-1)
+                  
+                   // {
+                  
+                    d['targets'].forEach(function (d2,i2)
+                    {
+                      console.warn(d2.id)
+                      // if (options.from_csv==false)
+                      // {
+                        console.warn(from_ids_arr)
+                         var position=from_ids_arr.indexOf(d2.id);
+                          if (position!==-1)
+                          {
+                            console.info(d2)
+                            these_targets_data.push(d2);
+                           // Array.prototype.push.apply(these_targets_data,d2);
+                          }  
+                      // }
+                      // else
+                      // {
+                      //   these_targets_data.push(d2);
+                      // }
+                      
+                    })
+
+                     Array.prototype.push.apply(these_targets,d.targets);
+                 //  }
+                     // these_targets.push(d.targets)
+                  })
+                 console.log(these_targets)
+                 console.log(these_targets_data[0])
+                 console.log(these_targets_data[1])
+
+                 chart.buckets=these_targets_data.length;
+
+                    width_px=780;
+                       //5_3_text
+                       //var width_px=parseInt($('#chart').width());
+
+                        margin = { top: 20, right: 40, bottom: 40, left: 20 },
+                       width = width_px - margin.left,// - margin.right,
+                       height = width_px - margin.top - margin.bottom;
+
+
+
+                        gridSize = Math.floor(width / chart.buckets),
+                       //legendElementWidth = gridSize;
+                       legendElementWidth = 30;
+
+                       chart.gridSize=gridSize;
+
+                       var w=width_px + margin.left + margin.right+20;
+                       var h=width_px + margin.top + margin.bottom;
+
+
+                 //legendElementWidth = gridSize;
+                 //legendElementWidth = 30
+
+                 these_targets_data.map(function(d,i)
+                 {
+                   if(i!==0)
+                   {
+                     d.x=(i+1)*gridSize;
+                      //     x:(index+1)*gridSize,
+                     d.y=(i-1)*gridSize
+                   }
+                 })
+
+
+                  var selected_links=[];
+                  console.info(unique_id_arr)
+                  console.warn(selected_targets_arr)
+
+                 these_targets_data.forEach(function(info,row)
+                 {
+                  console.log(info)
+
+                  var arr=[];
+
+
+                  for (var column in these_targets_data)
+                           {
+
+                             if (row==0)
+                             {
+                                  //1 1 ...
+                                 var unique_id=info.id+'-'+these_targets_data[column].id;
+
+                                 var _t={  data:unique_id,  //2-2 2-2
+
+                                         visualized: visualized,
+                                         title: info.description+' <hr>'+these_targets_data[column].description,
+                                         from_title:info.description,
+                                         to_title: these_targets_data[column].description,
+                                         from_id: info.id,
+                                         to_id:these_targets_data[column].id,
+                                        // goal:these_targets_data[column].goal,
+                                         goal:info.sdgnum,
+                                         row:info.id,
+                                         column:these_targets_data[column].id,
+                                          x: (column)*gridSize,
+                                         y: 0
+                                         }
+
+                                   if (info.id==these_targets_data[column].id)
+                                   {
+                                      _t.same_targets=true;
+                                     _t.visualized=true;
+                                   }
+                                   else
+                                   {
+                                      _t.same_targets=false;
+                                      _t.visualized=true;
+                                   }
+
+                                if (options.config.from_csv==false)
+                                {
+                                     var pos=unique_id_arr.ids.indexOf(unique_id);
+
+                                     if (pos==-1)
+                                     {
+                                       _t.value=null;
+                                      // _t.visualized=true;
+
+                                     }
+                                     else
+                                     {
+                                     //	_t.visualized=true;
+
+                                       _t.value=unique_id_arr.values[pos];
+                                      }
+                                }
+                                else
+                                {
+                                  _t.value=these_targets_data.value;
+                                }
+                                
+
+                                 arr.push(_t)
+
+
+                             }
+                             else
+                             {
+                               var unique_id=info.id+'-'+these_targets_data[column].id;
+
+
+                                 var _t={
+                                          data:unique_id,
+                                          visualized: visualized,
+                                         title: info.description+' <hr>'+these_targets_data[column].description,
+                                          from_title:info.description,
+                                         to_title: these_targets_data[column].description,
+                                         from_id: info.id,
+                                         to_id:these_targets_data[column].id,
+                                        // goal:these_targets_data[column].goal,
+                                         goal:info.sdgnum,
+
+
+                                         row:info.id,
+                                         column:these_targets_data[column].id,
+                                         x: (column)*gridSize,
+                                         y: (row)*gridSize,
+                                         };
+
+
+
+                               if (info.id==these_targets_data[column].id)
+                                   {
+                                      _t.same_targets=true;
+                                      _t.visualized=true;
+                                   }
+                                   else
+                                   {
+                                      _t.same_targets=false;
+                                   }
+
+                                if (options.config.from_csv==false)
+                                {
+                                     var pos=unique_id_arr.ids.indexOf(unique_id);
+
+                                     if (pos==-1)
+                                     {
+                                       _t.value=null;
+                                      // _t.visualized=true;
+
+                                     }
+                                     else
+                                     {
+                                     // _t.visualized=true;
+
+                                       _t.value=unique_id_arr.values[pos];
+                                      }
+                                }
+                                else
+                                {
+                                  _t.value=these_targets_data.value;
+                                
+                                }
+
+                                
+
+                                 arr.push(_t)
+
+                             }
+
+
+                           }
+                         Array.prototype.push.apply(selected_links,arr);
+
+                   })
+                 console.info(selected_links)
+                 return {links:selected_links,targets:these_targets_data}
+          }  // ./get_targets
+
+
+           var get_first_data_promise_data = get_first_data_promise();
+
+
+
+           get_first_data_promise_data.done(function(data)
+           {
+
+             //console.log(data) //goals_obj
+             // $('.sdg_cards_container').click(function(e)
+             // {
+             //   sel_from_sidenav=false;
+             // })
+               $('.card').click(function(e)
+                      {
+                       console.log(sel_from_sidenav)
+                       var target=$(e.target);
+                       if ($(this).hasClass('goal_card_sel'))
+                         return false;
+
+                       if (target.parent().hasClass('card-action'))
+                       {
+
+
+                         var goal_class=$(this).find('.card-sdg-goal').attr('class').split(' ')[1];
+                         //card-goal-1
+                         var goal=goal_class.split('-')[2];
+                         //card-goal-1
+
+                         /*  if (pos==-1)
+                                     selected_goals_arr.push(goal)
+                           else
+                             return false;*/
+
+                         $(this).addClass('goal_card_sel');
+
+
+                         $('#dropdown1 li').eq(0).after('<li class="dropdown_li_'+goal+'"><a href="#!">Goal '+goal+'</a></li>')
+
+                         var count=Number($('.dropdown-button .badge').text())+1;
+                         $('.dropdown-button .badge').text(count);
+
+
+
+                         //Materialize.toast('Group <b>'+goal+'</b> has been added to the list', 1500);
+                         if ($('.goal_toast').length>0)
+                         {
+                           $('.goal_toast').fadeOut();
+                         $('.goal_toast').remove();
+                         }
+
+
+                         var $toastContent = $('<span>Goal '+goal+' has been added</span>')
+
+                         Materialize.toast($toastContent, 300,'goal_toast black');
+
+                         $('.goal_toast.black').parent().addClass('goal_toast_container').removeClass('card_toast_container').show();
+
+
+                         $('.side-nav .input-field select').find('option[value="'+goal+'"]').hide();
+
+
+
+                         var sidenav_html='<li class="li_goal_container '+goal+'"><div class="collapsible-header nav_bar_'+goal+'"><div class="card horizontal"><div class="card-image"> <img class="responsive-img" style="width:70px" src="./img/sdg'+goal+'.png"></div><div class="card-stacked"><div class="card-content"><div class="card-sdg-goal card-goal-'+goal+'"> Goal '+goal+'</div></div></div></div></div><div class="collapsible-body"> <div><input type="checkbox" class="checkbox_all_goal" id="check_all_goal_'+goal+'"><label for="check_all_goal_'+goal+'">Add all targets</label></div><ul>';
+
+                         if ($('.right_container_cards .li_goal_container.class'+goal).length==0)
+                         {
+                            var right_container_cards_html='<li class="li_goal_container class_'+goal+'"><div class="collapsible-header nav_bar_'+goal+'"><div class="card horizontal"><div class="card-image"> <img class="responsive-img" style="width:70px" src="./img/sdg'+goal+'.png"></div><div class="card-stacked"><div class="card-content"><div class="card-sdg-goal card-goal-'+goal+'"> Goal '+goal+'</div><span class="card_count"></span></div></div></div></div><div class="collapsible-body"><ul></ul> </div></li>';
+
+
+                             $('.right_container_cards ul.collapsible').append(right_container_cards_html)
+
+                         }
+
+                         for (var p in sdgs)
+                         {
+                           if (sdgs[p].sdg_num==goal)
+                           {
+                             var this_goal=sdgs[p];
+                             this_goal.targets.forEach(function(info)
+                             {
+
+                                 var this_li='<li><div><b>Target '+info.targetcode+'</b> <input type="checkbox" id="check_'+info.targetcode+'"><label for="check_'+info.targetcode+'"></label></div><span class="target_checkbox_span">'+info.targetname+'</span></li>';
+
+                                 sidenav_html+=this_li;
+
+                             })
+                           }
+                         }
+
+                         sidenav_html+=' </ul></div></li>';
+
+                         $('.side-nav ul.collapsible').append(sidenav_html);
+
+                         $('.side-nav ul.collapsible').find('.toast_target').remove();
+
+                         if ($('.sdg_cards_container').is(':visible'))
+                             $('.sidenav_trigger').trigger('click')
+
+
+
+                           if (sel_from_sidenav==false)
+                           {
+                         // if ($('#sdg_cards_container .row:first').is(':visible') && $('.side-nav').is(':visible')==false)
+                         //   {
+
+
+                           console.log('triggering click not from sidenav but from landing page')
+                           $('.select-dropdown').find('li').eq(goal).find('input').prop('checked',true).trigger('click');
+                          }
+                          else
+                          {
+                           console.log('triggering FROM sidenav')
+                           $('.select-dropdown').find('li').eq(goal).find('input').prop('checked',true)
+                          }
+
+
+                       }
+                      });
+
+
+
+           }).fail(function()
+           {
+             alert('some error')
+           }) //a function name
+           //register a function to call if aysnc function fails:
+           //geolocationPromise.fail(setErrorMessage);
+               // body...
+
+    // function update_chart
+      var legend_progress=d3.select('.progress_test');
+       var legend_progress_div=legend_progress.selectAll('div')
+
+       .data(colors_obj.data, function(d){
+
+         return d.legend_val;
+       } )
+
+                        .enter();
+
+
+
+                        legend_progress_div.append("div")//attr('class','col s3')
+                        .attr('data-val',function(d)
+                         {
+                           return d.levend_val;
+                         })
+
+                         .html(function(d)
+                         {
+
+
+
+
+                          return '<div class="row"> <span class="progress_category col s9">'+d.legend_text+' </span> <span class="progress_num_rec col s3 right-align">'+d.counts+'</span></div><div percent_val='+d.percent_val+' data-val='+d.legend_val+' class="progress"><div style="width:0%;background-color: '+d.color+';" class="determinate"></div></div>'
+                         })
+                         .on('mouseover',function(d)
+                         {
+                       /*    console.info($(this))
+                           console.warn($(this).find('.progress').attr('data-val'))*/
+                           //console.log($(this).find('.progress div:first').css('width','70%'))
+
+                         })
+                         .on('mouseout',function(d)
+                         {
+                          // console.warn(d)
+                         })
+                         .enter()
+       legend_progress.exit().remove();
+
+
+      function create_chart()
+                 {
+
+                       width_px=780;
+                       //5_3_text
+                       //var width_px=parseInt($('#chart').width());
+
+                        margin = { top: 20, right: 40, bottom: 40, left: 20 },
+                       width = width_px - margin.left,// - margin.right,
+                       height = width_px - margin.top - margin.bottom;
+
+
+
+                        gridSize = Math.floor(width / chart.buckets),
+                       //legendElementWidth = gridSize;
+                       legendElementWidth = 30
+
+                       var w=width_px + margin.left + margin.right+20;
+                       var h=width_px + margin.top + margin.bottom;
+
+
+                       $('.svg-container').height(h);
+                       $('.svg-container').width(w);
+
+
+
+
+                             svg = d3.select(".svg-container").append("svg")
+                             //responsive SVG needs these 2 attributes and no width and height attr
+                              .attr("preserveAspectRatio", "xMinYMin meet")
+                              .attr("viewBox", '0 0 '+w+' '+h+'')
+                              //class to make it responsive
+                              .classed("svg-content-responsive", true)
+                               //.attr("width", width + margin.left + margin.right)
+                              //.attr("height", height + margin.top + margin.bottom)
+                               .append("g")
+                               .classed('g_matrix',true)
+                               .attr("transform", "translate(" + (margin.left+25) + "," + margin.top + ")");
+                 }
+
+     function create_legend()
+     {
+
+
+       var legendElementWidth=30;
+
+       var legend_svg=d3.select("#legend_tooltip").append("svg")
+
+                        //.attr("width", legendElementWidth+170)
+                        .attr("width", 200)
+                        //.attr("height",legendElementWidth*8)
+                        .attr("height",240)
+
+                        var legend = legend_svg.selectAll(".legend")
+                        .data(colors_obj.data, function(d){ return d.legend_val; } )
+
+                        .enter()
+
+                        .append("g")
+                         .attr("class", "legend")
+
+
+                       legend.append("rect")
+                        .attr("x", function(d, i) {
+
+                         return 0 * i;
+                       })
+                       //.attr("x",0)
+                       .attr("y", function(d,i)
+                         {
+                           return  legendElementWidth * i;
+                         })
+                       .attr("width", legendElementWidth)
+                       .attr("height", legendElementWidth)
+                       .style("fill", function(d, i) {
+                               //console.info(d3.select(this))
+                               return d.color;
+                             })
+                       .attr("value",function(d)
+                       {
+                         return d.legend_val;
+                       })
+                       .on('mouseover',function(d)
+                       {
+                         console.info(d) //0,-1...
+
+                         var cards=d3.selectAll('.link');
+                         cards.transition().duration(150).style('opacity',0.2);
+
+                         var sel=cards.filter(function(data)
+                         {
+                           return (data.visualized==true && parseInt(data.value)==parseInt(d.legend_val));
+                         });
+                         console.info(sel)
+
+                         sel.transition().duration(350).style('opacity',1);
+                         //reverse().
+
+                       })
+                       .on('mouseout',function(d)
+                       {
+
+                         var cards=d3.selectAll('.link');
+                         var sel=cards.filter(function(data)
+                         {
+                           return (data.visualized==true)// && parseInt(data.value)==parseInt(d.legend_val);
+                         });
+
+                         sel.transition().duration(50).style('opacity',1);
+                       })
+
+                       legend.append("text")
+                       .attr("class", "Montserrat")
+                       .html(function(d) {
+                          // console.warn(d.legend_text)
+                           return d.legend_text;//+'<b>test</b>';
+                         })
+                        .attr("x", function(d, i) {
+                         return legendElementWidth+20;
+                       })
+                       //.attr("x",0)
+                       .attr("y", function(d,i)
+                         {
+                           return  ((legendElementWidth * i)+(legendElementWidth/2));
+                         })
+
+                       //.appendHTML('<b>test</b>')
+                       legend.exit().remove();
+     }
+
+     //function remove
+
+     function add_all_goal(goal)
+            {
+
+
+               sdg_params.sel_info=get_targets(false);
+               var plot_labels=sel_info['targets'];
+               
+
+               console.warn(selected_targets_arr)
+               var hidden_links=[];
+
+               var plot_links=sdg_params.sel_info['links'].filter(function(d)
+                             {
+
+
+                                     //selected_targets_arr contains targets selected on the select individually
+                                     if (selected_targets_arr.indexOf(d.from_id)!==-1)
+                                     {
+                                           d.visualized=true;
+                                           return d;
+                                     }
+                                     else
+                                     {
+                                       d.visualized=false;
+                                       hidden_links.push(d);
+                                       return d;
+                                     }
+
+                             });
+
+               params.to_plot={links:plot_links,targets:plot_labels,hidden_links:hidden_links}
+
+                 if($("#chart svg").length>0)
+               {
+
+                 $("#chart svg:first").remove();
+                 create_chart()
+
+                 heatmap(params.to_plot);
+
+               }
+               else
+               {
+                     create_chart();
+
+                      heatmap(params.sel_info);
+
+                     if ($('#legend_tooltip svg').length==0)
+                       create_legend();
+
+                       //creating tables
+                       // $('#sdg_cards_container .row').eq(1).hide();
+
+                        setTimeout(function()
+                        {
+                         $('#sdg_cards_container .row').eq(1).show();
+                        },600)
+                    //$('.tables_container
+
+               }
+
+             }
+
+
+     function get_first_data_promise() {
+
+       var deferred = $.Deferred(); //use the jQuery Deferred object
+       var side_nav_options='';
+       sdgs.forEach(function(d,i)
+             {
+               // d.targets=[];
+               var this_goal={'id':d.sdg_num,targets:[]};
+
+              //
+               side_nav_options+='<option value="'+d.sdg_num+'" data-icon="./img/sdg'+d.sdg_num+'.png"> Goal '+d.sdg_num+'</option>';
+               if (i>=0 && i<30)
+               {
+
+
+                $('#sdg_cards_container .row').eq(0).append('<div class="col l2 xl2 s6 m6">  <div class="card hoverable"><div class="card-image"> <img src="./img/sdg'+d.sdg_num+'.png"></div><div class="card-stacked"><div class="card-content"><div class="card-sdg-goal card-goal-'+d.sdg_num+'"> Goal '+d.sdg_num+'</div> <div id ="card-sdg-name"> <span class="more card-sdg-name">'+d.sdg_name+'</span></div><div id = "targets_count"><b>'+d.targets_count+'</b> targets</div><div class="card-action"> <a href="#">Add</a></div></div></div></div></div>')
+
+               }
+
+               d.targets.forEach(function(t,i)
+                 {
+                   //  console.info(t)
+                     t.id=d.sdg_num;
+                     t.value=2;
+                     all_data.push(t)
+
+                     this_goal.targets.push({value:2,id:t.targetcode,description:t.targetname,sdgnum:t.sdgnum});
+
+                     //<button class="mdc-fab" aria-label="Favorite"><span class="mdc-fab__icon material-icons">favorite</span></button>
+                 });
+
+                  goals_obj.push(this_goal);
+
+
+           }) // ./foreach
+
+           $('.side-nav .input-field select').append(side_nav_options)
+
+
+
+           if (goals_obj.length>0)
+             //.resolve links up with .done outside of the async function:
+             deferred.resolve(goals_obj); //triggers whatever is registered via .done
+           else
+               deferred.reject(goals_obj); //triggers whatever is registered via .done
+
+
+         return deferred.promise(); //the Promise object, which has methods .done and .fail, allowing registering callback functions
+       }
+
+
+
+          //   get_first_data_promise();
+
+            // $('.dropdown-button').dropdown();
+            // $('.side-nav').sidenav();
+
+
+              $('.side-nav').on('click',function(e)
+                 {
+
+                   var target=$(e.target);
+
+
+                   //target.parent().addClass('yellow')
+                   if ($(e.target).is(':checkbox'))
+                   {
+
+                   //  var selected_goals_arr=$('.side-nav .input-field select').val();
+                     console.log(selected_goals_arr)
+                    // var this_li.closest('.li_goal_container')
+                     //('.collapsible-header .card-sdg-goal').attr('class').split(' ')[1].split('-')[2];
+
+
+                     if (target.attr('class')=='checkbox_all_goal')
+                     {
+                       //check_all_goal_3
+                       var goal=parseInt(target.attr('id').split('_')[3]);
+                       console.warn(goal);
+                       console.log(target)
+
+                       var this_li=$(".side-nav .li_goal_container."+goal);
+                       //target.prop('checked')
+                       if (target.prop('checked'))
+                       {
+                          target.prop('checked',true);
+                          console.info(this_li.find('.collapsible-body :checkbox').not('.checkbox_all_goal'))
+                          this_li.find('.collapsible-body :checkbox').not('.checkbox_all_goal').each(function(i,checkbox)
+                           {
+                             $(checkbox).prop('checked',true);
+                             var id=$(checkbox).attr('id').split('check_')[1];
+
+                             if (selected_targets_arr.indexOf(id)==-1)
+                              selected_targets_arr.push(id);
+
+                           })
+
+                           var pos=selected_goals_arr.indexOf(goal);
+
+                           if (pos==-1)
+                                 selected_goals_arr.push(goal);
+
+
+                       }
+                       else
+                       {
+                         if (target.prop('checked')==false || target.prop('temp_checked')==true)
+                         {
+                             //var this_li=target.closest('li');
+                             target.prop('checked',false);
+                             console.log('checed all, lets de-check all')
+
+
+                              this_li.find('.collapsible-body :checkbox').not('.checkbox_all_goal').each(function(i,checkbox)
+                               {
+                                 $(checkbox).prop('checked',false);
+                                 var id=$(checkbox).attr('id').split('check_')[1];
+
+                                 var pos=selected_targets_arr.indexOf(id);
+                                 selected_targets_arr.splice(pos,1);
+
+                               })
+
+                             //this_li.find('.collapsible-body :checkbox').prop('checked',false);
+
+                             var pos=selected_goals_arr.indexOf(goal);
+                             selected_goals_arr.splice(pos,1);
+
+                             target.removeProp('temp_checked');
+                         }
+
+
+                       }
+
+                       console.info(selected_targets_arr)
+                       console.warn(selected_goals_arr)
+
+                       // if($('.side-nav input:checked').length>0)
+                       if (selected_goals_arr.length>0)
+                         {
+                           console.warn(selected_goals_arr)
+                         /*  if (selected_goals_arr.indexOf(goal)!==-1)
+                           {
+                             return false;
+                           }
+                           else
+                           {
+                             selected_goals_arr.push(goal);
+                           }*/
+                           $('#sdg_cards_container .row:first,.sdg_container h5:first').hide();
+                           $('#sdg_cards_container .row').eq(1).show();
+                           //console.log(selected_goals_arr)
+
+                           add_all_goal(goal,selected_goals_arr)
+                         }
+                         else
+                         {
+                           console.warn('no data from')
+                           $('#sdg_cards_container .row:first,.sdg_container h5:first').show();
+                           $('#sdg_cards_container .row').eq(1).hide();
+                           sel_info=[];
+                           $('#chart .svg-container').children().remove()
+                         }
+                     }
+                     else
+                     {
+                           //check_2.1
+                           var id=target.attr('id').split('check_')[1];
+                           var goal=id.split('.')[0];
+                           var target_id=id;
+
+                           var pos=selected_goals_arr.indexOf(goal);
+
+                           if (target.prop('checked'))
+                           {
+                              target.prop('checked',true);
+
+                              if (pos==-1)
+                              {
+                                 selected_goals_arr.push(goal);
+                              }
+
+                                 selected_targets_arr.push(id);
+
+
+                               get_individual_target(goal,id);
+                           }
+                           else
+                           {
+                               target.prop('checked',false);
+                               var this_li=$(".side-nav .li_goal_container."+goal+"");
+
+                               if(this_li.find('ul input:checked').length==0)
+                               {
+                                 selected_goals_arr.splice(pos,1);
+                               }
+
+                               var pos=selected_targets_arr.indexOf(id);
+
+                               selected_targets_arr.splice(pos,1);
+
+                               get_individual_target(goal,id);
+                           }
+
+                   }
+
+
+
+                   }
+                 });
+
+                function get_targets_csv()
+                         {
+                           console.info(arguments)
+                           console.log(all_t_val)
+                           $('#sdg_cards_container .row:first,.sdg_container h5:first').hide();
+                           $('#sdg_cards_container .row').eq(1).show();
+                             //we add info on cache for all targets of the goal
+                            sdg_params.sel_info=get_targets(false);
+                            
+                            console.info(selected_targets_arr)
+
+
+                             var plot_labels=sdg_params.sel_info['targets'];
+                             
+                             var hidden_links=[];
+                             var only_data_links=[];
+                             
+                             console.log(from_ids_arr)
+                             
+
+                             var plot_links=sel_info['links'].filter(function(d)
+                             {
+
+                                    if (options.config.from_csv==true)
+                                      {
+                                        console.log(d.from_id)
+                                        if (from_ids_arr.indexOf(d.from_id)!==-1)
+                                         {
+                                               d.visualized=true;
+                                               console.info(d)
+                                               var t=all_t_val.filter(function(info)
+                                               {
+                                                return d.data==info.data
+                                               })[0];
+                                               
+                                               d.value=t.value;
+                                               only_data_links.push(d);                                               
+                                               return d;
+                                         }
+                                      }
+                                    else
+                                    {
+                                     //selected_targets_arr contains targets selected on the select individually
+                                     if (selected_targets_arr.indexOf(d.from_id)!==-1)
+                                     {
+                                           d.visualized=true;
+                                           only_data_links.push(d);
+                                           return d;
+                                     }
+                                     else
+                                     {
+                                       d.visualized=false;
+                                       hidden_links.push(d);
+                                       return d;
+                                     }
+                                    }
+
+                             });                             
+                             var to_plot={only_data_links:only_data_links, links:plot_links,targets:plot_labels,hidden_links:hidden_links}
+                             console.log(to_plot)
+                              
+                              if($("#chart svg").length>0)
+                                         {
+
+                                           $("#chart svg:first").remove();
+                                           create_chart()
+                                           heatmap(to_plot);
+
+                                         }
+                                         else
+                                         {
+                                               create_chart();
+
+                                                 heatmap(to_plot);
+                                               create_legend();
+
+                                                 //creating tables
+                                                  $('#sdg_cards_container .row').eq(1).hide();
+
+                                                  setTimeout(function()
+                                                  {
+                                                   $('#sdg_cards_container .row').eq(1).show();
+                                                  },800)
+                                         }
+                         }
+                         //end get_individual_target
+
+//["all_goal_1", "1.3", "1.4", "1.5", "1.a", "1.b"]
+               function get_individual_target(goal,target_id)
+                         {
+                           console.info(arguments)
+                           console.log(all_t_val)
+                           $('#sdg_cards_container .row:first,.sdg_container h5:first').hide();
+                           $('#sdg_cards_container .row').eq(1).show();
+                             //we add info on cache for all targets of the goal
+                             sel_info=get_targets(false);
+                            console.info(sel_info)
+                            console.info(selected_targets_arr)
+
+
+                             var plot_labels=sel_info['targets'];
+                             
+                             var hidden_links=[];
+                             var only_data_links=[];
+                             
+                             console.log(from_ids_arr)
+                             options.config.from_csv=true;
+
+                             var plot_links=sel_info['links'].filter(function(d)
+                             {
+
+                                    if (options.config.from_csv==true)
+                                      {
+                                        console.log(d.from_id)
+                                        if (from_ids_arr.indexOf(d.from_id)!==-1)
+                                         {
+                                               d.visualized=true;
+                                               console.info(d)
+                                               var t=all_t_val.filter(function(info)
+                                               {
+                                                return d.data==info.data
+                                               })[0];
+                                               
+                                               d.value=t.value;
+                                               only_data_links.push(d);                                               
+                                               return d;
+                                         }
+                                      }
+                                    else
+                                    {
+                                     //selected_targets_arr contains targets selected on the select individually
+                                     if (selected_targets_arr.indexOf(d.from_id)!==-1)
+                                     {
+                                           d.visualized=true;
+                                           only_data_links.push(d);
+                                           return d;
+                                     }
+                                     else
+                                     {
+                                       d.visualized=false;
+                                       hidden_links.push(d);
+                                       return d;
+                                     }
+                                    }
+
+                             });                             
+                             var to_plot={only_data_links:only_data_links, links:plot_links,targets:plot_labels,hidden_links:hidden_links}
+                             console.log(to_plot)
+                              
+                              if($("#chart svg").length>0)
+                                         {
+
+                                           $("#chart svg:first").remove();
+                                           create_chart()
+                                           heatmap(to_plot);
+
+                                         }
+                                         else
+                                         {
+                                                create_chart();
+                                                heatmap(to_plot);
+                                                create_legend();
+
+                                                 //creating tables
+                                                  $('#sdg_cards_container .row').eq(1).hide();
+
+                                                  setTimeout(function()
+                                                  {
+                                                   $('#sdg_cards_container .row').eq(1).show();
+                                                  },800)
+                                         }
+                         }
+                         //end get_individual_target
+
+                         // function update_counts()
+                         //             var sum_col=0;
+                         //             var col_number=0;
+
+                         //             var col_filtered=d3.selectAll('.link').filter(function(d)
+                         //             {
+
+
+                         //               if (d.to_id==clicked_card_data.to_id && d.value!==null)
+                         //               {
+
+                         //                 col_number++;
+                         //                 sum_col+=d.value;
+                         //                 return this;
+                         //               }
+
+                         //             });
+
+                         //             var y_sel_labels=d3.selectAll(".yLabels_counter").filter(function(d)
+                         //             {
+
+                         //               if (d.id==clicked_card_data.to_id)
+                         //               {
+
+                         //                 d.sum_col=sum_col;
+                         //                 d.col_number=col_number;
+                         //                 return this;
+                         //               }
+                         //             });
+
+                         //             y_sel_labels.classed('with_data',true);
+                         //             y_sel_labels.text(sum_col);
+
+              function update_progress_bars(action,data,prev_card_val)
+                 {
+                   console.trace();
+                   console.warn(arguments)
+                   console.log(colors_obj)
+                   console.log(action)
+
+                   var goal=data.goal;
+                   /*
+                      unique_id_arr
+
+                      ids: (3) ["1.3-1.b", "1.4-1.2", "1.2-1.2"]
+                     values: (3) ["3", "-3", "-2"]
+                   */
+                   console.log(data)
+                     if (action=='add')
+                     {
+                       colors_obj.total_records=colors_obj.total_records+1;
+
+                       for (var p in goal_stats)
+                         {
+                             if (goal_stats[p].goal==goal)
+                            {
+                             goal_stats[p].count++;
+                             console.log(goal_stats[p])
+                             $('.right_container_cards .li_goal_container.class_'+goal).find('.card_count').html('<b>'+goal_stats[p].count+' record</b>');
+
+
+                             }
+                           }
+                     }
+                     if (action=='remove')
+                     {
+
+                       //to be executed when removing data ffrom tooltip
+                       if (colors_obj.total_records!==0)
+                         colors_obj.total_records=colors_obj.total_records-1;
+
+
+                       for (var p in goal_stats)
+                         {
+                             if (goal_stats[p].goal==goal)
+                            {
+                             goal_stats[p].count--;
+                             console.log(goal_stats[p])
+                             $('.right_container_cards .li_goal_container.class_'+goal).find('.card_count').html('<b>'+goal_stats[p].count+' record</b>');
+
+
+                             }
+                           }
+                     }
+                     if (action=='update')
+                     {
+                     /*  var pos=unique_id_arr.ids.indexOf(data.data);
+                       console.log('update from update_progress_bars')
+                       colors_obj.data.forEach(function(color,i)
+                                             {
+                                               if (parseInt(color.legend_val)==parseInt(prev_card_val))
+                                               {
+                                                 //selected(updated color)
+                                                 console.log('clicking on same color')
+                                                 color.counts=color.counts+1;
+
+
+                                               }
+
+                                               if (parseInt(color.legend_val)==parseInt(prev_card_val))
+                                               {
+                                                 //selected(updated color)
+                                                 console.log('update counts for prev_rect_val')
+                                                 color.counts=color.counts-1;
+
+                                               }
+
+                                             });*/
+                     }
+
+                             var row_sum=0;
+                                     var row_number=0;
+
+                                     var row_filtered=d3.selectAll('.link').filter(function(d)
+                                     {
+
+                                       if (d.from_id==data.from_id && d.value!==null)
+                                       {
+
+                                         console.warn(d)
+                                         row_number++;
+                                         row_sum+=d.value;
+                                         return this;
+                                       }
+
+                                     });
+
+                                     var x_sel_labels=d3.selectAll(".xLabels_counter").filter(function(d)
+                                     {
+
+                                       if (d.id==data.from_id)
+                                       {
+                                         console.info(d)
+                                         d.sum_rows=row_sum;
+                                         d.row_number=row_number;
+                                         return this;
+                                       }
+                                     });
+
+                                     x_sel_labels.classed('with_data',true);
+                                     console.info(x_sel_labels)
+
+                                     x_sel_labels.text(row_sum);
+
+
+                                      var sum_col=0;
+                                     var col_number=0;
+
+                                     var col_filtered=d3.selectAll('.link').filter(function(d)
+                                     {
+
+
+                                       if (d.to_id==data.to_id && d.value!==null)
+                                       {
+
+                                         col_number++;
+                                         sum_col+=d.value;
+                                         return this;
+                                       }
+
+                                     });
+
+                                     var y_sel_labels=d3.selectAll(".yLabels_counter").filter(function(d)
+                                     {
+
+                                       if (d.id==data.to_id)
+                                       {
+
+                                         d.sum_col=sum_col;
+                                         d.col_number=col_number;
+                                         return this;
+                                       }
+                                     });
+
+                                     y_sel_labels.classed('with_data',true);
+                                     y_sel_labels.text(sum_col);
+
+                     console.info(colors_obj.total_records)
+
+                     function check_hidden($element)
+                     {
+                       if ($(element).css('display') == 'none' || $(element).css("visibility") == "hidden")
+                         return true
+                       else
+                         return false
+                     }
+
+                     colors_obj.data.forEach(function(d,i)
+                                 {
+
+                                   if (parseInt(d.legend_val)==parseInt(data.value))
+                                   {
+                                           if (action=='add')
+                                           {
+                                             d.counts=d.counts+1;
+                                           }
+
+                                           if (action=='remove')
+                                           {
+                                             if (d.counts!==0)
+                                               d.counts=d.counts-1;
+                                           }
+
+                                           if(action=='update')
+                                           {
+                                             console.log('do not sum up or delete from here!')
+                                           }
+
+
+
+                                       d.percent_val=parseInt((d.counts/colors_obj.total_records)*100) || 0;
+
+
+
+                                       var container=$('.progress_test div.progress[data-val='+d.legend_val+']');//.parent();
+
+                                       //container.find('div:first').css('width',d.percent_val+'%');
+
+                                       container.find('div:first').animate({width:d.percent_val+'%'},2000)
+
+                                       container.parent().find('.progress_num_rec').html('<span>'+d.counts+'/'+colors_obj.total_records+'</span>');
+
+                                       console.info('EQUAL data '+d.percent_val+' for '+d.legend_val+' with coiunts '+d.counts)
+
+                                       console.log(container.parent())
+                                       if (d.counts==0)
+                                       {
+                                         container.parent().hide();
+                                         console.info('container with ZERO data')
+                                         container.parent().removeClass('active');
+                                       }
+                                       else{
+                                             container.parent().show();
+
+                                         if (!container.parent().hasClass('active'))
+                                               container.parent().addClass('active');
+                                       }
+                                   }
+                                   else
+                                   {
+                                     //not the same color than selected
+                                      d.percent_val=parseInt((d.counts/colors_obj.total_records)*100) || 0;
+
+                                       var container=$('.progress_test div.progress[data-val='+d.legend_val+']');
+                                       container.parent().find('.progress_num_rec').html('<span>'+d.counts+'/'+colors_obj.total_records+'</span>');
+                                       container.find('div:first').animate({width:d.percent_val+'%'},2000)
+
+                                       if (d.percent_val==0)
+                                       {
+                                         container.parent().hide();
+                                       }
+                                       else
+                                       {
+                                         container.parent().show();
+
+                                       }
+
+                                        if (d.counts==0)
+                                       {
+                                         container.parent().hide();
+                                         console.info('container with ZERO data')
+                                         container.parent().removeClass('active');
+                                       }
+                                       else{
+                                             container.parent().show();
+
+                                         if (!container.parent().hasClass('active'))
+                                               container.parent().addClass('active');
+                                       }
+                                   }
+                                 });
+
+                     //direct children
+
+                     if ($('.progress_test').children('div.active').length==0)//$('.progress_test').children('div').length)
+                     {
+
+                       $('.goal_stats_container .collapsible-body').find('h5').remove();
+                       $('.goal_stats_container .collapsible-body').append('<h5>No data inserted</h5>');
+
+
+                     }
+                     else
+                     {
+
+                       $('.goal_stats_container .collapsible-body').find('h5').remove();
+                     }
+
+                     var color;
+
+                     colors_obj.data.forEach(function(d,i)
+                                 {
+
+                                   if (parseInt(d.legend_val)==parseInt(data.value) && d.counts==0)
+                                   {
+
+                                         d.value=null;
+
+                                         color=sel_color(d).color;
+                                   }
+                                 })
+                     return color;
+
+                 }
+
+              function tabulate_clicked (data,action)
+              {
+               console.trace();
+               console.warn(arguments)
+
+               /*
+               clicked_data
+
+         column: "1.4"
+         data: "1.4-1.4"
+         from_id: "1.4"
+         from_title: "<span class='toast_target'>Target 1.4</span>By 2030, ensure that all menand women, in particular the poor and the vulnerable, have equal rights to economic resources, as well as access to basic services, ownership and control over land and other forms of property, inheritance, natural resources, appropriate new technology and financial services, including microfinance. "
+         goal: 1
+         row: "1.4"
+         title: "<span class='toast_target'>Target 1.4</span>By 2030, ensure that all menand women, in particular the poor and the vulnerable, have equal rights to economic resources, as well as access to basic services, ownership and control over land and other forms of property, inher"
+         to_id: "1.4"
+         value: "-2"
+
+               */
+               console.warn(data);
+
+
+               //equivalent to clicked_card_data
+               var goal=data.goal;
+
+
+               var columns=['From','to','value'];
+
+               if ($('.right_container_cards .li_goal_container.class_'+goal+' table').length==0)
+               {
+                       if (action=='add')
+                       {
+                           goal_stats.push({'goal':goal,'count':0});
+
+                           update_progress_bars('add',data,null);
+
+                       }
+                       else
+                       {
+                           update_progress_bars('remove',data,null);
+                       }
+
+
+                       $('div.right_container_cards li.li_goal_container.class_'+goal+' > div.collapsible-body ul').append('<table class="responsive-table striped highlight sel_table_goal goal_'+goal+'"><thead></thead><tbody></tbody></table>');
+
+                       var table=d3.select('.sel_table_goal.goal_'+goal)
+                       var thead = table.select('thead');
+                       var tbody = table.select('tbody');
+
+
+
+                       // append the header row
+                       thead.append('tr')
+                         .selectAll('th')
+                         .data(columns).enter()
+                         .append('th')
+                           .text(function (column) {
+                            return column;
+                           });
+                       $('.right_container_cards .li_goal_container.class_'+goal).fadeIn();
+               }
+               else
+               {
+                 //not the first data on this group
+                 console.info(data)
+                 console.warn(goal_stats)
+                     if (action=='add')
+                       {
+
+
+                           update_progress_bars('add',data,null);
+
+                       }
+                       if (action=='remove')
+                       {
+
+
+                         var goal=data.goal;
+
+
+
+                           update_progress_bars('remove',data,null);
+
+
+                       }
+
+
+               }
+               console.log(data)
+               if (action=='add')
+               {        //colors_obj has been updated on update_progress_bars
+
+                      $('.goal_stats_container').fadeIn();
+
+                       var table=d3.select('.sel_table_goal.goal_'+goal)
+                       var thead = table.select('thead');
+                       var tbody = table.select('tbody');
+
+
+                         var rows=tbody.selectAll('tr').data([data],function(d)
+                           {
+                            console.info(d)
+                             return d.data
+                           })
+                           .enter()
+                           .append('tr')
+
+                         //  console.log(rows)
+
+                         rows.attr('data_val',function(d)
+                           {
+                            // console.log(d)
+                             return d.data
+                           })
+
+
+                         rows.on('mouseover',function(d)
+                                 {
+                                   //console.info(d3.event.target)
+
+                                   //this refers to TR
+                                   //console.log(this)
+                                   if ($(d3.event.target).hasClass('sel_table_value'))
+                                   {
+                                       $(d3.event.target).addClass('active');
+                                        /* console.log(d)
+                                         console.warn('mouseovering TR')*/
+                                         var cards=d3.selectAll('.link')
+                                         cards.transition().duration(350).style('opacity',0.2);
+
+                                         var sel=cards.filter(function(data)
+                                         {
+                                           return data.data==d.data;
+                                         });
+
+                                         sel.transition().duration(450).style('opacity',1);
+
+                                         sel.classed('hovered_class_from_table',true);
+                                   }
+                                   else
+                                   {
+                                     if($(this).find('.sel_table_value.active'))
+                                     {
+                                       $(this).find('.sel_table_value').removeClass('active');
+                                       var cards=d3.selectAll('.link');
+                                       var sel=cards.filter(function(data)
+                                         {
+                                           return data.visualized==true;
+                                         });
+                                       sel.transition().duration(50).style('opacity',1);
+                                     }
+                                   }
+
+                                 })
+                           // .on('click',function(d)
+                           // {
+                           //   var sel=d3.select('.hovered_class_from_table');
+                           //   console.log(sel['_goals'][0])
+
+                           // })
+                           .on('mouseout',function(d)
+                           {
+                             console.warn($(d3.event.target))
+                             if ($(d3.event.target).hasClass('sel_table_value'))
+                             {
+
+                                   var cards=d3.selectAll('.link')
+
+                                   cards.style('opacity',function(card)
+                                     {
+                                        if (card.visualized==true)
+                                        {
+                                         return 1;
+                                        }
+                                        else
+                                        {
+                                         return 0.2;
+                                        }
+                                      })
+                                //   console.warn('mouseout from table row')
+                                    var filtered=d3.selectAll('.hovered_class_from_table');
+                             }
+
+                             // cards.transition().duration(550).attr('fill',function(d)
+                             // {
+                             //   return sel_color(d).color;
+                             // })
+
+                             // filtered.classed('hovered_class_from_table',false);
+                           })
+
+                      // create a cell in each row for each column
+                         var cells = rows.selectAll('td')
+                           .data(function (row) {
+
+                             return columns.map(function (column) {
+
+                               if (column=='From')// || column=='to')
+                               {
+                                 //return {column: column, value: row['from_title']};
+                                 return {column: column, value: 'Target '+row['from_id']};
+                               }
+                               else
+                               {
+                                     if (column=='to')// || column=='to')
+                                     {
+                                     console.warn(row['to_title'])
+                                   //  return {column: 'to', value: row['to_title']};
+                                   return {column: 'to', value: 'Target '+row['to_id']};
+
+                                     }
+
+                                     else
+                                     {
+
+                                       return {column: 'value', value: row['value']};
+                                     }
+                           }
+
+                             //  return {column: row.id, value: row.description};
+                             });
+                           })
+                           .enter()
+                           .append('td')
+                           .style('background-color',function(d)
+                             {
+                               // if (d.column=='value')
+                               //   {
+                               //     return sel_color(d).color;
+                               //   }
+                               //   else
+                               //   {
+                                   return 'white';
+                                 //}
+                             })
+                           .html(function(d)
+                             {
+                               console.info(data)
+                               //+generate_select(d,data)
+                               var a=[];
+                                 if (d.column=='value')
+                                 {
+                                   console.info(generate_select(d,data))
+                                   //<a class="btn tooltipped" data-position="bottom" data-html="true">Hover me!</a>
+                                   var html='<h5 style="background-color:'+sel_color(d).color+'" class="sel_table_value">'+sel_color(d).legend_text+'</h5>'+generate_select(d,data);
+
+
+
+                                   return html;
+
+                                 }
+                                 else
+                                 {
+                                   var html='<div>'+d.value+'</div>';
+                                   return html;
+
+                                 }
+
+
+                             //  console.log(html[1].data)
+                             ;
+
+
+                             });
+
+
+
+                         var table=d3.select('.sel_table_goal.goal_'+goal);
+
+
+                          setTimeout(function()
+                         {
+                           console.info(data.data)
+
+                           var select=$('.sel_table_goal.goal_'+goal).find('select').not('.initialized');
+                           console.log($('.sel_table_goal.goal_'+goal).find('tr[data_val="'+data.data+'"] select').length)
+
+                           var container_tr=$('.sel_table_goal.goal_'+goal).find('tr[data_val="'+data.data+'"]')
+
+                           container_tr.find('select').material_select();
+
+                           container_tr.find('select').change(function()
+                             {
+
+                               var val=parseInt($(this).find('option:selected')[0].value);
+
+
+                               var cards = svg.selectAll(".link")
+                               var visible_cards=cards.filter(function(d)
+                                 {
+                                    return d.visualized==true;
+                                 })
+                               visible_cards.style('opacity',0.2)
+
+                               var prev_card_val;
+
+                               var sel=visible_cards.filter(function(card)
+                                   {
+                                     if (data.data==card.data)
+                                     {
+                                       prev_card_val=card.value;
+                                       return this
+                                     }
+
+                                   });
+
+
+                                   console.info(sel)
+
+                                   sel.style('opacity',1).classed('just_changed');
+
+                                   function do_updates(new_d,prev_value)
+                                   {
+                                       setTimeout(function()
+                                           {
+                                             visible_cards.transition().duration(550).style('opacity',1);
+                                           /*  console.info(sel_color({value:val}).color)
+                                             console.info(sel_color({value:val}).legend_val)
+                                             container_tr.find('.sel_table_value').css("background-color",sel_color({value:val}).color)
+
+                                             //background-color:'+sel_color(d).color+'"
+
+                                             container_tr.find('.sel_table_value').text(sel_color({value:val}).legend_text);
+                                             console.log(d)
+                                           */
+                                            // update_progress_bars('update',new_d,prev_value);
+                                           },800)
+                                   }
+
+                                   sel.style('fill',function(d)
+                                   {
+                                     //necessary?
+                                     d.visualized=true;
+                                     console.info(d)
+                                     d.value=val;
+                                     var new_d=d;
+                                     console.info(new_d)
+                                     check_update (val,prev_card_val,clicked_card_data,d,goal);
+                                     //do_updates(new_d,prev_card_val)
+
+                                     console.warn(sel_color({value:val}).color)
+
+                                     return sel_color({value:val}).color;
+                                   });
+
+
+                                  // sel.classed('hovered_class_from_table',true);
+                             })
+
+                         },700)
+                         //card_count
+
+
+
+                         return table;
+               }
+               else
+               {
+                // $('.sel_table_goal.goal_1 tbody tr').remove();
+                 var goal=data.goal;
+
+
+                  var table=d3.select('.sel_table_goal.goal_'+goal);
+
+                //  $('.sel_table_goal.goal_'+goal).find('select').material_select();
+                       var thead = table.select('thead');
+                       var tbody = table.select('tbody');
+
+                   $('.sel_table_goal.goal_'+goal+' tbody tr').each(function(i,tr)
+                   {
+                     if ($(tr).attr('data_val')==data.data)
+                     {
+                       $(tr).remove();
+                     }
+                   });
+
+                   if ($('.sel_table_goal.goal_'+goal+' tbody tr').length==0)
+                   {
+                     $('.sel_table_goal.goal_'+goal).remove();
+                     $('.right_container_cards .li_goal_container.class_'+goal).fadeOut();
+                   }
+
+
+                       // create a row for each object in the data
+                    /*   d3.selectAll('.sel_table_goal.goal_'+goal+' tbody tr').filter(function(d)
+                         {
+                           console.log(d.data)
+                           console.warn(data.data)
+                           if (data.data==d.data)
+                           {
+                             alert(data.data)
+                             return this
+                           }
+                         })
+                       .remove()*/
+
+
+               }
+
+
+
+             }
+               function tabulate(data) {
+                 console.info(data)
+                 //var selected_labels=data.targets;
+                 /*
+                 0:
+         description: "<span class='toast_target'>Target 1.1 </span></span>By 2030, eradicate extreme poverty for all people everywhere, currently measured as people living on less than $15 a day. "
+         id: "1.1"
+         sdgnum: 1
+         value: 2
+         */
+
+                   var goal=data[data.length-1].sdgnum;
+
+                   var t=$('.tables_container .responsive-table').length;
+                   var all_tables_rows=d3.selectAll('.tables_container .col').nodes();
+                   console.info(all_tables_rows)
+
+                   if (t<3)
+                   {
+                     var container=all_tables_rows[0];
+                   }
+
+                   if (t>=2 && t<=5)
+                   {
+                    var container=all_tables_rows[1];
+                   }
+
+                    if (t>2 && t<=7)
+                   {
+                    var container=all_tables_rows[2];
+                   }
+
+                   console.info(container)
+
+                   var container=$('#chart_info');
+
+                   //$('#chart_info').empty();
+
+
+                   var table = d3.select('#chart_info').append('table').attr('class','responsive-table striped highlight table_goal '+goal+'"');
+
+                   $('#chart_info table:last').before('<h4> Goal '+goal+'</h4>').wrap('<div class="table_wrapper '+goal+'"></div>')
+                   //'+d.sdg_num+'"> Goal '+d.sdg_num+'
+
+                   var thead = table.append('thead')
+                   var tbody = table.append('tbody');
+
+                   var columns=['id','description','value'];
+
+                   // append the header row
+                   thead.append('tr')
+                     .selectAll('th')
+                     .data(columns).enter()
+                     .append('th')
+                       .text(function (column) { return column; });
+
+                   // create a row for each object in the data
+                   var rows = tbody.selectAll('tr')
+                     .data(data)
+                     .enter()
+                     .append('tr');
+
+                   // create a cell in each row for each column
+                   var cells = rows.selectAll('td.flow-text-test')
+                     .data(function (row) {
+                       return columns.map(function (column) {
+                         console.info(column)
+                         if (column=='description')
+                         {
+                           var html=$.parseHTML(row[column]);
+                       //  console.log($(html)[1])
+                         console.log(html[1].data)
+                         //var h=$(html).find('.toast_target').removeClass('toast_target')
+                         //console.log(h)
+                         return {column: column, value: html[1].data};
+                         }
+                         else
+                         {
+                           return {column: column, value: row[column]};
+                         }
+
+                       //  return {column: row.id, value: row.description};
+                       });
+                     })
+                     .enter()
+                     .append('td')
+                       .text(function (d) {
+                         console.info(d)
+
+
+                         return d.value
+
+                       });
+
+                     //console.info($('#chart_info table:last').contents());
+                    // console.log($('#chart_info table:last').contents().find('.toast_target'))
+
+                    //removeClass('toast_target')
+
+                   return table;
+                 }
+
+                 // render the table(s)
+                // tabulate(data)//, ['date', 'close']); // 2 column table
+
+ $('#chart').on('mouseover', function (e) {
+
+                              //   console.warn('mouiseover on CHART')
+                                    xmouse = e.clientX || e.pageX;
+                                    ymouse = e.clientY || e.pageY;
+                                    //console.log(xmouse)
+                                }).on('mouseout',function(e)
+                                {
+                                 if (clicked_card_data==null)
+                                 {
+
+
+                                  if ($('.card_toast.blue').length>0)
+                                   {
+                                   //  console.log('card_toast should be removed')
+                                       $('.card_toast.blue').fadeOut();
+                                       $('.card_toast.blue').remove();
+                                    //   console.warn($('.card_toast.blue').length)
+
+                                       //.remove();
+                                   }
+                                 }
+                                })
+
+    function heatmap(data)
+       {
+
+
+
+         console.info(data)
+         console.trace()
+         $('.dropdown_legend_btn').fadeIn('slow')
+         $('.main_initial_title,.tables_container,.sdg_cards_container').hide();
+       //return {links:selected_links,targets:these_targets}
+         var selected_labels=data.targets;
+         var selected_links=data.links;
+         console.log(data)
+         var hidden_links=data.hidden_links;
+         var extra_tooltip_info={rows:0,cols:0};
+
+         var yLabels = svg.selectAll(".yLabels")
+         .data(selected_labels, function(d) {
+             return d;
+           })
+         yLabels.enter().append("text")
+          // .merge(yLabels)
+           .text(function (d) { return d.id; })
+           .attr("x", 0)
+           .attr("y", function (d, i) { return i * gridSize; })
+           .style("text-anchor", "end")
+           .style("font-size",function(d)
+                       {
+                         return 12;
+                       })
+
+
+          //-7,52
+           .attr("transform", "translate(-7,"+Math.floor(gridSize/2)+")")// + gridSize / 1.5 + ")")
+           .attr("class", "yLabels mono axis axis-y")
+           .on('mouseover',function(d)
+           {
+
+             $(this).addClass('yLabel_hovered');
+
+             var y_sel_labels=d3.selectAll(".yLabels_counter").filter(function(labels)
+                                     {
+
+                                       if (labels.id==d.id)
+                                       {
+                                         extra_tooltip_info.rows=labels.sum_rows;
+                                         return this;
+                                       }
+                                     });
+
+
+             var $anchor=$(d3.select(this).node());
+
+             $anchor
+                 .attr('data-tooltip', function(i,d)
+                 {
+                   var data=$(this)[0]['__data__'];
+                 //  console.warn(data)
+                   if(data.hasOwnProperty('sum_rows'))
+                   {
+                     var sum_rows="Score <b>"+data.sum_rows+"</b>";
+                   }
+                   else
+                   {
+                     var sum_rows='<b>No score</b>';
+                   }
+                   return "<div class='yLabel_tooltip'><div class='Label_tooltip_direction'>From target</div>"+data.description+"<div style='padding:5px;font-size:1.2em;'>"+sum_rows+"</div></div>";
+                 });
+
+             $anchor.tooltip({delay: 50,position:'top',html:true});
+             //$anchor.trigger('hover')
+             setTimeout(function()
+             {
+
+               $anchor.trigger('mouseover');
+             },300)
+
+
+           })
+              .on('mouseout',function(d)
+           {
+             $(this).removeClass('yLabel_hovered');
+
+             $('.material-tooltip').hide();
+            // extra_tooltip_info={rows:0,cols:0};
+
+           })
+
+
+
+
+           //xLabels follow the row, x=increases, y stays 0
+            var xLabels = svg.selectAll(".xLabels")
+            .data(selected_labels, function(d) {
+
+             return d;
+              })
+           xLabels.enter()
+           //.append('circle')
+
+           .append("text")
+         //   .merge(xLabels)
+           .text(function(d) { return d.id; })
+           .attr("x", function(d, i) { return i * gridSize; })
+           .attr("y", 0)
+           .style("text-anchor", "middle")
+           // .style("font-size",function(d)
+           //             {
+           //               console.log(chart.gridSize/chart.buckets);
+           //               return chart.gridSize/chart.buckets;
+           //             })
+           .attr("transform", "translate(" + gridSize / 2 + ", -6)")
+           .attr("class", "xLabels mono axis axis-x")
+             .on('mouseover',function(d)
+           {
+                   $(this).addClass('xLabel_hovered');
+                   d3.select(this).style('color','red');
+
+                   var y_sel_labels=d3.selectAll(".yLabels_counter").filter(function(labels)
+                                           {
+
+                                             if (labels.id==d.id)
+                                             {
+
+                                               extra_tooltip_info.cols=labels.sum_col;
+
+                                               return this;
+                                             }
+                                           });
+                   var $anchor=$(d3.select(this).node());
+
+                   $anchor
+                       .attr('data-tooltip', function(i,d)
+                       {
+                         var data=$(this)[0]['__data__'];
+                         if(data.hasOwnProperty('sum_col'))
+                           {
+                             var sum_col="Score <b>"+data.sum_col+"</b>";
+                           }
+                           else
+                           {
+                             var sum_col='<b>No score</b>';
+                           }
+                           return "<div class='xLabel_tooltip'><div class='Label_tooltip_direction'>To target</div>"+data.description+"<div style='padding:5px;font-size:1.2em;'>"+sum_col+"</div></div>";
+                       });
+
+                   $anchor.tooltip({delay: 50,position:'top',html:true});
+                   //$anchor.trigger('hover')
+                   setTimeout(function()
+                   {
+                     $anchor.trigger('mouseover');
+                   },300)
+
+           })
+              .on('mouseout',function(d)
+           {
+             $('.material-tooltip').hide();
+             $(this).removeClass('xLabel_hovered');
+           })
+
+           var _links=d3.selectAll('.link');
+
+
+           var colorScale = d3.scaleLinear()//.quantile()
+                         .domain([-3, 7, 3])
+                         .range(colors);
+
+
+           var cards = svg.selectAll(".link")
+                     .data(selected_links, function(d) {
+
+                         return d;
+                       })
+                       console.dir(cards)
+           cards.append("title")
+
+             cards.enter().append("rect")
+                       //  .merge(cards)
+                         .attr("x", function(d) { return d.x })
+                         .attr("y", function(d) { return d.y})
+                         .attr("rx", 2)
+                         .attr("ry", 2)
+                         .attr("class", "link bordered")
+                         .attr("width", gridSize)
+                         .attr("height", gridSize)
+                         .attr('opacity',function(d)
+                         {
+                           if (d.visualized==true)
+                           {
+                             return 1;
+                           }
+                           else
+                           {
+                             return 0.1;
+                           }
+                         })
+                         .style("fill", function(d) {
+                                        console.log(d)
+                                       console.warn(sel_color(d))
+
+                                        // return '#a8a7a7';
+
+                                        if (d.same_targets==true)
+                                        {
+                                        //	console.log(d)
+                                         return '#ffffff';
+                                        }
+                                        else
+                                        {
+                                         
+                                         return sel_color(d).color;
+                                        }
+
+
+
+                                      })
+                         //.style("fill", colors[6])
+
+                    // clicking on a card to edit it
+                    .on('click', //tip.show)
+                          function(d)
+                           {
+                             if (d.visualized==true && d.same_targets==false)
+                             {
+                                 console.log(clicked_card)
+
+
+                                 $('#toast-container').css('opacity',1);
+
+                                   //if there was already a a clickedcard active...
+                                   if (clicked_card=true)
+                                   {
+                                     clicked_card_data=d;
+                                     if (d.value!==null)
+                                     {
+                                       $('.card_toast.blue').find('.delete_card_icon').show();
+                                     }
+                                     else
+                                     {
+                                       $('.card_toast.blue').find('.delete_card_icon').hide();
+                                     }
+                                     $('.card_toast.blue').find('#legend_tooltip').show();
+
+                                   }
+                                   else
+                                   {
+                                     clicked_card=true;
+
+                                      var filtered=d3.selectAll('.link').filter(function(d)
+                                     {
+                                       if (d.data==this_data.data)
+                                       {
+                                           return this
+                                       }
+
+                                     });
+                                       clicked_card_data=d;
+                                   }
+
+                                   $('.card_toast.blue').addClass('editing_card_toast')
+
+                                    var this_data=d;//3.select(this).data()[0];
+                             }
+
+                           })
+                         //cards mouseover
+                         .on('mouseover', //tip.show)
+                          function(d)
+                           {
+
+
+
+                               if (d.visualized==true && d.same_targets==false)
+                               {
+
+
+                                      var this_data=d;//3.select(this).data()[0];
+
+                                     var filtered=d3.selectAll('.link').filter(function(d)
+                                     {
+                                       //console.warn(d)
+                                        if (d.data==this_data.data)
+                                       {
+                                           return this;
+                                       }
+                                     })
+
+                                    // if (clicked_card==true)
+                                    if ($('.editing_card_toast').length>0)
+                                     {
+
+                                       // console.warn('some shown on mouseover card')
+                                       $('.editing_card_toast').show();
+
+                                     }
+
+
+
+                                 //if (clicked_card==false)
+                                   if ($('.editing_card_toast').length==0)
+                                     {
+                                         filtered.classed('hovered_class',true);
+
+                                         var this_data;
+                                         var with_data=null;
+
+                                         filtered.transition().duration(550)
+                                               .style("opacity", 1)
+                                               .style("fill", function(d) {
+
+                                                 this_data=d;
+
+                                                 if (d.value!==null)
+                                                 {
+                                                   with_data=d;
+                                                   console.log(d.value)
+                                                   return sel_color(d).color;
+                                                 }
+                                                 else
+                                                 {
+                                                   return '#dc3d84';
+                                                 }
+
+                                                 //sel_color(d).color;
+
+                                                  });
+                                         if ($('.card_toast.blue').length>0)
+                                         {
+                                             $('.card_toast.blue').fadeOut();//
+                                             console.log($('.card_toast.blue').length)
+                                             //.remove();
+                                         }
+
+                                         if (with_data==null)
+                                         {
+                                           var $toastContent = $("<a href='#close' class='close_tooltip'>x</a><div><span class='target_toast_direction_title'>How is target "+this_data.row+" affecting "+this_data.column+"?</span><div class='flow-text-test'>"+d.title+'</div><div><div class="val_title center"><div class="card_val_title">No value assigned</div><i class="material-icons edit-icon">edit</i><i style="display:none" class="delete_card_icon material-icons right">delete_forever</i></div></div><div class="card_legend_tooltip_container">'+$('#dropdown_legend #legend_tooltip')[0].outerHTML+"</div></div>");
+
+                                         }
+                                         else
+                                         {
+                                           var $toastContent = $("<a href='#close' class='close_tooltip'>x</a><div><span class='target_toast_direction_title'>How is target "+this_data.row+" affecting "+this_data.column+"?</span><div class='flow-text-test'>"+d.title+'</div><div class="val_title center" style="display:block!important;"><div class="card_val_title" style="color:'+sel_color(d).color+'">'+sel_color(d).legend_text+'</div><div class="row toast_actions"><div class="col s6"><i class="delete_card_icon material-icons right">delete_forever</i></div><div class="col s6"><i class="material-icons edit-icon left">edit</i></div></div><div class="card_legend_tooltip_container">'+$('#dropdown_legend #legend_tooltip')[0].outerHTML+'</div></div>');
+                                         }
+
+                                           if (options.config.opt_click==true)
+                                           {
+                                             console.log('on click only')
+                                               $('#toast-container').css('opacity',0);
+                                           }
+                                           else
+                                           {
+                                             $('#toast-container').css('opacity',1);
+                                           }
+
+                                         Materialize.toast($toastContent, 4000000,'card_toast blue');
+
+                                         $('.card_toast').parent().removeClass('goal_toast_container');
+                                        // console.log(xmouse+'px!important  should be left')
+                                         $('.card_toast').parent().css('right',xmouse+'px!important').css('bottom',ymouse+'px!important')
+                                  }
+                                }
+
+
+
+                           })
+                         .on('mouseout', function(d)
+                           {
+                               if (d.visualized==true && d.same_targets==false)
+                               {
+                                       $('.card_toast.blue').not('.editing_card_toast').remove();
+                                       //console.log($('.card_toast.blue').length)
+                                       if ($('.editing_card_toast').length==0)
+                                       {
+                                           d3.selectAll('.hovered_class').classed('hovered_class',false)
+                                           .transition().duration(550)
+                                          // .style("opacity", 1)
+                                           .style("fill", function(d) {
+
+
+                                                       return sel_color(d).color;
+
+                                                     })
+                                      }
+
+
+                                       // if (clicked_card==true)
+                                       if ($('.editing_card_toast').length>0)
+                                       {
+                                         console.log('some shown on mouseout, we keep hovered style')
+
+                                       }
+                               }
+                           })
+
+
+
+
+
+                     cards.select("title").text(function(d) { return d.value; });
+
+                     cards.exit().remove();
+
+                 update_vis_labels_counts (selected_labels)
+
+           } // ./heatmap
+
+              $(window).on('resize',function()
+                 {
+                   width_px=$(window).height()+$('.nav-wrapper').height();
+                   console.log(width_px)
+                   $('.svg-container').height(width_px);
+                   $('.svg-container').width(width_px);
+                 });
+
+
+
+
+       function update_vis_labels_counts (selected_labels)
+                 {
+
+                     var xLabels_counter = svg.selectAll(".xLabels_counter")
+                      .data(selected_labels, function(d) {
+                       return d;
+                        });
+
+                    // var width=$('.svg-container').width();
+
+                     xLabels_counter.enter().append("text")
+                   //   .merge(xLabels)
+                     .text(function(d) {
+                       console.log(d)
+                       //if (typeof d.sum_rows!=='undefined')
+                       //if(sum_rows in d)
+                       if(d.hasOwnProperty('sum_rows'))
+                       {
+                         return d.sum_rows
+                       }
+                       else{
+                         return '';
+                       }
+                      })
+                     .attr("x", function(d, i) { return width_px+2; })
+                     .attr("y", function(d, i) { return i * gridSize; })
+                     .style("text-anchor", "middle")
+                     .attr("font-size",function(d)
+                       {
+                         return 18;
+                       })
+                     .attr("transform", "translate(-10, "+gridSize / 2+")")
+                     .attr("class", "xLabels_counter");
+
+
+
+                     var yLabels_counter = svg.selectAll(".yLabels_counter")
+                      .data(selected_labels, function(d) {
+                       return d;
+                        });
+
+                     yLabels_counter.enter().append("text")
+                   //   .merge(xLabels)
+                     .text(function(d) {
+
+                       if(d.hasOwnProperty('sum_col'))
+                       {
+                         return d.sum_col
+                       }
+                       else{
+                         return '';
+                       }
+                      })
+                      .attr("x", function(d, i) { return i * gridSize; })
+                     .attr("y", function(d, i) { return width_px-20; })
+                     .style("text-anchor", "middle")
+                     .attr("font-size",function(d)
+                       {
+                         return 18;
+                       })
+
+                     .attr("transform", "translate(" + gridSize / 2 + ", 14)")
+                                     .attr("class", "yLabels_counter");
+             }
+
+
+             var sel_goal_arr=[];
+
+             $('.side-nav .input-field select').change(function(e)
+                 {
+
+                   //$.find('last_added').removeClass('last_added');
+                   console.log($('.last_changed'))
+                  // $('.last_changed').addClass('blue');
+
+                   var select_action;
+                        setTimeout(function()
+                        {
+
+                           var sel_goal;
+                           $('.side-nav .input-field .select-wrapper ul').find('li').not('.disabled').each(function(i,d)
+                           {
+                             if ($(d).hasClass('last_changed'))
+                             {
+                               sel_goal=i+1;
+                             }
+
+                           });
+                           console.info(sel_goal)
+                           if (sel_goal_arr.indexOf(sel_goal)==-1)
+                           {
+                             sel_goal_arr.push(sel_goal);
+
+                             if (sel_from_sidenav==true && sel_goal!==0)
+                               {
+                                 
+
+                                 if ($('.card_toast').length>0)
+                                   $('.card_toast').remove();
+
+                                 $('.card-goal-'+sel_goal).parent().find('.card-action a').trigger('click');
+
+                                 if ($('body').css('overflow') !== 'hidden')
+                                   $('.sidenav_trigger').trigger('click');
+
+                                 $('.side-nav .li_goal_container.'+sel_goal+' .collapsible-header').trigger('click');
+
+
+                               }
+                           }
+                           else
+                           {
+                             sel_goal_arr.splice(sel_goal_arr.indexOf(sel_goal),1);
+
+                                 console.log('DE-activate '+sel_goal);
+                             $('.side-nav .li_goal_container.'+sel_goal).hide().find('.checkbox_all_goal').prop('temp_checked',true)
+                               .trigger('click')
+
+                               if ($('.right_container_cards .li_goal_container.class_'+sel_goal))
+                                 {
+                                   $('.right_container_cards .li_goal_container.class_'+sel_goal).fadeOut();
+                                   $('.right_container_cards .li_goal_container.class_'+sel_goal).find('.right_container_cards_ul').empty();
+                                 }
+                           }
+                           console.info(sel_goal_arr)
+
+                         //  if ($('body').css('overflow') !== 'hidden')
+                                   $('.sidenav_trigger').trigger('click');
+
+                         //materialize.js hacked
+
+
+
+                           //all CHECKED values in select
+                           //to_change
+                           var sel_goals_arr=sel_goal_arr;
+                           selected_goals_arr=sel_goal_arr;
+
+                         },500)
+                  // selected.hide();
+                 });
+
+
+           $('.sidenav_trigger').sideNav(
+             {
+               menuWidth: 380, // Default is 300
+               onOpen: function (el)
+               {
+                 sel_from_sidenav=true;
+               },
+               onClose:function (el)
+               {
+                 sel_from_sidenav=false;
+               }
+             });
+           $('.dropdown-button').dropdown();
+
+           $('select').material_select();
+
+       
+
+           // $('#check_all_goal_1').trigger('click')
+           // $('#sidenav-overlay').css('opacity',0);
+var objects=[];
+              $.ajax({
+                url: './data/matrix.csv',
+                dataType: 'text',
+              }).done(successFunction);
+
+        
+
+        function successFunction(data) {
+                var allRows = data.split(/\r?\n|\r/);
+                console.log(allRows[0])
+              
+              var all_to_ids=[];
+              console.info(allRows.length) //21
+                 allRows.forEach(function(d,i)
+                          {
+                            
+                            var this_row_cells=d.split(',');
+                            console.log(this_row_cells)
+
+                            if (i==0)
+                            {   
+                              
+                              this_row_cells.forEach(function(d2,i2)
+                              {
+                                  var this_obj={from_id:d2,values:[]}    
+                                  
+                                  all_to_ids.push(d2)
+                                  
+                                  objects.push(this_obj)
+                              })             
+                              
+                            }
+                            else
+                            {
+                              //console.info(this_row_cells)
+                              if (typeof objects[i-1]!==undefined)
+                                              
+                                  this_row_cells.forEach(function(d2,i2)
+                                    {
+                                      
+                                        if (i2==0)
+                                        {
+                                          var o=objects[i-1];
+                                          objects[i-1].from_id=d2;
+                                          //o.data=d2+'-'+o.to_id;
+
+                                         // objects[i-1].values.push({val:d2,to_id:all_to_ids[i2]});                            
+                                        }
+                                        else    
+                                        {
+                                          var o=objects[i-1]
+                                          o.values.push({data:o.from_id+'-'+all_to_ids[i2-1],value:parseInt(d2),to_id:all_to_ids[i2-1]});
+                                        }                  
+                                          
+                                    })
+                             
+
+                            }
+                            
+                           // objects.push(this_obj)
+                          })
+              console.warn(all_to_ids)
+                 console.log(JSON.stringify(objects))
+
+              for (var p in objects)
+              {
+                 Array.prototype.push.apply(all_t_val,objects[p].values); 
+                 
+                 
+              }
+              console.log(all_t_val)
+
+            from_ids_arr=objects.map(function(d,i)
+             {
+              return d.from_id;
+             });
+             console.info(from_ids_arr)
+
+
+    }
+
+    // $('.card-action:first a').trigger('click')
+    //        $('.sidenav_trigger').trigger('click');
+
+
+   var showChar = 30;  // How many characters are shown by default
+   var ellipsestext = "...";
+   var moretext = "Show more";
+   var lesstext = "Show less";
+
+
+   $('.more').each(function() {
+       var content = $(this).html();
+
+       if(content.length > showChar) {
+
+           var c = content.substr(0, showChar);
+           var h = content.substr(showChar, content.length - showChar);
+
+           var html = c + '<span class="moreellipses">' + ellipsestext+ '&nbsp;</span><span class="morecontent"><span>' + h + '</span>&nbsp;&nbsp;<a href="" class="morelink">' + moretext + '</a></span>';
+
+           $(this).html(html);
+       }
+
+   });
+
+   $(".morelink").click(function(){
+       if($(this).hasClass("less")) {
+           $(this).removeClass("less");
+           $(this).html(moretext);
+       } else {
+           $(this).addClass("less");
+           $(this).html(lesstext);
+       }
+       $(this).parent().prev().toggle();
+       $(this).prev().toggle();
+       return false;
+   });
+
+       });
+
+
+
+
+// document.addEventListener('DOMContentLoaded', function() {
+//    var elem = document.querySelectorAll('.side-nav');
+
+//     var sidenav_instance = M.Sidenav.init(elem,{
+//     edge: 'left',
+//     draggable: true,
+//     inDuration: 250,
+//     outDuration: 200,
+//     onOpenStart: null,
+//     onOpenEnd: null,
+//     onCloseStart: null,
+//     onCloseEnd: null,
+//     preventScrolling: true
+// })//, options);
+// console.dir(sidenav_instance)
+//      $('.sidenav_trigger').on('click',function()
+//              {
+
+//               if ($('.side-nav').is(':visible'))
+//               {
+//                 //sidenav_instance.open();
+//                 $('.side-nav').sidenav('open');
+//               }
+//               else
+//               {
+//                //sidenav_instance.close();
+//                $('.side-nav').sidenav('close');
+//               }
+//              })
+// });
+
+
+    //var sidenav_instance = M.Sidenav.getInstance(elem);
+
+
+
+
+          </script>
+
+</body></html>
