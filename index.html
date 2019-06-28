@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
      <script src="./d3_v5.min.js"></script>
      <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
-    <!-- <script src="https://d3js.org/d3.v3.js"></script> -->
+    <!-- <script src="https://d3js.org/d3v5.v3.js"></script> -->
 
 
     <script src="./d3-multi-styles.js"></script>
@@ -388,7 +388,7 @@ var xmouse, ymouse;
                           clicked_card_data.with_data=false;
                          // clicked_card_data.visualized=false;
 
-                          var filtered=d3.selectAll('.link').filter(function(d)
+                          var filtered=d3v5.selectAll('.link').filter(function(d)
                                    {
 
                                      if (d.data==clicked_card_data.data)
@@ -426,7 +426,7 @@ var xmouse, ymouse;
                                            tabulate_clicked(clicked_card_data,'remove');
 
                                            //yLabels are HORIZONTAL. we have to count the SUM_COLS
-                                           d3.selectAll(".yLabels_counter").filter(function(d)
+                                           d3v5.selectAll(".yLabels_counter").filter(function(d)
                                              {
                                                console.info(d)
                                                if (d.id==clicked_card_data.to_id)
@@ -446,7 +446,7 @@ var xmouse, ymouse;
 
 
 
-                                       var x_sel_labels=d3.selectAll(".xLabels_counter").filter(function(d)
+                                       var x_sel_labels=d3v5.selectAll(".xLabels_counter").filter(function(d)
                                              {
                                                console.info(d)
                                                if (d.id==clicked_card_data.from_id)
@@ -562,7 +562,7 @@ var xmouse, ymouse;
                              if (target.is('rect') && target.parent().hasClass('legend'))
                              {
                                    var val=parseInt(target.attr('value'));
-                                   var filtered=d3.selectAll('.link').filter(function(d)
+                                   var filtered=d3v5.selectAll('.link').filter(function(d)
                                    {
 
                                      if (d.data==clicked_card_data.data)
@@ -612,7 +612,7 @@ var xmouse, ymouse;
                                      var row_sum=0;
                                      var row_number=0;
 
-                                     var row_filtered=d3.selectAll('.link').filter(function(d)
+                                     var row_filtered=d3v5.selectAll('.link').filter(function(d)
                                      {
 
                                        if (d.from_id==clicked_card_data.from_id && d.value!==null)
@@ -625,7 +625,7 @@ var xmouse, ymouse;
 
                                      });
 
-                                     var x_sel_labels=d3.selectAll(".xLabels_counter").filter(function(d)
+                                     var x_sel_labels=d3v5.selectAll(".xLabels_counter").filter(function(d)
                                      {
                                        console.info(d)
                                        if (d.id==clicked_card_data.from_id)
@@ -640,13 +640,13 @@ var xmouse, ymouse;
                                      console.info(x_sel_labels)
 
                                      x_sel_labels.text(row_sum);
-                                     var y_sel_labels=d3.selectAll(".yLabels_counter");
+                                     var y_sel_labels=d3v5.selectAll(".yLabels_counter");
 
 
                                      var sum_col=0;
                                      var col_number=0;
 
-                                     var col_filtered=d3.selectAll('.link').filter(function(d)
+                                     var col_filtered=d3v5.selectAll('.link').filter(function(d)
                                      {
 
 
@@ -660,7 +660,7 @@ var xmouse, ymouse;
 
                                      });
 
-                                     var y_sel_labels=d3.selectAll(".yLabels_counter").filter(function(d)
+                                     var y_sel_labels=d3v5.selectAll(".yLabels_counter").filter(function(d)
                                      {
 
                                        if (d.id==clicked_card_data.to_id)
@@ -1096,7 +1096,7 @@ var xmouse, ymouse;
                // body...
 
     // function update_chart
-      var legend_progress=d3.select('.progress_test');
+      var legend_progress=d3v5.select('.progress_test');
        var legend_progress_div=legend_progress.selectAll('div')
 
        .data(colors_obj.data, function(d){
@@ -1164,7 +1164,7 @@ var xmouse, ymouse;
 
 
 
-                             svg = d3.select(".svg-container").append("svg")
+                             svg = d3v5.select(".svg-container").append("svg")
                              //responsive SVG needs these 2 attributes and no width and height attr
                               .attr("preserveAspectRatio", "xMinYMin meet")
                               .attr("viewBox", '0 0 '+w+' '+h+'')
@@ -1183,7 +1183,7 @@ var xmouse, ymouse;
 
        var legendElementWidth=30;
 
-       var legend_svg=d3.select("#legend_tooltip").append("svg")
+       var legend_svg=d3v5.select("#legend_tooltip").append("svg")
 
                         //.attr("width", legendElementWidth+170)
                         .attr("width", 200)
@@ -1212,7 +1212,7 @@ var xmouse, ymouse;
                        .attr("width", legendElementWidth)
                        .attr("height", legendElementWidth)
                        .style("fill", function(d, i) {
-                               //console.info(d3.select(this))
+                               //console.info(d3v5.select(this))
                                return d.color;
                              })
                        .attr("value",function(d)
@@ -1223,7 +1223,7 @@ var xmouse, ymouse;
                        {
                          console.info(d) //0,-1...
 
-                         var cards=d3.selectAll('.link');
+                         var cards=d3v5.selectAll('.link');
                          cards.transition().duration(150).style('opacity',0.2);
 
                          var sel=cards.filter(function(data)
@@ -1239,7 +1239,7 @@ var xmouse, ymouse;
                        .on('mouseout',function(d)
                        {
 
-                         var cards=d3.selectAll('.link');
+                         var cards=d3v5.selectAll('.link');
                          var sel=cards.filter(function(data)
                          {
                            return (data.visualized==true)// && parseInt(data.value)==parseInt(d.legend_val);
@@ -1735,7 +1735,7 @@ var xmouse, ymouse;
                              var row_sum=0;
                                      var row_number=0;
 
-                                     var row_filtered=d3.selectAll('.link').filter(function(d)
+                                     var row_filtered=d3v5.selectAll('.link').filter(function(d)
                                      {
 
                                        if (d.from_id==data.from_id && d.value!==null)
@@ -1749,7 +1749,7 @@ var xmouse, ymouse;
 
                                      });
 
-                                     var x_sel_labels=d3.selectAll(".xLabels_counter").filter(function(d)
+                                     var x_sel_labels=d3v5.selectAll(".xLabels_counter").filter(function(d)
                                      {
 
                                        if (d.id==data.from_id)
@@ -1770,7 +1770,7 @@ var xmouse, ymouse;
                                       var sum_col=0;
                                      var col_number=0;
 
-                                     var col_filtered=d3.selectAll('.link').filter(function(d)
+                                     var col_filtered=d3v5.selectAll('.link').filter(function(d)
                                      {
 
 
@@ -1784,7 +1784,7 @@ var xmouse, ymouse;
 
                                      });
 
-                                     var y_sel_labels=d3.selectAll(".yLabels_counter").filter(function(d)
+                                     var y_sel_labels=d3v5.selectAll(".yLabels_counter").filter(function(d)
                                      {
 
                                        if (d.id==data.to_id)
@@ -1972,7 +1972,7 @@ var xmouse, ymouse;
 
                        $('div.right_container_cards li.li_goal_container.class_'+goal+' > div.collapsible-body ul').append('<table class="responsive-table striped highlight sel_table_goal goal_'+goal+'"><thead></thead><tbody></tbody></table>');
 
-                       var table=d3.select('.sel_table_goal.goal_'+goal)
+                       var table=d3v5.select('.sel_table_goal.goal_'+goal)
                        var thead = table.select('thead');
                        var tbody = table.select('tbody');
 
@@ -2021,7 +2021,7 @@ var xmouse, ymouse;
 
                       $('.goal_stats_container').fadeIn();
 
-                       var table=d3.select('.sel_table_goal.goal_'+goal)
+                       var table=d3v5.select('.sel_table_goal.goal_'+goal)
                        var thead = table.select('thead');
                        var tbody = table.select('tbody');
 
@@ -2045,16 +2045,16 @@ var xmouse, ymouse;
 
                          rows.on('mouseover',function(d)
                                  {
-                                   //console.info(d3.event.target)
+                                   //console.info(d3v5.event.target)
 
                                    //this refers to TR
                                    //console.log(this)
-                                   if ($(d3.event.target).hasClass('sel_table_value'))
+                                   if ($(d3v5.event.target).hasClass('sel_table_value'))
                                    {
-                                       $(d3.event.target).addClass('active');
+                                       $(d3v5.event.target).addClass('active');
                                         /* console.log(d)
                                          console.warn('mouseovering TR')*/
-                                         var cards=d3.selectAll('.link')
+                                         var cards=d3v5.selectAll('.link')
                                          cards.transition().duration(350).style('opacity',0.2);
 
                                          var sel=cards.filter(function(data)
@@ -2071,7 +2071,7 @@ var xmouse, ymouse;
                                      if($(this).find('.sel_table_value.active'))
                                      {
                                        $(this).find('.sel_table_value').removeClass('active');
-                                       var cards=d3.selectAll('.link');
+                                       var cards=d3v5.selectAll('.link');
                                        var sel=cards.filter(function(data)
                                          {
                                            return data.visualized==true;
@@ -2083,17 +2083,17 @@ var xmouse, ymouse;
                                  })
                            // .on('click',function(d)
                            // {
-                           //   var sel=d3.select('.hovered_class_from_table');
+                           //   var sel=d3v5.select('.hovered_class_from_table');
                            //   console.log(sel['_goals'][0])
 
                            // })
                            .on('mouseout',function(d)
                            {
-                             console.warn($(d3.event.target))
-                             if ($(d3.event.target).hasClass('sel_table_value'))
+                             console.warn($(d3v5.event.target))
+                             if ($(d3v5.event.target).hasClass('sel_table_value'))
                              {
 
-                                   var cards=d3.selectAll('.link')
+                                   var cards=d3v5.selectAll('.link')
 
                                    cards.style('opacity',function(card)
                                      {
@@ -2107,7 +2107,7 @@ var xmouse, ymouse;
                                         }
                                       })
                                 //   console.warn('mouseout from table row')
-                                    var filtered=d3.selectAll('.hovered_class_from_table');
+                                    var filtered=d3v5.selectAll('.hovered_class_from_table');
                              }
 
                              // cards.transition().duration(550).attr('fill',function(d)
@@ -2194,7 +2194,7 @@ var xmouse, ymouse;
 
 
 
-                         var table=d3.select('.sel_table_goal.goal_'+goal);
+                         var table=d3v5.select('.sel_table_goal.goal_'+goal);
 
 
                           setTimeout(function()
@@ -2289,7 +2289,7 @@ var xmouse, ymouse;
                  var goal=data.goal;
 
 
-                  var table=d3.select('.sel_table_goal.goal_'+goal);
+                  var table=d3v5.select('.sel_table_goal.goal_'+goal);
 
                 //  $('.sel_table_goal.goal_'+goal).find('select').material_select();
                        var thead = table.select('thead');
@@ -2311,7 +2311,7 @@ var xmouse, ymouse;
 
 
                        // create a row for each object in the data
-                    /*   d3.selectAll('.sel_table_goal.goal_'+goal+' tbody tr').filter(function(d)
+                    /*   d3v5.selectAll('.sel_table_goal.goal_'+goal+' tbody tr').filter(function(d)
                          {
                            console.log(d.data)
                            console.warn(data.data)
@@ -2343,7 +2343,7 @@ var xmouse, ymouse;
                    var goal=data[data.length-1].sdgnum;
 
                    var t=$('.tables_container .responsive-table').length;
-                   var all_tables_rows=d3.selectAll('.tables_container .col').nodes();
+                   var all_tables_rows=d3v5.selectAll('.tables_container .col').nodes();
                    console.info(all_tables_rows)
 
                    if (t<3)
@@ -2368,7 +2368,7 @@ var xmouse, ymouse;
                    //$('#chart_info').empty();
 
 
-                   var table = d3.select('#chart_info').append('table').attr('class','responsive-table striped highlight table_goal '+goal+'"');
+                   var table = d3v5.select('#chart_info').append('table').attr('class','responsive-table striped highlight table_goal '+goal+'"');
 
                    $('#chart_info table:last').before('<h4> Goal '+goal+'</h4>').wrap('<div class="table_wrapper '+goal+'"></div>')
                    //'+d.sdg_num+'"> Goal '+d.sdg_num+'
@@ -2498,7 +2498,7 @@ var xmouse, ymouse;
 
              $(this).addClass('yLabel_hovered');
 
-             var y_sel_labels=d3.selectAll(".yLabels_counter").filter(function(labels)
+             var y_sel_labels=d3v5.selectAll(".yLabels_counter").filter(function(labels)
                                      {
 
                                        if (labels.id==d.id)
@@ -2509,7 +2509,7 @@ var xmouse, ymouse;
                                      });
 
 
-             var $anchor=$(d3.select(this).node());
+             var $anchor=$(d3v5.select(this).node());
 
              $anchor
                  .attr('data-tooltip', function(i,d)
@@ -2574,9 +2574,9 @@ var xmouse, ymouse;
              .on('mouseover',function(d)
            {
                    $(this).addClass('xLabel_hovered');
-                   d3.select(this).style('color','red');
+                   d3v5.select(this).style('color','red');
 
-                   var y_sel_labels=d3.selectAll(".yLabels_counter").filter(function(labels)
+                   var y_sel_labels=d3v5.selectAll(".yLabels_counter").filter(function(labels)
                                            {
 
                                              if (labels.id==d.id)
@@ -2587,7 +2587,7 @@ var xmouse, ymouse;
                                                return this;
                                              }
                                            });
-                   var $anchor=$(d3.select(this).node());
+                   var $anchor=$(d3v5.select(this).node());
 
                    $anchor
                        .attr('data-tooltip', function(i,d)
@@ -2618,10 +2618,10 @@ var xmouse, ymouse;
              $(this).removeClass('xLabel_hovered');
            })
 
-           var _links=d3.selectAll('.link');
+           var _links=d3v5.selectAll('.link');
 
 
-           var colorScale = d3.scaleLinear()//.quantile()
+           var colorScale = d3v5.scaleLinear()//.quantile()
                          .domain([-3, 7, 3])
                          .range(colors);
 
@@ -2705,7 +2705,7 @@ var xmouse, ymouse;
                                    {
                                      clicked_card=true;
 
-                                      var filtered=d3.selectAll('.link').filter(function(d)
+                                      var filtered=d3v5.selectAll('.link').filter(function(d)
                                      {
                                        if (d.data==this_data.data)
                                        {
@@ -2735,7 +2735,7 @@ var xmouse, ymouse;
 
                                       var this_data=d;//3.select(this).data()[0];
 
-                                     var filtered=d3.selectAll('.link').filter(function(d)
+                                     var filtered=d3v5.selectAll('.link').filter(function(d)
                                      {
                                        //console.warn(d)
                                         if (d.data==this_data.data)
@@ -2829,7 +2829,7 @@ var xmouse, ymouse;
                                        //console.log($('.card_toast.blue').length)
                                        if ($('.editing_card_toast').length==0)
                                        {
-                                           d3.selectAll('.hovered_class').classed('hovered_class',false)
+                                           d3v5.selectAll('.hovered_class').classed('hovered_class',false)
                                            .transition().duration(550)
                                           // .style("opacity", 1)
                                            .style("fill", function(d) {
