@@ -431,6 +431,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        r: this.config.innerSunRadius
 	      }).each('end', function () {
 	        _this2.sun.on('mouseover', function (data) {
+	        	console.log('mouseover the center, the sun')
 	          _d2.default.select(this).selectAll('g.outer').selectAll('path').transition().duration(that.config.transitionDuration).ease(that.config.ease).attr('d', outerSunArcSelected);
 
 	          _d2.default.select(this).selectAll('g.inner').selectAll('circle').transition().duration(that.config.transitionDuration).ease(that.config.ease).attr('r', config.innerSunRadius * 0.95);
@@ -446,8 +447,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	      });
 
 	      // planet orbits
-	      this.planetOrbits.selectAll('circle').transition().duration(this.config.animationDuration * 0.3).delay(this.config.animationDuration * 0.7).attr({
-	        r: this.config.planetToMoon,
+	      this.planetOrbits.selectAll('circle').attr({
+	       
 	        'stroke-opacity': 1
 	      });
 
@@ -465,7 +466,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	      };
 
 	      var config = this.config;
-	      this.planets.selectAll('circle').transition().duration(this.config.animationDuration * 0.5).delay(this.config.animationDuration * 0.2).ease(this.config.ease).attr({
+	      this.planets.selectAll('circle').transition().duration(this.config.animationDuration * 0.5)
+	      .delay(this.config.animationDuration * 0.2).ease(this.config.ease).attr({
 	        cx: function cx(d) {
 	          return d.position.x;
 	        },
@@ -475,9 +477,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	        r: this.config.planetRadius
 	      }).each('end', function () {
 	        _this2.planets.selectAll('g.planet').on('mouseover', function (data, index) {
-	          _d2.default.select(this).selectAll('circle').transition().duration(that.config.transitionDuration).ease(that.config.ease).attr('r', that.config.planetToMoon);
-
-	          that.outerSun.selectAll('path').transition().duration(that.config.transitionDuration).ease(that.config.ease).attr('d', outerSunArcPlanetSelected(index));
+	        	
+	        /*  _d2.default.select(this).selectAll('circle').transition()
+	          .duration(that.config.transitionDuration).ease(that.config.ease).attr('r', that.config.planetToMoon);
+*/
+/*	          that.outerSun.selectAll('path').transition().duration(that.config.transitionDuration).ease(that.config.ease).attr('d', outerSunArcPlanetSelected(index));*/
 
 	          that.tooltip.show(data);
 	        }).on('mouseout', function (data) {
@@ -505,6 +509,20 @@ return /******/ (function(modules) { // webpackBootstrap
 	        r: this.config.moonRadius
 	      }).each('end', function () {
 	        _this2.moons.selectAll('g.moon').on('mouseover', function (data) {
+	        	
+
+	        	var cards=d3v5.selectAll('.link');
+                cards.transition().duration(150).style('opacity',0.1);
+
+                var sel=cards.filter(function(d)
+                         {
+                         	
+                           return (d.data==data.data_id);
+                         });
+                
+
+                sel.transition().duration(150).style('opacity',1);
+
 	          _d2.default.select(this).selectAll('circle').transition().duration(that.config.transitionDuration).ease(that.config.ease).attr({
 	            'r': config.moonRadius * 1.2,
 	            'stroke-width': 4
@@ -512,6 +530,18 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	          that.tooltip.show(data);
 	        }).on('mouseout', function (data) {
+
+	        	var cards=d3v5.selectAll('.link');
+
+	        	         var sel=cards.filter(function(d)
+                         {
+                         	
+                           return (d.from_id==data.from_id);
+                         });
+                
+
+                sel.transition().duration(50).style('opacity',1);
+
 	          _d2.default.select(this).selectAll('circle').transition().duration(that.config.transitionDuration).ease(that.config.ease).attr({
 	            'r': config.moonRadius,
 	            'stroke-width': 2
