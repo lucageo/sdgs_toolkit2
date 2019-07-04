@@ -7,6 +7,65 @@
   src: url(./roboto.woff2) format('woff2');
 }
 
+.satellite_selected
+{
+  stroke: #03a9f4!important;
+}
+.individual_satellite
+{
+  stroke: #ec39d0!important;
+  stroke-width:1.5;
+}
+
+.satellite_selects_opt .btn
+{
+  display: none;
+}
+.card_text_form
+{
+  float: left;
+  font-size: 0.8em!important;
+  background-color: #ffefef;
+}
+.btn.attach_csv
+{
+  font-size: 0.6em!important;
+  padding:0 1rem;
+}
+.card_text_form:hover
+{
+  cursor: pointer;
+}
+.toast_slide_text
+{
+  display: none;
+  padding: 6px;
+}
+.card_text_form textarea
+{
+  /*color:white!important;*/
+}
+.ul_satellite,.card_text_form
+{
+  
+  display: none;
+}
+
+.ul_satellite .collapsible-body
+{
+ min-height: 330px;
+}
+.satellite_selects_opt div 
+{
+  display: inline;
+}
+.blacked
+{
+  stroke:#2378ae;
+    border: 10px solid red!important;
+  fill: #2e2525!important;
+  opacity: 0.2!important;
+}
 .material-icons {
   font-family: 'Material Icons';
   font-weight: normal;
@@ -22,7 +81,14 @@
   -webkit-font-feature-settings: 'liga';
   -webkit-font-smoothing: antialiased;
 }
-
+.toast_slide_color
+{
+  display: none;
+}
+.toast_slide_text
+{
+  display: none;
+}
 .circle
 {
   width:100%;
@@ -37,13 +103,163 @@
   font-family: Helvetica, Arial Black, sans;
 }
 
+.toast_actions
+{
+  float: right;
+  color: white!important;
+}
+
+.toast_actions i
+{
+  color:black;
+}
+#vis-container g:hover
+{
+  cursor: pointer;
+}
+  .ul_satellite span
+      {
+        padding: 15px;
+        color: blue;
+      }
+      .ul_satellite span:hover
+      {
+        cursor: pointer;
+      }
+}
+.hovered_class_from_table
+{
+  border: 10px solid red!important;
+  background-color: blue;
+}
+    .card.horizontal .card-image {
+    max-width: 30%!important;
+}
+#toast-container {
+    display: block;
+    position: absolute;
+    z-index: 10000;
+}
+#nav-mobile{
+  padding-left: 73px!important;
+}
+html {
+
+    font-family: 'Montserrat', sans-serif!important;
+}
+.blues,.editing_card_toast {
+    background-color: #788f9c!important;
+}
+nav ul a {
+
+    color: #444!important;
+}
+    .flow-text-test
+    {
+      padding: 5px;
+    }
+
+    .target_toast_direction_title
+    {
+  padding: 5px;
+    font-size: 1.2rem!important;
+    font-weight: bold;
+color: #374752;
+    }
+    .toast
+    {
+      font-size: 0.9rem!important;
+    }
+    .sel_table_value
+    {
+          padding: 5px;
+    }
+    .sel_table_value:hover
+    {
+      cursor: pointer;
+    }
+    body > div.sdg_container > nav > div > a.brand-logo.center.hide-on-med-and-down{
+        color: #444!important;
+    }
+       #right_container
+       {
+        display: none;
+       }
+
+       .dropdown_config_div .form p
+       {
+        margin: 10px!important;
+       }
+      .goal_stats_container .collapsible-body,.ul_tables .collapsible-body
+      {
+        padding: 10px!important;
+      }
+
+      .progress_num_rec
+      {
+        font-weight: bold;
+        font-size: 1.2em;
+        color: #2196f3;
+      }
+
+#toast-container > div > div > div:nth-child(3) > div > i.material-icons.edit-icon{
+  position: relative;
+float: right;
+margin-top: -3px;
+}
+#toast-container > div > div > div:nth-child(3) > div > i.delete_card_icon.material-icons{
+  position: relative;
+float: right;
+margin-top: -3px;
+}
+      .progress_category
+      {
+        font-size: 1.2em;
+      }
+
+      .edit-icon:hover,.delete_card_icon:hover
+      {
+        cursor: pointer;
+      }
+
+      .card_legend_tooltip_container
+      {
+
+        display: none;
+      }
+      .val_title
+      {
+        background-color: #fff;
+        padding: 10px;
+        margin: 5px;
+        height: 44px;
+      }
+      .card_val_title
+      {
+        font-weight: bold;
+        color: white;
+        position: absolute;
+        float: right;
+        margin-right: 51px;
+      }
+      .progress_test
+      {
+
+        height: auto;
+      }
+
+      .progress_test .progress,.determinate
+      {
+        height: 18px!important;
+      }
+
 .yLabels:hover,.xLabels:hover
 {
   cursor: pointer;
 }
 .xLabels_counter
 {
-    /*font-size: 1.5em;*/
+    font-size: 0.8em;
 
     fill: #03A9F4!important;
     font-weight: bold;
@@ -52,6 +268,8 @@
 .yLabels_counter
 {
     /*font-size: 19px!important;*/
+
+    font-size: 0.8em;
 
     fill: #03A9F4!important;
     font-weight: bold;
@@ -150,7 +368,10 @@ background-color: #f1f1f1!important;
     overflow: auto;
   }
 
-
+@media only screen and (min-width: 1200px)
+html {
+    font-size: 13px!important;
+}
    .goal_toast_container {
   top: auto !important;
   /*left: 25% !important;*/
@@ -189,7 +410,7 @@ background-color: #f1f1f1!important;
   padding: 8px;
 }
 
-.card_toast.blue
+.card_toast.blues
 {
   min-width: 340px!important;
   max-width: 350px!important;
