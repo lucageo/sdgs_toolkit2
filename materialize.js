@@ -4823,7 +4823,8 @@ if (Vel) {
   /*******************
    *  Select Plugin  *
    ******************/
-  $.fn.material_select = function (callback) {
+  $.fn.material_select = function (options,callback) {
+
     $(this).each(function () {
       var $select = $(this);
 
@@ -4945,9 +4946,35 @@ if (Vel) {
 
             activateOption(options, $(this));
             $select.find('option').eq(i).prop('selected', selected);
-
+            console.log(window.options.config)
             // Trigger onchange() event
-            $select.trigger('change');
+            console.warn(options)
+            if (window.options.config.from_csv==false)
+            {
+              //individual change
+
+              $select.trigger('change',{_type:'individual_sel'});  
+            }
+            else
+            {
+          /*    setTimeout(function()
+              {
+
+                var new_p=window.options.config.get_params()
+                console.warn(new_p)
+                console.info(new_p.objects)
+                new_p['goals_obj'].forEach(function(d,i)
+                {
+                  console.log(d)
+                })
+
+              },1000)*/
+              $select.trigger('change',{_type:'csv_sel'});
+              return false;
+              //   
+            }
+            
+
             if (typeof callback !== 'undefined') callback();
           }
 
