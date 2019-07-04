@@ -10,7 +10,7 @@
     <!-- <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"/ > -->
      <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"/>
     <script src="./materialize.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+    <link rel="stylesheet" href="./css/materialize.min.css">
       <script src="./satchart.js"></script>   
      <script src="./d3_v5.min.js"></script>
      
@@ -24,144 +24,7 @@
 
 
      <script src="https://d3js.org/colorbrewer.v1.min.js"></script>
-    <style type="text/css">
-      .ul_satellite span
-      {
-        padding: 15px;
-        color: blue;
-      }
-      .ul_satellite span:hover
-      {
-        cursor: pointer;
-      }
-.hovered_class_from_table
-{
-  border: 10px solid red!important;
-  background-color: blue;
-}
-    .card.horizontal .card-image {
-    max-width: 30%!important;
-}
-#toast-container {
-    display: block;
-    position: absolute;
-    z-index: 10000;
-}
-#nav-mobile{
-  padding-left: 73px!important;
-}
-html {
 
-    font-family: 'Montserrat', sans-serif!important;
-}
-.blue {
-    background-color: #788f9c !important;
-}
-nav ul a {
-
-    color: #444!important;
-}
-    .flow-text-test
-    {
-      padding: 5px;
-    }
-
-    .target_toast_direction_title
-    {
-  padding: 5px;
-    font-size: 1.2rem!important;
-    font-weight: bold;
-color: #374752;
-    }
-    .toast
-    {
-      font-size: 0.9rem!important;
-    }
-    .sel_table_value
-    {
-    	    padding: 5px;
-    }
-    .sel_table_value:hover
-    {
-      cursor: pointer;
-    }
-    body > div.sdg_container > nav > div > a.brand-logo.center.hide-on-med-and-down{
-        color: #444!important;
-    }
-       #right_container
-       {
-        display: none;
-       }
-
-       .dropdown_config_div .form p
-       {
-       	margin: 10px!important;
-       }
-      .goal_stats_container .collapsible-body,.ul_tables .collapsible-body
-      {
-        padding: 10px!important;
-      }
-
-      .progress_num_rec
-      {
-        font-weight: bold;
-        font-size: 1.2em;
-        color: #2196f3;
-      }
-
-#toast-container > div > div > div:nth-child(3) > div > i.material-icons.edit-icon{
-  position: relative;
-float: right;
-margin-top: -3px;
-}
-#toast-container > div > div > div:nth-child(3) > div > i.delete_card_icon.material-icons{
-  position: relative;
-float: right;
-margin-top: -3px;
-}
-      .progress_category
-      {
-        font-size: 1.2em;
-      }
-
-      .edit-icon:hover,.delete_card_icon:hover
-      {
-        cursor: pointer;
-      }
-
-      .card_legend_tooltip_container
-      {
-
-        display: none;
-      }
-      .val_title
-      {
-        background-color: #6f8796;
-        padding: 10px;
-        margin: 5px;
-        height: 44px;
-      }
-      .card_val_title
-      {
-        font-weight: bold;
-        color: white;
-        position: absolute;
-        float: right;
-        margin-right: 51px;
-      }
-      .progress_test
-      {
-
-        height: auto;
-      }
-
-      .progress_test .progress,.determinate
-      {
-        height: 18px!important;
-      }
-
-
-    </style>
 </head>
 <body>
 <div class="wrapper">
@@ -178,7 +41,7 @@ margin-top: -3px;
           <a href="" class="brand-logo left"><img src="./img/sdgs_logo_60.png"></a>
           <a href="" class="brand-logo center hide-on-med-and-down">SDGS Interlikages Toolkit</a>
           <ul id="nav-mobile">
-            <li><a href="#" data-activates="slide-out" class="sidenav_trigger btn-floating btn-small waves-effect waves-light blue-grey lighten-1"><i class="material-icons">apps</i></a>
+            <li><a href="#" data-activates="slide-out" class="sidenav_trigger btn-floating btn-small waves-effect waves-light blues-grey lighten-1"><i class="material-icons">apps</i></a>
             </li>
                 <ul id="dropdown_legend" class="dropdown-content">
                   <li>
@@ -186,11 +49,11 @@ margin-top: -3px;
                   </li>
                 </ul>
                  <li>
-                 <a href="#" class="btn-floating btn-small waves-effect waves-light blue-grey lighten-1 dropdown-button  dropdown_legend_btn" data-activates="dropdown_legend"><i class="material-icons md-light">layers</i></a>
+                 <a href="#" class="btn-floating btn-small waves-effect waves-light blues-grey lighten-1 dropdown-button  dropdown_legend_btn" data-activates="dropdown_legend"><i class="material-icons md-light">layers</i></a>
                 </li>
 
-                <li><a href="#" class="sidenav_trigger btn-floating btn-small waves-effect waves-light blue-grey lighten-1"><i class="material-icons attach_csv">attachment</i></a>
-                </li>
+               <!--  <li><a href="#" class="sidenav_trigger btn-floating btn-small waves-effect waves-light blues-grey lighten-1"><i class="material-icons attach_csv">attachment</i></a>
+                </li> -->
                <ul id="dropdown_config" class="dropdown-content">
                   <li>
                     <div class='dropdown_config_div'>
@@ -204,7 +67,10 @@ margin-top: -3px;
                    </div>
                   </li>
                 </ul>
-            <li> <a href="#" class="btn-floating btn-small waves-effect waves-light blue-grey lighten-1 waves-effect waves-light dropdown-button btn dropdown_config_btn" data-activates="dropdown_config"><i class="material-icons md-light">settings</i></a></li>
+
+            <li> <a href="#" class="btn-floating btn-small waves-effect waves-light blues-grey lighten-1 waves-effect waves-light dropdown-button btn dropdown_config_btn" data-activates="dropdown_config"><i class="material-icons md-light">settings</i></a></li>
+             <li><!-- <a href="#" class="sidenav_trigger btn-floating btn-small waves-effect waves-light blues-grey lighten-1"><i class="material-icons attach_csv">attachment</i> --><a class="attach_csv waves-effect waves-light btn off">Colombian dataset</a><!-- </a> -->
+                </li>
 
           </ul>
           <ul class="right hide-on-med-and-down">
@@ -287,7 +153,7 @@ margin-top: -3px;
                 </ul>
 
                  <ul class="collapsible ul_satellite" data-collapsible="accordion">
-                  <li class="goal_table_container">
+                  <li>
                       <div class="collapsible-header">
                           <div class="card horizontal">
                               <div class="card-image"> <i class="material-icons md-light">share</i></div>
@@ -298,11 +164,39 @@ margin-top: -3px;
                               </div>
                             </div>
                         </div>
-                          <div class="collapsible-body">
-                            <span class='1.5'>Target 1.5</span>
-                            <span class='2.3'>Target 2.3</span>
-                            <span class='6.3'>Target 6.3</span>
-                            <span class='16.3'>Target 16.3</span>
+                          <div class="collapsible-body white">
+                            <div id='satellite_selects_opt'>
+                             <div class='col s8'>
+                              <form action="#">
+                                  <span>
+                                    <input name="group1" type="radio" id="from_id" checked/>
+                                    <label for="from_id">From target</label>
+                                  </span>
+                                  <span>
+                                    <input name="group1" type="radio" id="to_id" />
+                                    <label for="to_id">To target</label>
+                                  </span>
+                              </form>
+                              </div>
+
+                               <div class='col s4'>
+                                  <a class="waves-effect waves-light btn off">Reset</a>
+                                 </div>
+
+                            </div>
+
+                             <div class="satellite_options input-field col s12">
+                                 
+                                  <select>
+                                   
+                                    
+                                  </select>
+                                 
+
+                                 
+                            </div>
+
+                          
                               <div id="vis-container"></div>
                           </div>
                     </li>
@@ -336,7 +230,9 @@ var sdg_params={};
 
 
 
-var colors_obj={total_records:0,data:[{legend_val:-3,counts:0,percent_val:0,color:"#d73027",legend_text:"Strongly restricting"}, {legend_val:-2,counts:0,percent_val:0,color:"#fc8d59",legend_text:"Moderately restricting"}, {legend_val:-1,counts:0,percent_val:0,color:"#fee08b",legend_text:"Weakly restricting"}, {legend_val:0,counts:0,percent_val:0,color:"#ffffbf",legend_text:"No influence"}, {legend_val:1,counts:0,percent_val:0,color:"#d9ef8b",legend_text:"Weakly promoting"}, {legend_val:2,counts:0,percent_val:0,color:"#91cf60",legend_text:"Moderately promoting"}, {legend_val:3,counts:0,percent_val:0,color:"#1a9850",legend_text:"Strongly promoting"}]};
+var colors_obj={total_records:0,data:[{legend_val:-3,counts:0,percent_val:0,color:"#d73027",legend_text:"Strongly restricting"}, {legend_val:-2,counts:0,percent_val:0,color:"#fc8d59",legend_text:"Moderately restricting"}, {legend_val:-1,counts:0,percent_val:0,color:"#feb900",legend_text:"Weakly restricting"}, {legend_val:0,counts:0,percent_val:0,color:"#f4de00",legend_text:"No influence"}, {legend_val:1,counts:0,percent_val:0,color:"#90c889",legend_text:"Weakly promoting"}, {legend_val:2,counts:0,percent_val:0,color:"#21b44e",legend_text:"Moderately promoting"}, {legend_val:3,counts:0,percent_val:0,color:"#02682a",legend_text:"Strongly promoting"}]};
+
+
 var xmouse, ymouse;
 
 
@@ -393,7 +289,7 @@ var objects=[];
 
        $.fn.fadeOut = function(){
            $(this).trigger('fadeOut');
-           if ($(this).hasClass('.card_toast.blue'))
+           if ($(this).hasClass('.card_toast.blues'))
            {
               console.log('applyging fadeout from triggering on CARD TOAST');
               clicked_card=false;
@@ -425,7 +321,7 @@ var objects=[];
                                           return d.value;
                                         });
                                       }
-                                         console.warn(unique_id_arr)
+                                         unique_id_arr=window.unique_id_arr;
                                          console.info(arguments)
                                          var pos=unique_id_arr.ids.indexOf(filtered_data.data);
                                          console.trace();
@@ -505,9 +401,8 @@ var objects=[];
                        {
                          var target=$('.toast .delete_card_icon');
                          var prev_card_val=parseInt(clicked_card_data.value);
-
-
                           target.hide();
+                          $('.toast_slide_text').hide();
                           console.info(clicked_card_data)
 
                           // ?????????????
@@ -655,8 +550,47 @@ var objects=[];
 
                      }
 
+                     if (target.hasClass('toast_slide_color'))
+                     {
+                      if (target.hasClass('on'))
+                      {
+                        target.removeClass('on').addClass('off').text('Show score colors');
+                        $('.card_legend_tooltip_container').find('#legend_tooltip').hide();
+
+
+                      }
+                      else
+                      {
+                        target.removeClass('off').addClass('on').text('Hide score colors');
+                        $('.card_legend_tooltip_container').find('#legend_tooltip').show();
+                      }
+                     }
+
+                     if (target.hasClass('toast_slide_text'))
+                     {
+                      if (target.hasClass('on'))
+                      {
+                        target.toggleClass('on').text('Show text form');
+                        $('.card_legend_tooltip_container').find('#legend_tooltip').hide();
+                       // $('.card_text_form').show();
+                        
+
+                      }
+                      else
+                      {
+                        target.addClass('on').text('Hide text form');
+                      //  $('.card_text_form').hide();
+
+
+                        $('.card_legend_tooltip_container').find('#legend_tooltip').show();
+                        
+                       
+                      }
+                     }
+
                      if (target.hasClass('edit-icon'))
                      {
+                        //  $('.toast_slide_text').show();
                           console.info(clicked_card_data)
                              if (!$('.card_legend_tooltip_container').is(':visible'))
                              {
@@ -668,10 +602,10 @@ var objects=[];
                      }
                      if (target.hasClass('close_tooltip'))
                        {
-                         if ($('.card_toast.blue').length>0)
+                         if ($('.card_toast.blues').length>0)
                          {
-                           $('.card_toast.blue').fadeOut()
-                           $('.card_toast.blue').remove();
+                           $('.card_toast.blues').fadeOut()
+                           $('.card_toast.blues').remove();
                          }
 
                          $('.editing_card_toast').remove()
@@ -720,6 +654,8 @@ var objects=[];
 
                                           $('i.edit-icon').hide();
 
+                                          $('.card_text_form').show();
+
                                           //var color=
                                           check_update (val,prev_card_val,clicked_card_data,d,goal);
 
@@ -767,8 +703,7 @@ var objects=[];
                                        }
                                      });
 
-                                     x_sel_labels.classed('with_data',true);
-                                     console.info(x_sel_labels)
+                                     x_sel_labels.classed('with_data',true);                                     
 
                                      x_sel_labels.text(row_sum);
                                      var y_sel_labels=d3v5.selectAll(".yLabels_counter");
@@ -779,8 +714,6 @@ var objects=[];
 
                                      var col_filtered=d3v5.selectAll('.link').filter(function(d)
                                      {
-
-
                                        if (d.to_id==clicked_card_data.to_id && d.value!==null)
                                        {
 
@@ -788,12 +721,10 @@ var objects=[];
                                          sum_col+=d.value;
                                          return this;
                                        }
-
                                      });
 
                                      var y_sel_labels=d3v5.selectAll(".yLabels_counter").filter(function(d)
                                      {
-
                                        if (d.id==clicked_card_data.to_id)
                                        {
 
@@ -1020,55 +951,67 @@ var objects=[];
               }
               else
               {
-                var selected_goals_arr=d3v5.range(1,17);
-              }             
+                var selected_goals_arr=[]
+              }
+
              //defined on adding/removing
-             console.log(selected_goals_arr)            
+                      
              var these_targets=[];
              var these_targets_data=[]    
-             console.info(from_ids_arr)         
+             console.info(from_ids_arr)    
+
              //goals_obj contains ALL info refereing GOALS and TARGETS for creating the chart
               goals_obj.forEach(function(d,i)
                   {
-                   // if (selected_goals_arr.indexOf(i)!==-1)
+                    // if (selected_goals_arr.indexOf(i)!==-1)
                   
-                   // {
-                  
-                    d['targets'].forEach(function (d2,i2)
-                    {
-                      console.warn(d2.id)
-                      if (options.config.from_csv==true)
-                       {
-                        console.warn(from_ids_arr)
-                         var position=from_ids_arr.indexOf(d2.id);
-                         
-                         if (position!==-1)
-                          {
-                            console.info(d2)
-                            these_targets_data.push(d2);
-                           // Array.prototype.push.apply(these_targets_data,d2);
-                          }  
-                      }
-                      else
+                    // {
+                    // console.warn(d)
+                    // if (d.active==true)
+                    //  {
+                      console.warn('goal active '+d.id)
+                     
+                      d['targets'].forEach(function (d2,i2)
                       {
-                        if (selected_goals_arr.indexOf(i)!==-1)
+                          //console.warn(d2.id)
+                          if (options.config.from_csv==true)
                            {
-                            console.warn(i)
-                            these_targets_data.push(d2);
-                            // Array.prototype.push.apply(these_targets,d.targets);
-                           }
-                        
-                      }
-                      
+                            
+                             var position=from_ids_arr.indexOf(d2.id);
+                             
+                             if (position!==-1)
+                              {
+                                //console.info(d2)
+                                these_targets_data.push(d2);
+                                if (selected_goals_arr.indexOf(d.id)==-1)
+                                {
+                                  selected_goals_arr.push(d.id)
+                                }
+                               // Array.prototype.push.apply(these_targets_data,d2);
+                              }  
+                          }
+                          else
+                          {
+                            if (selected_goals_arr.indexOf(i)!==-1)
+                               {
+                                console.warn(i)
+                                these_targets_data.push(d2);
+                                // Array.prototype.push.apply(these_targets,d.targets);
+                               }
+                            
+                          }
+                          
+                        })
+
+                         Array.prototype.push.apply(these_targets,d.targets);
+                       
+                         // these_targets.push(d.targets)
                     })
 
-                     Array.prototype.push.apply(these_targets,d.targets);
-                 //  }
-                     // these_targets.push(d.targets)
-                  })
-                 console.log(these_targets)
-            
+                // debugger;
 
+
+          
                  chart.buckets=these_targets_data.length;
 
                     width_px=780;
@@ -1162,7 +1105,7 @@ var objects=[];
                                      }
                                      else
                                      {
-                                     //	_t.visualized=true;
+                                     // _t.visualized=true;
 
                                        _t.value=unique_id_arr.values[pos];
                                       }
@@ -1628,7 +1571,7 @@ var objects=[];
        sdgs.forEach(function(d,i)
              {
                // d.targets=[];
-               var this_goal={'id':d.sdg_num,targets:[]};
+               var this_goal={'id':d.sdg_num,active:null,targets:[]};
 
               //
                side_nav_options+='<option value="'+d.sdg_num+'" data-icon="./img/sdg'+d.sdg_num+'.png"> Goal '+d.sdg_num+'</option>';
@@ -1917,7 +1860,7 @@ var objects=[];
                                                   },800)
                                          }
                          }
-                         //end get_individual_target
+                         //end get_targets_csv
 
 //["all_goal_1", "1.3", "1.4", "1.5", "1.a", "1.b"]
                function get_individual_target(goal,target_id)
@@ -2007,38 +1950,6 @@ var objects=[];
                          }
                          //end get_individual_target
 
-                         // function update_counts()
-                         //             var sum_col=0;
-                         //             var col_number=0;
-
-                         //             var col_filtered=d3v5.selectAll('.link').filter(function(d)
-                         //             {
-
-
-                         //               if (d.to_id==clicked_card_data.to_id && d.value!==null)
-                         //               {
-
-                         //                 col_number++;
-                         //                 sum_col+=d.value;
-                         //                 return this;
-                         //               }
-
-                         //             });
-
-                         //             var y_sel_labels=d3v5.selectAll(".yLabels_counter").filter(function(d)
-                         //             {
-
-                         //               if (d.id==clicked_card_data.to_id)
-                         //               {
-
-                         //                 d.sum_col=sum_col;
-                         //                 d.col_number=col_number;
-                         //                 return this;
-                         //               }
-                         //             });
-
-                         //             y_sel_labels.classed('with_data',true);
-                         //             y_sel_labels.text(sum_col);
               function update_progress_bars_csv ()
               {
                 console.log(goal_stats)
@@ -2406,8 +2317,22 @@ var objects=[];
                            update_progress_bars('remove',data,null);
                        }
 
+                      var right_container_cards_html='<li class="li_goal_container class_'+goal+'"><div class="collapsible-header nav_bar_'+goal+'"><div class="card horizontal"><div class="card-image"> <img class="responsive-img" style="width:70px" src="./img/sdg'+goal+'.png"></div><div class="card-stacked"><div class="card-content"><div class="card-sdg-goal card-goal-'+goal+'"> Goal '+goal+'</div><span class="card_count"></span></div></div></div></div><div class="collapsible-body"><ul><li><table class="responsive-table striped highlight sel_table_goal goal_'+goal+'"><thead><th>From</th><th>To</th><th>Value</th></thead><tbody></tbody></table></li></ul> </div></li>';
 
-                       $('div.right_container_cards .ul_tables li.li_goal_container.class_'+goal+' > div.collapsible-body ul').append('<table class="responsive-table striped highlight sel_table_goal goal_'+goal+'"><thead></thead><tbody></tbody></table>');
+                //<table class="responsive-table striped highlight sel_table_goal goal_'+d.id+'"><thead><th>From</th><th>To</th><th>Value</th></thead><tbody></tbody></table>
+
+              //  console.log(right_container_cards_html);
+
+                $('#right_container > div.right_container_cards > ul.collapsible.ul_tables > li > div.collapsible-body.white > ul')
+                  // $('.right_container_cards ul.collapsible.ul_tables > li > div.collapsible-body.white')
+                  .append(right_container_cards_html)
+
+
+                  
+
+
+
+                       // $('div.right_container_cards .ul_tables li.li_goal_container.class_'+goal+' > div.collapsible-body ul').append('<table class="responsive-table striped highlight sel_table_goal goal_'+goal+'"><thead></thead><tbody></tbody></table>');
 
                        var table=d3v5.select('.sel_table_goal.goal_'+goal)
                        var thead = table.select('thead');
@@ -2884,12 +2809,12 @@ var objects=[];
                                  {
 
 
-                                  if ($('.card_toast.blue').length>0)
+                                  if ($('.card_toast.blues').length>0)
                                    {
                                    //  console.log('card_toast should be removed')
-                                       $('.card_toast.blue').fadeOut();
-                                       $('.card_toast.blue').remove();
-                                    //   console.warn($('.card_toast.blue').length)
+                                       $('.card_toast.blues').fadeOut();
+                                       $('.card_toast.blues').remove();
+                                    //   console.warn($('.card_toast.blues').length)
 
                                        //.remove();
                                    }
@@ -2898,8 +2823,8 @@ var objects=[];
 
     function heatmap(data)
        {
-
-
+        console.trace();
+        //debugger;
         new_params.heatmap_data=data;
          console.info(data)
          console.trace()
@@ -3105,7 +3030,18 @@ var objects=[];
                          .attr("y", function(d) { return d.y})
                          .attr("rx", 2)
                          .attr("ry", 2)
-                         .attr("class", "link bordered")
+                         .attr("class", function(d)
+                          {
+                            if (d.same_targets==true)
+                            {
+                              return "link bordered same_targets";
+                            }
+                            else
+                            {
+                              return "link bordered";
+                            }
+                            
+                          })
                          .attr("width", gridSize)
                          .attr("height", gridSize)
                          .attr('opacity',function(d)
@@ -3125,7 +3061,8 @@ var objects=[];
 
                                         if (d.same_targets==true)
                                         {
-                                        //	console.log(d)
+                                        //  console.log(d)
+
                                          return '#ffffff';
                                         }
                                         else
@@ -3157,31 +3094,24 @@ var objects=[];
                                      clicked_card_data=d;
                                      if (d.value!==null)
                                      {
-                                       $('.card_toast.blue').find('.delete_card_icon').show();
+                                       $('.card_toast.blues').find('.delete_card_icon').show();
                                      }
                                      else
                                      {
-                                       $('.card_toast.blue').find('.delete_card_icon').hide();
+                                       $('.card_toast.blues').find('.delete_card_icon').hide();
                                      }
-                                     $('.card_toast.blue').find('#legend_tooltip').show();
+                                     $('.card_toast.blues').find('#legend_tooltip').show();
 
                                    }
                                    else
                                    {
                                      clicked_card=true;
 
-                                      var filtered=d3v5.selectAll('.link').filter(function(d)
-                                     {
-                                       if (d.data==this_data.data)
-                                       {
-                                           return this
-                                       }
-
-                                     });
+                                      var filtered=d3.select(d3v5.event.target);
                                        clicked_card_data=d;
                                    }
 
-                                   $('.card_toast.blue').addClass('editing_card_toast')
+                                   $('.card_toast.blues').addClass('editing_card_toast')
 
                                     var this_data=d;//3.select(this).data()[0];
                              }
@@ -3196,18 +3126,27 @@ var objects=[];
 
                                if (d.visualized==true && d.same_targets==false)
                                {
+                               
 
 
                                       var this_data=d;//3.select(this).data()[0];
 
-                                     var filtered=d3v5.selectAll('.link').filter(function(d)
+                                     var filtered=d3.select(d3v5.event.target);
+
+                                     if (filtered.classed('blacked'))
+                                      return false;
+                               
+
+                                  /*   d3v5.selectAll('.link').filter(function(d)
                                      {
                                        //console.warn(d)
+
+                                     
                                         if (d.data==this_data.data)
                                        {
                                            return this;
                                        }
-                                     })
+                                     })*/
 
                                     // if (clicked_card==true)
                                     if ($('.editing_card_toast').length>0)
@@ -3248,21 +3187,26 @@ var objects=[];
                                                  //sel_color(d).color;
 
                                                   });
-                                         if ($('.card_toast.blue').length>0)
+                                         if ($('.card_toast.blues').length>0)
                                          {
-                                             $('.card_toast.blue').fadeOut();//
-                                             console.log($('.card_toast.blue').length)
+                                             $('.card_toast.blues').fadeOut();//
+                                             console.log($('.card_toast.blues').length)
                                              //.remove();
                                          }
+                                         console.info(with_data)
 
                                          if (with_data==null)
                                          {
-                                           var $toastContent = $("<a href='#close' class='close_tooltip'>x</a><div><span class='target_toast_direction_title'>How is target "+this_data.row+" affecting "+this_data.column+"?</span><div class='flow-text-test'>"+d.title+'</div><div><div class="val_title center"><div class="card_val_title">No value assigned</div><i class="material-icons edit-icon">edit</i><i style="display:none" class="delete_card_icon material-icons right">delete_forever</i></div></div><div class="card_legend_tooltip_container">'+$('#dropdown_legend #legend_tooltip')[0].outerHTML+"</div></div>");
+
+                                          console.log('with_data is NULL')
+                                           var $toastContent = $("<a href='#close' class='close_tooltip'>x</a><div><span class='target_toast_direction_title'>How is target "+this_data.row+" affecting "+this_data.column+"?</span><div class='flow-text-test'>"+d.title+'</div><div><div class="val_title center" style="display:block!important;"><div class="card_val_title">No value assigned</div><div class="row toast_actions"><i class="material-icons edit-icon">edit</i><i style="display:none" class="delete_card_icon material-icons right">delete_forever</i></div></div><div class="card_legend_tooltip_container"><div class="on toast_slide_color">Hide score colors</div>'+$('#dropdown_legend #legend_tooltip')[0].outerHTML+"</div><div class=' toast_slide_text'>Show text form</div><div class='row card_text_form'> <form class='col s12'> <div class='row'> <div class='input-field col s12'> <textarea id='textarea1' class='materialize-textarea'></textarea> <label for='textarea1'>If necessary, add some remarks</label> </div> </div> </form> </div></div></div>");
 
                                          }
                                          else
                                          {
-                                           var $toastContent = $("<a href='#close' class='close_tooltip'>x</a><div><span class='target_toast_direction_title'>How is target "+this_data.row+" affecting "+this_data.column+"?</span><div class='flow-text-test'>"+d.title+'</div><div class="val_title center" style="display:block!important;"><div class="card_val_title" style="color:'+sel_color(d).color+'">'+sel_color(d).legend_text+'</div><div class="row toast_actions"><div class="col s6"><i class="delete_card_icon material-icons right">delete_forever</i></div><div class="col s6"><i class="material-icons edit-icon left">edit</i></div></div><div class="card_legend_tooltip_container">'+$('#dropdown_legend #legend_tooltip')[0].outerHTML+'</div></div>');
+                                           //can be true or false???
+                                           console.log('with_data is NOT NULL')
+                                           var $toastContent = $("<a href='#close' class='close_tooltip'>x</a><div><span class='target_toast_direction_title'>How is target "+this_data.row+" affecting "+this_data.column+"?</span><div class='flow-text-test'>"+d.title+'</div><div class="val_title center" style="display:block!important;"><div class="card_val_title" style="color:'+sel_color(d).color+'">'+sel_color(d).legend_text+'</div><div class="row toast_actions"><i class="delete_card_icon material-icons right">delete_forever</i><i class="material-icons edit-icon left">edit</i></div></div><div class="card_legend_tooltip_container"><div class="off toast_slide_color">Show score colors</div>'+$('#dropdown_legend #legend_tooltip')[0].outerHTML+'</div><div class="row card_text_form"> <form class="col s12"> <div class="row"> <div class="input-field col s12"> <textarea id="textarea1" class="materialize-textarea"></textarea> <label for="textarea1">If necessary, add some remarks</label> </div> </div> </form> </div></div>');
                                          }
 
                                            if (options.config.opt_click==true)
@@ -3275,7 +3219,7 @@ var objects=[];
                                              $('#toast-container').css('opacity',1);
                                            }
 
-                                         Materialize.toast($toastContent, 4000000,'card_toast blue');
+                                         Materialize.toast($toastContent, 4000000,'card_toast blues');
 
                                          $('.card_toast').parent().removeClass('goal_toast_container');
                                         // console.log(xmouse+'px!important  should be left')
@@ -3290,16 +3234,19 @@ var objects=[];
                            {
                                if (d.visualized==true && d.same_targets==false)
                                {
-                                       $('.card_toast.blue').not('.editing_card_toast').remove();
-                                       //console.log($('.card_toast.blue').length)
+                                  var filtered=d3.select(d3v5.event.target);
+
+                                  if (filtered.classed('blacked'))
+                                      return false;
+
+                                       $('.card_toast.blues').not('.editing_card_toast').remove();
+                                       //console.log($('.card_toast.blues').length)
                                        if ($('.editing_card_toast').length==0)
                                        {
                                            d3v5.selectAll('.hovered_class').classed('hovered_class',false)
                                            .transition().duration(550)
                                           // .style("opacity", 1)
                                            .style("fill", function(d) {
-
-
                                                        return sel_color(d).color;
 
                                                      })
@@ -3394,7 +3341,7 @@ var objects=[];
                        }
                       })
                      .attr("x", function(d, i) { return width_px+2; })
-                     .attr("y", function(d, i) { return i * gridSize; })
+                     .attr("y", function(d, i) { return (i * gridSize)+4; })
                      .style("text-anchor", "middle")
                      .attr("font-size",function(d)
                        {
@@ -3434,11 +3381,11 @@ var objects=[];
                       .attr("x", function(d, i) { return i * gridSize; })
                      .attr("y", function(d, i) { return width_px-20; })
                      .style("text-anchor", "middle")
-                     .attr("font-size",function(d)
+                    /* .attr("font-size",function(d)
                        {
                          return 18;
                        })
-
+*/
                      .attr("transform", "translate(" + gridSize / 2 + ", 14)")
                                      .attr("class", "yLabels_counter");
 
@@ -3451,12 +3398,25 @@ var objects=[];
 
              var sel_goal_arr=[];
 
-             $('.side-nav .input-field select').change(function(e)
+             $('.side-nav .input-field select').bind('change',function(e,extra_params)
                  {
-
+                  //$('.side-nav .input-field select').trigger('change',{param1: "Hello", param2: "World"})
+                  console.warn(extra_params)
                    //$.find('last_added').removeClass('last_added');
                    console.log($('.last_changed'))
-                  // $('.last_changed').addClass('blue');
+
+
+                   // if (e.hasOwnProperty('originalEvent'))
+                   // {
+                   //  alert('clicked')
+                   // }
+                   // else
+                   // {
+                   //  alert('triggered ')
+                   // }
+                  // $('.last_changed').addClass('blues');
+
+                  console.log(e)
 
                    var select_action;
                         setTimeout(function()
@@ -3471,6 +3431,8 @@ var objects=[];
                              }
 
                            });
+
+                           //to know which GOAL we select
                            console.info(sel_goal)
                            if (sel_goal_arr.indexOf(sel_goal)==-1)
                            {
@@ -3583,7 +3545,7 @@ var objects=[];
                             }
                             else
                             {
-                              console.info(all_to_ids)
+                            //  console.info(all_to_ids)
                               if (typeof objects[i-1]!==undefined)
                                 
                                   
@@ -3616,7 +3578,7 @@ var objects=[];
 
                                           //all_to_ids_obj[pos].sum_col+=parseInt(d2);
                                           all_to_ids_obj[pos].sum_col=all_to_ids_obj[pos].sum_col+parseInt(d2)
-                                          console.warn(all_to_ids_obj[pos])
+                                       //   console.warn(all_to_ids_obj[pos])
                                           s=all_to_ids_obj[pos].sum_col;
                                           
                                           //console.log(o)
@@ -3633,7 +3595,7 @@ var objects=[];
                             
                            // objects.push(this_obj)
                           })
-                console.log(objects)
+                //console.log(objects)
      
               for (var p in objects)
               {
@@ -3666,6 +3628,7 @@ var objects=[];
               return {id:d.from_id,sum_col:d.sum_col,sum_rows:d.sum_rows};
              });
              console.info(from_ids_counts)
+             console.log(new_params)
 
              get_individual_target();
              tabulate_from_csv()
@@ -3676,17 +3639,74 @@ var objects=[];
             $('#right_container').show();
             $('.goal_stats_container,.goal_table_container').show();
             var columns=['From','to','value'];
+
+            var present_in_csv_goals=goal_stats.map(function(d)
+            {
+              console.warn('to fix')
+              //$('.side-nav .input-field select').eq(d.goal-1).trigger('click')
+              return d.goal;
+            });
             
+            $('.right_container_cards .ul_tables .collapsible-body.white > ul').empty();
+
+            $('.satellite_options select').empty()
+
+            var satellites_sel_html='<option value="empty" disabled selected>Select satellite</option>';
+            for (var p in objects)
+                {
+                    var sdg_obj=objects[p];
+
+                                   
+                    satellites_sel_html+='<option value="'+sdg_obj.from_id+'">Target '+sdg_obj.from_id+'</option>';
+                                
+                    }
+
+            $('.ul_satellite').show();
+
+            $('.satellite_options select').append(satellites_sel_html);
+
+            $('.satellite_options select').material_select();
+            $('.satellite_options select').change(function()
+            {
+              var data_id=$(this).find('option:selected')[0].value;
+              if (data_id=='empty') return false;
+              
+              var _type= $('#satellite_selects_opt form input:checked').attr('id')
+              create_satellite(data_id,_type);
+
+            })
+
+
+            $('#satellite_selects_opt form').change(function()
+                                        {
+                  var _type=$(this).find('input:checked').attr('id');
+                  var data_id=$('.satellite_options select').find('option:selected')[0].value;
+                  if (data_id=='empty') return false;
+
+                  create_satellite(data_id,_type);
+
+              })
+
+
+
+
+
             new_params.goals_obj.forEach(function(d,i)
             {
+
+              if (present_in_csv_goals.indexOf(d.id)!==-1)
+              {
                 
+                //modifiy goals_obj, making ACTIVE (before was null)
+                d.active=true;
+
                 var right_container_cards_html='<li class="li_goal_container class_'+d.id+'"><div class="collapsible-header nav_bar_'+d.id+'"><div class="card horizontal"><div class="card-image"> <img class="responsive-img" style="width:70px" src="./img/sdg'+d.id+'.png"></div><div class="card-stacked"><div class="card-content"><div class="card-sdg-goal card-goal-'+d.id+'"> Goal '+d.id+'</div><span class="card_count"></span></div></div></div></div><div class="collapsible-body"><ul><li><table class="responsive-table striped highlight sel_table_goal goal_'+d.id+'"><thead><th>From</th><th>To</th><th>Value</th></thead><tbody></tbody></table></li></ul> </div></li>';
 
                 //<table class="responsive-table striped highlight sel_table_goal goal_'+d.id+'"><thead><th>From</th><th>To</th><th>Value</th></thead><tbody></tbody></table>
 
-                console.log(right_container_cards_html);
+              //  console.log(right_container_cards_html);
 
-              $('#right_container > div.right_container_cards > ul.collapsible.ul_tables > li > div.collapsible-body.white > ul')
+                $('#right_container > div.right_container_cards > ul.collapsible.ul_tables > li > div.collapsible-body.white > ul')
                   // $('.right_container_cards ul.collapsible.ul_tables > li > div.collapsible-body.white')
                   .append(right_container_cards_html)
 
@@ -3710,6 +3730,7 @@ var objects=[];
                   {
                     var goal=d.from_id.split('.')[0];
                     d.goal=goal;
+                    
                     var this_from_id=d.from_id;
                     
                     
@@ -3718,12 +3739,19 @@ var objects=[];
                        var tbody = table.select('tbody');
 
 
-                      var rows=tbody.selectAll('tr').data(d.values,function(d)
+                      var rows=tbody.selectAll('tr').data(d.values,function(d2,i)
                            {
-                            if (d.from_id!==d.to_id)
+                            if (i<30)
                             {
-                              d.from_id=this_from_id;
-                             return d.data; 
+
+
+                            if (d2.from_id!==d2.to_id)
+                            {
+                              
+                              d2.from_id=d2.data.split('-')[0]
+                              //console.warn(d2)
+                             return d2.data; 
+                            }
                             }
                              
                            })
@@ -3749,9 +3777,9 @@ var objects=[];
                                          console.warn('mouseovering TR')*/
                                          var cards=d3v5.selectAll('.link')
                                          cards.transition().duration(350).style('opacity',0.1);
-                                         console.log($(d3v5.event.target).parents().closest('tr')[0])
+                                        
                                          var _data=$(d3v5.event.target).parents().closest('tr')[0]['__data__'];
-                                         console.warn(_data)
+                                        
                                          var sel=cards.filter(function(data)
                                          {
                                            return data.data==_data.data;
@@ -3811,12 +3839,7 @@ var objects=[];
                            .data(function (row) {
 
                              console.log(row)
-                            // var goal=row.data.split('-')[0].split('.')[]
-                             /*
-                             data: "8.4-6.3"
-                            to_id: "6.3"
-                            value: 3
-                            */
+                          
 
                              return columns.map(function (column) {
 
@@ -3886,6 +3909,7 @@ var objects=[];
 
                              });
                   })
+              } //end if present on goals arr
             })
             
 
@@ -3895,12 +3919,7 @@ var objects=[];
 
            }
 
-        $('.ul_satellite .collapsible-body span').click(function()
-        {
-          var id=$(this).attr('class');
-
-          create_satellite(id)
-        });
+        
 
 
         function attach_fx_sel_csv(container)
@@ -3986,35 +4005,61 @@ var objects=[];
                              })
                         })
 
-     }
-        $('.li_goal_container').click(function(e)
-          {
-            console.log($(e.target))
-            if ($(e.target).hasClass('card-content') || $(e.target).hasClass('card-sdg-goal'))
+            }
+
+
+          //$('.li_goal_container')
+          $('.ul_tables .collapsible-body.white').click(function(e)
+            {
+              console.log($(e.target))
+              var header=$(e.target).parents().closest('.collapsible-header');
+              console.log(header)
+              if ($(e.target).hasClass('card-content') || $(e.target).hasClass('card-sdg-goal') || $(e.target).hasClass('collapsible-header'))
+                {
+                  console.log($(e.target))
+                  var container=$(this).find('.collapsible-body');
+                  console.warn(container)
+
+                  if (container.is(':visible'))
+                  {
+                    container.hide()
+                  }
+                  else
+                  {
+                    container.show();
+                    if (container.find('select.initialized').length==0)
+                      setTimeout(function()
+                      {
+                          attach_fx_sel_csv(container)
+
+                      },200)
+                    
+                  }
+                }
+                //.li_goal_container
+
+            });
+
+           $('.ul_satellite .collapsible-header').click(function(e)
               {
-                console.log($(e.target))
-                var container=$(this).find('.collapsible-body');
-                console.warn(container)
+                e.preventDefault();
+                  var body=$('.ul_satellite').find('.collapsible-body');
+                if (body.is(':visible'))
+                  {
+                    console.log('hide')
+                    body.hide();
+                    return false;
 
-                if (container.is(':visible'))
-                {
-                  container.hide()
-                }
-                else
-                {
-                  container.show();
-                  if (container.find('select.initialized').length==0)
-                    setTimeout(function()
-                    {
-                        attach_fx_sel_csv(container)
+                  }
+                  else
+                  {
+                    console.log('show')
+                    body.show();
+                    return false;
+                  }
+                  //.li_goal_container
 
-                    },200)
-                  
-                }
-              }
-              //.li_goal_container
-
-          })
+              })
 
         }
 
@@ -4058,23 +4103,45 @@ var objects=[];
 
        });
 
-function create_satellite(data_id)
+$('#satellite_selects_opt .btn').on('click',function()
+{
+   var cards=d3v5.selectAll('.link');
+   
+
+    if ($(this).hasClass('off'))
+    {
+      cards.classed('blacked',false).classed('satellite_selected',false).style('opacity',1);
+      
+      $(this).removeClass('off').addClass('on').text('Apply to matrix')
+    }
+    else
     {
 
+      $('#vis-container').trigger('mouseenter')
+      $(this).removeClass('on').addClass('off').text('Reset matrix');
+    }
+})
 
-      var cards=d3v5.selectAll('.link');
-                         cards.transition().duration(150).style('opacity',0.1);
+function create_satellite(data_id,_type)
+    {
 
-                         var sel=cards.filter(function(data)
-                         {
-                           return (data.visualized==true && data.from_id==data_id);
-                         });
-                         console.info(sel)
-
-                         sel.transition().duration(150).style('opacity',1);
-
+      $('.ul_satellite').show();
+      $('.satellite_selects_opt .btn').show()
+      console.info(arguments)
+      var cards=d3v5.selectAll('.link').filter(function(data)
+      {
+        return (data.visualized==true);
+      })
+                        // cards.transition().duration(150).style('opacity',0.1)
       $('#vis-container').empty();
-        var t_obj={
+      
+      var t_obj={
+          label: data_id,
+          value: 20,
+          satellites: []
+        }
+
+      var t_obj_to={
           label: data_id,
           value: 20,
           satellites: []
@@ -4084,65 +4151,260 @@ function create_satellite(data_id)
         colors_obj.data.forEach(function(d)
         {
             t_obj.satellites.push({value:d.legend_val,label:d.legend_val,label_text:d.legend_text,tip:d.legend_text,satellites:[]});
-        }) 
-                   
+            t_obj_to.satellites.push({value:d.legend_val,label:d.legend_val,label_text:d.legend_text,tip:d.legend_text,satellites:[]});
+        });
 
-        for (var p in objects)
-            {
-                var sdg_obj=objects[p];
-                //they belong to the same row
-                if (sdg_obj.from_id==data_id)
-                {
-                    //extract the array
-                    for (var x in sdg_obj.values)
-                    {
 
-                        var prop=sdg_obj.values[x];
-                        //{"data":"1.2-16.3","value":0,"to_id":"16.3","from_id":"1.5"}
+   
 
-                        //t_obj stores data by VALUe of influence
-                        t_obj.satellites.forEach(function(this_obj)
+        var col_filtered_arr=d3v5.selectAll('.link');
+        var to_ids_arr=[];
+
+        col_cards=col_filtered_arr.filter(function(d)
+                                     {
+                                       if (d.to_id==data_id && d.value!==null)
+                                       {
+                                         
+                                         t_obj_to.satellites.forEach(function(this_obj)
+                                          {                                              
+                                              //sdg_obj refers to the DATA
+                                              //obj refers to the new obj created on pushing the DATA
+                                              if (parseInt(this_obj.value)==parseInt(d.value))
+                                              {
+                                                 // Array.prototype.push.apply(these_targets_data,d2);
+
+                                                  this_obj.satellites.push({from_id:d.from_id,label:d.from_id,tip:d.from_title,value:d.value,data_id:d.data});
+                                                //  console.info(this_obj)                
+                                              }
+                                          }) 
+                                         return this;
+                                       }
+
+                                     });
+        console.info(t_obj_to)
+        for (var p in goals_obj)
                         {
-                            
-                            //sdg_obj refers to the DATA
-                            //obj refers to the new obj created on pushing the DATA
-                            if (parseInt(this_obj.label)==parseInt(prop.value))
+                          if (goals_obj[p].id==goal)
+                          {
+                            goals_obj[p].targets.filter(function(data)
                             {
-                               // Array.prototype.push.apply(these_targets_data,d2);
-                                this_obj.satellites.push({label:prop.to_id,tip:this_obj.label_text,value:this_obj.value});
-                              //  console.info(this_obj)                
-                            }
-                        })                
-                    }
-                }
+
+                              if (data.id==prop.to_id)
+                              {
+                                console.log(data)
+                                prop.tip=data.description
+
+                              }
+                            })
+                          }
+                        }
+                   
+        
+              for (var p in objects)
+                  {
+                      var sdg_obj=objects[p];       
+                      //they belong to the same row
+                      if (sdg_obj.from_id==data_id)
+                      {
+                          //extract the array
+                          var goal=sdg_obj.goal;
+
+                          for (var x in sdg_obj.values)
+                          {
+
+                              var prop=sdg_obj.values[x];
+                              var goals_obj=new_params.goals_obj;
+
+                              for (var p in goals_obj)
+                              {
+                                if (goals_obj[p].id==goal)
+                                {
+                                  goals_obj[p].targets.filter(function(data)
+                                  {
+                                    if (data.id==prop.from_id)
+                                    {
+                                      console.info(data)
+                                      prop.tip=data.description
+
+                                    }
+                                  })
+                                }
+                              }
+                              
+                              //{"data":"1.2-16.3","value":0,"to_id":"16.3","from_id":"1.5"}
+
+                              //t_obj stores data by VALUe of influence
+                               t_obj.satellites.forEach(function(this_obj)
+                              {
+                                  
+                                  //sdg_obj refers to the DATA
+                                  //obj refers to the new obj created on pushing the DATA
+                                  if (parseInt(this_obj.label)==parseInt(prop.value))
+                                  {
+                                     // Array.prototype.push.apply(these_targets_data,d2);
+
+                                      this_obj.satellites.push({from_id:prop.from_id,label:prop.from_id,tip:prop.tip,value:this_obj.value,data_id:data_id+'-'+prop.to_id});
+                                    //  console.info(this_obj)                
+                                  }
+                              }) 
+                                            
+                          }
+                      }                
+                  }
                 
-            }
-            console.log($('#vis-container').length)  
+                cards.classed('satellite_selected',false);
+                cards.classed('blacked',true);
+                
+
+                var row_cards=cards.filter(function(data)
+                           {
+                             return (data.visualized==true && data.from_id==data_id);
+                           });
+
+                if (_type=='from_id')
+                         {
+                            var this_to_plot=t_obj;
+                         
+                           
+                           row_cards.classed('blacked',false);
+                           cards.classed('satellite_selected',false);
+                           row_cards.classed('satellite_selected',true);
+                           row_cards.transition().duration(150).style('opacity',1);
+                         }
+                         else
+                         {
+                            var this_to_plot=t_obj_to;                            
+
+                                col_cards.classed('blacked',false);
+
+                                cards.classed('satellite_selected',false);
+                                col_cards.classed('satellite_selected',true);
+                                
+                                col_cards.style('opacity',1);
+                             
+                         }
+
 
             //alert(document.getElementById('vis-container').length)
         new satchart.SatChart(
             document.getElementById('vis-container'),
             //$('#vis-container').eq(0),
             //$('#vis-container')
-            t_obj,
+            this_to_plot,
             {
                // width: $('#vis-container').width(),
                 //height: $('#vis-container').height(),
                 width: 650,
-                height: 650,
+                height: 450,
                 valueRange: [-3, -2, -1, 0, 1, 2, 3],
-                colorRange: ['#bd0026', '#fd8d3c', '#fed976', '#f4de00', '#a1d99b', '#31a354', '#006d2c'],
+                colorRange: ['#bd0026', '#fd8d3c', '#feb900', '#f4de00', '#a1d99b', '#31a354', '#006d2c'],
                 strokeWidth: 0,
                 sunOrbitWidth: 1,
                 planetOrbitWidth: 1,
                 orbitColor: 'gray',
                 fontColor: 'white',
                 distanceRatio: 3, // sun-to-planets / planets-to-moons
-                animationDuration: 3000,
-                transitionDuration: 750,
+                animationDuration: 1000,
+                transitionDuration: 450,
                 clampScale: false,
                 intervaledValues: false
             });
+
+         
+    
+       $('#vis-container').on('mouseenter',function(event)
+          {
+           cards.classed('individual_satellite',false);
+           // console.log($(d3v5.event.target)[0]['__data__'])
+            console.log('mouseentering vis-container')
+            cards.classed('blacked', true);
+            cards.classed('satellite_selected',false);
+            
+            if (_type=='from_id')
+            {             
+              row_cards.classed('blacked',false);
+              row_cards.classed('satellite_selected',true);
+              row_cards.style('opacity',1);
+            }
+            else
+            {
+              col_cards.classed('blacked',false);
+              col_cards.classed('satellite_selected',true);
+              col_cards.style('opacity',1);
+            }
+          }).on('mouseleave',function(e)
+          {
+
+            if ($(e.target).is('svg'))
+            {
+          /*     cards.transition().duration(150).style('opacity',1)
+               cards.classed('blacked',false);*/
+            }
+          })
+          //.moon 
+          $('#vis-container .planets').on('mouseover',function(e)
+          {
+          
+                cards.classed('individual_satellite',false);
+                 var data=$(e.target)[0]['__data__'];
+          
+                 cards.classed('blacked',true);
+
+                 if (_type=='from_id')
+                 {
+                    var sel=row_cards.filter(function(d2)
+                           {
+                              
+                             
+                             if (parseInt(d2.value)==parseInt(data.value))
+                             {
+                               
+                               return this;
+                             }
+                              
+                           })   
+                           console.log(sel)
+                           console.warn(row_cards)                 
+                 
+                    row_cards.classed('blacked',false).style('opacity',0.2);
+
+                    sel.classed('blacked',false).classed('individual_satellite',true).transition().duration(250).style('opacity',1)
+                    
+                 }
+                 else
+                 {
+                    var sel=col_cards.filter(function(d2)
+                             {                              
+                               if (parseInt(d2.value)==parseInt(data.value))
+                               {
+                                 
+                                 return this;
+                               }
+                             })                    
+                   
+                      col_cards.classed('blacked',false).style('opacity',0.2)
+                      sel.classed('blacked',false).classed('individual_satellite',true).transition().duration(250).style('opacity',1)
+                 }
+
+    
+          
+
+                           //sel.filter(function)
+          }).on('mouseleave',function(d)
+          {
+            cards.classed('individual_satellite',false);
+            console.log('mouseleave planet circles')
+        
+              if (_type=='from_id')
+                 {                     
+                    row_cards.classed('blacked',false).classed('individual_satellite',false).style('opacity',1);
+                 }
+              else
+              {
+                    
+                    col_cards.classed('blacked',false).classed('individual_satellite',false).style('opacity',1);
+              }
+          });
     }
     
 
