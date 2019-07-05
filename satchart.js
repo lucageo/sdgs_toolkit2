@@ -185,12 +185,13 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	      this.computeLayout();
 
-	      this.tooltip = (0, _d3Tip2.default)().attr('class', 'd3-tip').style({
-	        'line-height': 1,
+	      this.tooltip = (0, _d3Tip2.default)().attr('class', 'd3-tip satellite_tip').style({
+	        'line-height': 1.5,
 	        'font-weight': 'bold',
 	        'padding': '12px',
 	        background: 'rgba(0, 0, 0, 0.8)',
 	        color: '#fff',
+	        'max-width':'250px',
 	        'border-radius': '4px'
 	      }).offset([-10, 0]).html(function (d) {
 	        return '<strong>' + d.tip + ':</strong> <span style=\'color:' + _this.scale(d.value) + '\'>' + d.value + '</span>';
