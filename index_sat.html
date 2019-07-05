@@ -249,7 +249,7 @@ var new_params={};
 
 
     var chart={};
-    var options={config:{opt_right:true,opt_click:false,from_csv:false}};
+    var options={config:{opt_right:true,opt_click:false,from_csv:false,satellites:false}};
     console.log(options.config)
 
     var sel_from_sidenav=false;
@@ -325,11 +325,15 @@ var objects=[];
                                          console.info(arguments)
                                          var pos=unique_id_arr.ids.indexOf(filtered_data.data);
                                          console.trace();
+                                    if (options.config.from_csv==false)
+                                    {
                                          if (pos==-1)
                                          {
                                            console.warn('first time for this value')
                                            unique_id_arr.ids.push(filtered_data.data)
                                            unique_id_arr.values.push(filtered_data.value);
+
+
 
                                            //tabulate_clicked already include update_progress_bar
                                            tabulate_clicked(data,'add');
@@ -391,6 +395,7 @@ var objects=[];
                                            update_progress_bars('update',filtered_data);
 
                                          }
+                                       }
                                          console.log(colors_obj)
                                          $('i.delete_card_icon').removeClass('right').show();
                                          console.log(sel_color(filtered_data).color)
@@ -1507,16 +1512,18 @@ var objects=[];
 
 
                sdg_params.sel_info=get_targets(false);
-               var plot_labels=sel_info['targets'];
+               var plot_labels=sdg_params.sel_info['targets'];
                
 
-               console.warn(selected_targets_arr)
+               console.warn(sdg_params)
                var hidden_links=[];
 
                var plot_links=sdg_params.sel_info['links'].filter(function(d)
                              {
+                              d.visualized=true;
+                              return d;
                                      //selected_targets_arr contains targets selected on the select individually
-                                     if (selected_targets_arr.indexOf(d.from_id)!==-1)
+                                     /*if (selected_targets_arr.indexOf(d.from_id)!==-1)
                                      {
                                            d.visualized=true;
                                            return d;
@@ -1526,11 +1533,13 @@ var objects=[];
                                        d.visualized=false;
                                        hidden_links.push(d);
                                        return d;
-                                     }
+                                     }*/
 
                              });
+               var params={}
 
                params.to_plot={links:plot_links,targets:plot_labels,hidden_links:hidden_links}
+               console.log(params)
 
                  if($("#chart svg").length>0)
                {
@@ -1545,7 +1554,7 @@ var objects=[];
                {
                      create_chart();
 
-                      heatmap(params.sel_info);
+                      heatmap(params.to_plot);
 
                      if ($('#legend_tooltip svg').length==0)
                        create_legend();
@@ -2317,7 +2326,7 @@ var objects=[];
                            update_progress_bars('remove',data,null);
                        }
 
-                      var right_container_cards_html='<li class="li_goal_container class_'+goal+'"><div class="collapsible-header nav_bar_'+goal+'"><div class="card horizontal"><div class="card-image"> <img class="responsive-img" style="width:70px" src="./img/sdg'+goal+'.png"></div><div class="card-stacked"><div class="card-content"><div class="card-sdg-goal card-goal-'+goal+'"> Goal '+goal+'</div><span class="card_count"></span></div></div></div></div><div class="collapsible-body"><ul><li><table class="responsive-table striped highlight sel_table_goal goal_'+goal+'"><thead><th>From</th><th>To</th><th>Value</th></thead><tbody></tbody></table></li></ul> </div></li>';
+                      var right_container_cards_html='<li class="li_goal_container class_'+goal+'"><div class="collapsible-header nav_bar_'+goal+'"><div class="card horizontal"><div class="card-image"> <img class="responsive-img" style="width:70px" src="./img/sdg'+goal+'.png"></div><div class="card-stacked"><div class="card-content"><div class="card-sdg-goal card-goal-'+goal+'"> Goal '+goal+'</div><span class="card_count"></span></div></div></div></div><div class="collapsible-body"><ul><li><table class="responsive-table striped highlight sel_table_goal goal_'+goal+'"><tbody></tbody></table></li></ul> </div></li>';
 
                 //<table class="responsive-table striped highlight sel_table_goal goal_'+d.id+'"><thead><th>From</th><th>To</th><th>Value</th></thead><tbody></tbody></table>
 
@@ -2838,6 +2847,8 @@ var objects=[];
          var extra_tooltip_info={rows:0,cols:0};
 
 
+
+
                         // from_id: "1.5"
                         //   sum_col: 0
                         //   sum_rows: 19
@@ -2845,151 +2856,7 @@ var objects=[];
        
 
         
-         var yLabels = svg.selectAll(".yLabels")
-         .data(selected_labels, function(d) {
-          console.info(d)
-             return d;
-           })
-         .enter()
-         .append("text")
-          // .merge(yLabels)
-           .text(function (d) { return d.id; })
-           .attr("x", 0)
-           .attr("y", function (d, i) { return i * gridSize; })
-           .style("text-anchor", "end")
-           .style("font-size",function(d)
-                       {
-                         return 12;
-                       })
-
-
-          //-7,52
-           .attr("transform", "translate(-7,"+Math.floor(gridSize/2)+")")// + gridSize / 1.5 + ")")
-           .attr("class", "yLabels mono axis axis-y")
-           .on('mouseover',function(d)
-           {
-
-             $(this).addClass('yLabel_hovered');
-
-             var y_sel_labels=d3v5.selectAll(".yLabels_counter").filter(function(labels)
-                                     {
-
-                                       if (labels.id==d.id)
-                                       {
-                                         extra_tooltip_info.rows=labels.sum_rows;
-                                         return this;
-                                       }
-                                     });
-
-
-             var $anchor=$(d3v5.select(this).node());
-
-             $anchor
-                 .attr('data-tooltip', function(i,d)
-                 {
-                   var data=$(this)[0]['__data__'];
-                   console.warn(data)
-                   if(data.hasOwnProperty('sum_rows'))
-                   {
-                     var sum_rows="Influenced score <b>"+data.sum_rows+"</b><p>Influencing score <b>"+data.sum_col+"</b>";
-                   }
-                   else
-                   {
-                     var sum_rows='<b>No score</b>';
-                   }
-                   return "<div class='yLabel_tooltip'><div class='Label_tooltip_direction'>From target</div>"+data.description+"<div style='padding:5px;font-size:1.2em;'>"+sum_rows+"</div></div>";
-                 });
-
-             $anchor.tooltip({delay: 50,position:'top',html:true});
-             //$anchor.trigger('hover')
-             setTimeout(function()
-             {
-
-               $anchor.trigger('mouseover');
-             },300)
-
-
-           })
-              .on('mouseout',function(d)
-           {
-             $(this).removeClass('yLabel_hovered');
-
-             $('.material-tooltip').hide();
-            // extra_tooltip_info={rows:0,cols:0};
-
-           })
-
-
-
-
-           //xLabels follow the row, x=increases, y stays 0
-            var xLabels = svg.selectAll(".xLabels")
-            .data(selected_labels, function(d) {
-
-             return d;
-              })
-           xLabels.enter()
-           //.append('circle')
-
-           .append("text")
-         //   .merge(xLabels)
-           .text(function(d) { return d.id; })
-           .attr("x", function(d, i) { return i * gridSize; })
-           .attr("y", 0)
-           .style("text-anchor", "middle")
-           // .style("font-size",function(d)
-           //             {
-           //               console.log(chart.gridSize/chart.buckets);
-           //               return chart.gridSize/chart.buckets;
-           //             })
-           .attr("transform", "translate(" + gridSize / 2 + ", -6)")
-           .attr("class", "xLabels mono axis axis-x")
-             .on('mouseover',function(d)
-           {
-                   $(this).addClass('xLabel_hovered');
-                   d3v5.select(this).style('color','red');
-
-                   var y_sel_labels=d3v5.selectAll(".yLabels_counter").filter(function(labels)
-                                           {
-
-                                             if (labels.id==d.id)
-                                             {
-
-                                               extra_tooltip_info.cols=labels.sum_col;
-
-                                               return this;
-                                             }
-                                           });
-                   var $anchor=$(d3v5.select(this).node());
-
-                   $anchor
-                       .attr('data-tooltip', function(i,d)
-                       {
-                         var data=$(this)[0]['__data__'];
-                         if(data.hasOwnProperty('sum_col'))
-                           {
-                             var sum_col="Score <b>"+data.sum_col+"</b>";
-                           }
-                           else
-                           {
-                             var sum_col='<b>No score</b>';
-                           }
-                           return "<div class='xLabel_tooltip'><div class='Label_tooltip_direction'>To target</div>"+data.description+"<div style='padding:5px;font-size:1.2em;'>"+sum_col+"</div></div>";
-                       });
-
-                   $anchor.tooltip({delay: 50,position:'top',html:true});
-                   //$anchor.trigger('hover')
-                   setTimeout(function()
-                   {
-                     $anchor.trigger('mouseover');
-                   },300)
-
-           })
-              .on('mouseout',function(d)
-           {
-             $('.material-tooltip').hide();
-             $(this).removeClass('xLabel_hovered');
-           })
+        
 
            var _links=d3v5.selectAll('.link');
 
@@ -3162,14 +3029,22 @@ var objects=[];
                                  //if (clicked_card==false)
                                    if ($('.editing_card_toast').length==0)
                                      {
+                                         
+
                                          filtered.classed('hovered_class',true);
 
                                          var this_data;
                                          var with_data=null;
 
-                                         filtered.transition().duration(550)
+                                         if (filtered.classed('low_opacity')==false)
+                                         {
+                                            filtered.transition().duration(550)
                                                .style("opacity", 1)
-                                               .style("fill", function(d) {
+                                         }
+                                          
+
+                                         
+                                        filtered.style("fill", function(d) {
 
                                                  this_data=d;
 
@@ -3263,7 +3138,283 @@ var objects=[];
                            })
 
 
+        var yLabels = svg.selectAll(".yLabels")
+         .data(selected_labels, function(d) {
+          
+             return d;
+           })
+         .enter()
+         .append("text")
+          // .merge(yLabels)
+           .text(function (d) { return d.id; })
+           .attr("x", 0)
+           .attr("y", function (d, i) { return i * gridSize; })
+           .style("text-anchor", "end")
+           .style("font-size",function(d)
+                       {
+                         return 12;
+                       })
 
+
+          //-7,52
+           .attr("transform", "translate(-7,"+Math.floor(gridSize/2)+")")// + gridSize / 1.5 + ")")
+           .attr("class", "yLabels mono axis axis-y")
+           .on('mouseover',function(d)
+           {
+
+             $(this).addClass('yLabel_hovered');
+
+               var cards=d3v5.selectAll('.link');
+                  cards.classed('low_opacity',true);
+
+                   var row_cards=cards.filter(function(data)
+                           {
+                             return (data.visualized==true && data.from_id==d.id);
+                           });
+                   row_cards.classed('low_opacity',false);
+                
+
+                   var col_cards=cards.filter(function(data)
+                           {
+                             return (data.visualized==true && data.to_id==d.id);
+                           });
+                   console.info(col_cards)
+                   col_cards.classed('low_opacity',false);
+
+             var y_sel_labels=d3v5.selectAll(".yLabels_counter").filter(function(labels)
+                                     {
+
+                                       if (labels.id==d.id)
+                                       {
+                                         extra_tooltip_info.rows=labels.sum_rows;
+                                         return this;
+                                       }
+                                     });
+
+
+
+
+             var $anchor=$(d3v5.select(this).node());
+
+             $anchor
+                 .attr('data-tooltip', function(i,d)
+                 {
+                   var data=$(this)[0]['__data__'];
+                   console.warn(data)
+                   if(data.hasOwnProperty('sum_rows'))
+                   {
+                     var sum_rows="Influenced score <b>"+data.sum_rows+"</b><p>Influencing score <b>"+data.sum_col+"</b>";
+                   }
+                   else
+                   {
+                     var sum_rows='<b>No score</b>';
+                   }
+                   return "<div class='yLabel_tooltip'><div class='Label_tooltip_direction'>From target</div>"+data.description+"<div style='padding:5px;font-size:1.2em;'>"+sum_rows+"</div></div>";
+                 });
+
+             $anchor.tooltip({delay: 50,position:'top',html:true});
+             //$anchor.trigger('hover')
+             setTimeout(function()
+             {
+
+               $anchor.trigger('mouseover');
+             },300)
+
+
+           })
+              .on('mouseout',function(d)
+           {
+            var cards=d3v5.selectAll('.link');
+             $(this).removeClass('yLabel_hovered');
+              var _t=d3v5.select(this);
+                    if (_t.classed('fixed_col_row')==false)
+                    {
+                     $('.material-tooltip').hide();
+                     
+                     cards.classed('low_opacity',false);
+                     $(this).removeClass('xLabel_hovered');
+                    }
+                    else
+                    {
+                      cards.classed('low_opacity',false);
+                      $(d3v5.select(this).node()).trigger('mouseover')
+                    }
+
+           }).on('click',function(d)
+           {
+             var _t=d3v5.select(this);
+             var cards=d3v5.selectAll('.link');
+             
+
+             var row_cards=cards.filter(function(data)
+                           {
+                             return (data.visualized==true && data.from_id==d.id);
+                           });
+                   row_cards.classed('low_opacity',false);
+                
+
+              var col_cards=cards.filter(function(data)
+                           {
+                             return (data.visualized==true && data.to_id==d.id);
+                           });
+
+             console.info(_t);
+            
+             if (_t.classed('fixed_col_row')==false)
+             {
+               _t.classed('fixed_col_row',true);
+               cards.classed('low_opacity',true);
+               col_cards.classed('low_opacity',false);
+               row_cards.classed('low_opacity',false);
+
+             }              
+             else
+             {
+               _t.classed('fixed_col_row',false);
+               cards.classed('low_opacity',false);
+               
+             }
+              
+
+           })
+
+
+
+
+           //xLabels follow the row, x=increases, y stays 0
+            var xLabels = svg.selectAll(".xLabels")
+            .data(selected_labels, function(d) {
+
+             return d;
+              })
+           xLabels.enter()
+           //.append('circle')
+
+           .append("text")
+         //   .merge(xLabels)
+           .text(function(d) { return d.id; })
+           .attr("x", function(d, i) { return i * gridSize; })
+           .attr("y", 0)
+           .style("text-anchor", "middle")
+           // .style("font-size",function(d)
+           //             {
+           //               console.log(chart.gridSize/chart.buckets);
+           //               return chart.gridSize/chart.buckets;
+           //             })
+           .attr("transform", "translate(" + gridSize / 2 + ", -6)")
+           .attr("class", "xLabels mono axis axis-x")
+             .on('mouseover',function(d)
+           {
+                   $(this).addClass('xLabel_hovered');
+                   d3v5.select(this).style('color','red');
+
+                   var cards=d3v5.selectAll('.link');
+                  cards.classed('low_opacity',true);
+
+                   var row_cards=cards.filter(function(data)
+                           {
+                             return (data.visualized==true && data.from_id==d.id);
+                           });
+                   row_cards.classed('low_opacity',false);
+                
+
+                   var col_cards=cards.filter(function(data)
+                           {
+                             return (data.visualized==true && data.to_id==d.id);
+                           });
+                   col_cards.classed('low_opacity',false);
+
+
+                   var y_sel_labels=d3v5.selectAll(".yLabels_counter").filter(function(labels)
+                                           {
+
+                                             if (labels.id==d.id)
+                                             {
+
+                                               extra_tooltip_info.cols=labels.sum_col;
+
+                                               return this;
+                                             }
+                                           });
+
+                   var $anchor=$(d3v5.select(this).node());
+
+                   $anchor
+                       .attr('data-tooltip', function(i,d)
+                       {
+                         var data=$(this)[0]['__data__'];
+                         if(data.hasOwnProperty('sum_col'))
+                           {
+                             var sum_col="Score <b>"+data.sum_col+"</b>";
+                           }
+                           else
+                           {
+                             var sum_col='<b>No score</b>';
+                           }
+                           return "<div class='xLabel_tooltip'><div class='Label_tooltip_direction'>To target</div>"+data.description+"<div style='padding:5px;font-size:1.2em;'>"+sum_col+"</div></div>";
+                       });
+
+                   $anchor.tooltip({delay: 50,position:'top',html:true});
+                   //$anchor.trigger('hover')
+                   setTimeout(function()
+                   {
+                     $anchor.trigger('mouseover');
+                   },300)
+
+           })
+              .on('mouseout',function(d)
+               {
+                var cards=d3v5.selectAll('.link');
+                  $(this).removeClass('xLabel_hovered');
+                    var _t=d3v5.select(this);
+                    if (_t.classed('fixed_col_row')==false)
+                    {
+                     $('.material-tooltip').hide();
+                     
+                     cards.classed('low_opacity',false);
+                     $(this).removeClass('xLabel_hovered');
+                    }
+                    else
+                    {
+                      cards.classed('low_opacity',false);
+                      $(d3v5.select(this).node()).trigger('mouseover')
+                    }
+           }).on('click',function(d)
+           {
+            var _t=d3v5.select(this);
+             var cards=d3v5.selectAll('.link');
+             
+
+             var row_cards=cards.filter(function(data)
+                           {
+                             return (data.visualized==true && data.from_id==d.id);
+                           });
+                   row_cards.classed('low_opacity',false);
+                
+
+              var col_cards=cards.filter(function(data)
+                           {
+                             return (data.visualized==true && data.to_id==d.id);
+                           });
+
+             console.info(_t);
+            
+             if (_t.classed('fixed_col_row')==false)
+             {
+               _t.classed('fixed_col_row',true);
+               cards.classed('low_opacity',true);
+               col_cards.classed('low_opacity',false);
+               row_cards.classed('low_opacity',false);
+
+             }              
+             else
+             {
+               _t.classed('fixed_col_row',false);
+               cards.classed('low_opacity',false);
+               
+              }
+
+           })
 
                      console.log(colors_obj)
 
@@ -4009,7 +4160,44 @@ var objects=[];
 
 
           //$('.li_goal_container')
-          $('.ul_tables .collapsible-body.white').click(function(e)
+          $('.ul_tables .goal_table_container').unbind('click');
+
+           $('.ul_tables .goal_table_container').bind('click',function(e)
+          {
+              
+              
+              if ($(e.target).hasClass('card-content') || $(e.target).hasClass('card-sdg-goal') || $(e.target).hasClass('collapsible-header'))
+                {
+                  console.log($(e.target))
+
+                  if ($(e.target).hasClass('collapsible-header')==false)
+                    var header=$(e.target).parents().closest('.collapsible-header');
+                  else
+                    var header=$(e.target);
+
+                  var container=header.next()//find('.collapsible-body');
+                  console.warn(container)
+
+                  if (container.is(':visible'))
+                  {
+                    container.hide();
+                  }
+                  else
+                  {
+                    if (container.find('select.initialized').length==0)
+                      setTimeout(function()
+                      {
+                          attach_fx_sel_csv(container)
+
+                      },200)
+                    container.show();
+                
+                    
+                  }
+                }
+          })
+          
+         /* $('.ul_tables .collapsible-body.white').click(function(e)
             {
               console.log($(e.target))
               var header=$(e.target).parents().closest('.collapsible-header');
@@ -4038,7 +4226,7 @@ var objects=[];
                 }
                 //.li_goal_container
 
-            });
+            });*/
 
            $('.ul_satellite .collapsible-header').click(function(e)
               {
@@ -4062,6 +4250,39 @@ var objects=[];
               })
 
         }
+
+
+
+         $('.ul_tables .goal_table_container').bind('click',function(e)
+          {
+              
+              
+              if ($(e.target).hasClass('card-content') || $(e.target).hasClass('card-sdg-goal') || $(e.target).hasClass('collapsible-header'))
+                {
+                  console.log($(e.target))
+
+                  if ($(e.target).hasClass('collapsible-header')==false)
+                    var header=$(e.target).parents().closest('.collapsible-header');
+                  else
+                    var header=$(e.target);
+
+                  var container=header.next()//find('.collapsible-body');
+                  console.warn(container)
+
+                  if (container.is(':visible'))
+                  {
+                    container.hide();
+                  }
+                  else
+                  {
+                    container.show();
+                
+                    
+                  }
+                }
+          })
+
+
 
     // $('.card-action:first a').trigger('click')
     //        $('.sidenav_trigger').trigger('click');
@@ -4088,6 +4309,9 @@ var objects=[];
 
    });
 
+   
+  
+
    $(".morelink").click(function(){
        if($(this).hasClass("less")) {
            $(this).removeClass("less");
@@ -4106,25 +4330,28 @@ var objects=[];
 $('#satellite_selects_opt .btn').on('click',function()
 {
    var cards=d3v5.selectAll('.link');
+
    
 
     if ($(this).hasClass('off'))
     {
       cards.classed('blacked',false).classed('satellite_selected',false).style('opacity',1);
+      options.config.satellites=false;
       
       $(this).removeClass('off').addClass('on').text('Apply to matrix')
     }
     else
     {
-
+      options.config.satellites=true;
       $('#vis-container').trigger('mouseenter')
       $(this).removeClass('on').addClass('off').text('Reset matrix');
+      
     }
 })
 
 function create_satellite(data_id,_type)
     {
-
+      options.config.satellites=true;
       $('.ul_satellite').show();
       $('.satellite_selects_opt .btn').show()
       console.info(arguments)
@@ -4157,10 +4384,10 @@ function create_satellite(data_id,_type)
 
    
 
-        var col_filtered_arr=d3v5.selectAll('.link');
+        var cards=d3v5.selectAll('.link');
         var to_ids_arr=[];
 
-        col_cards=col_filtered_arr.filter(function(d)
+        col_cards=cards.filter(function(d)
                                      {
                                        if (d.to_id==data_id && d.value!==null)
                                        {
@@ -4181,7 +4408,32 @@ function create_satellite(data_id,_type)
                                        }
 
                                      });
-        console.info(t_obj_to)
+
+        row_cards=cards.filter(function(d)
+                                     {
+                                       if (d.from_id==data_id && d.value!==null)
+                                       {
+                                         
+                                         t_obj.satellites.forEach(function(this_obj)
+                                          {                                              
+                                              //sdg_obj refers to the DATA
+                                              //obj refers to the new obj created on pushing the DATA
+                                              if (parseInt(this_obj.value)==parseInt(d.value))
+                                              {
+                                                 // Array.prototype.push.apply(these_targets_data,d2);
+
+                                                  this_obj.satellites.push({from_id:d.from_id,label:d.to_id,tip:d.to_title,value:d.value,data_id:d.data});
+
+                                                
+                                                //  console.info(this_obj)                
+                                              }
+                                          }) 
+                                         return this;
+                                       }
+
+                                     });
+
+       /* console.info(t_obj_to)
         for (var p in goals_obj)
                         {
                           if (goals_obj[p].id==goal)
@@ -4223,7 +4475,8 @@ function create_satellite(data_id,_type)
                                   {
                                     if (data.id==prop.from_id)
                                     {
-                                      console.info(data)
+                                      console.warn(data)
+                                      console.info(prop)
                                       prop.tip=data.description
 
                                     }
@@ -4250,7 +4503,7 @@ function create_satellite(data_id,_type)
                                             
                           }
                       }                
-                  }
+                  }*/
                 
                 cards.classed('satellite_selected',false);
                 cards.classed('blacked',true);
@@ -4264,6 +4517,7 @@ function create_satellite(data_id,_type)
                 if (_type=='from_id')
                          {
                             var this_to_plot=t_obj;
+                            console.log(this_to_plot)
                          
                            
                            row_cards.classed('blacked',false);
@@ -4314,6 +4568,9 @@ function create_satellite(data_id,_type)
     
        $('#vis-container').on('mouseenter',function(event)
           {
+            if (options.config.satellites==false)
+              return false;
+
            cards.classed('individual_satellite',false);
            // console.log($(d3v5.event.target)[0]['__data__'])
             console.log('mouseentering vis-container')
@@ -4344,7 +4601,9 @@ function create_satellite(data_id,_type)
           //.moon 
           $('#vis-container .planets').on('mouseover',function(e)
           {
-          
+                if (options.config.satellites==false)
+              return false;
+
                 cards.classed('individual_satellite',false);
                  var data=$(e.target)[0]['__data__'];
           
@@ -4392,6 +4651,9 @@ function create_satellite(data_id,_type)
                            //sel.filter(function)
           }).on('mouseleave',function(d)
           {
+            if (options.config.satellites==false)
+              return false;
+
             cards.classed('individual_satellite',false);
             console.log('mouseleave planet circles')
         
