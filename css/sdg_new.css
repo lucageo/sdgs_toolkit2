@@ -36,6 +36,10 @@
   font-size: 0.7em!important;
   padding:0 1rem;
 }
+.satellite_tip .toast_target
+{
+	margin-bottom: 10px;
+}
 .card_text_form:hover
 {
   cursor: pointer;
