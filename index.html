@@ -185,9 +185,7 @@ margin-top: -3px;
                   </li>
                 </ul>
             <li> <a href="#" class="btn-floating btn-small waves-effect waves-light blue-grey lighten-1 waves-effect waves-light dropdown-button btn dropdown_config_btn" data-activates="dropdown_config"><i class="material-icons md-light">settings</i></a></li>
-            <li> 
-            <a href="https://lucageo.github.io/sdgs_toolkit2/index_sat.html" class="btn-floating btn-small waves-effect waves-light blue-grey lighten-1 waves-effect waves-light dropdown-button btn"><i class="material-icons md-light">dashboard</i></a>
-            </li>
+            <li> <a href="https://lucageo.github.io/sdgs_toolkit2/index_sat.html" class="btn-floating btn-small waves-effect waves-light blue-grey lighten-1 waves-effect waves-light"><i class="material-icons md-light">dashboard</i></a></li>
           </ul>
           <ul class="right hide-on-med-and-down">
             <li><a href="https://lucageo.github.io/sdg_home/">PROJECT</a></li>
@@ -2853,9 +2851,6 @@ var xmouse, ymouse;
                            })
 
 
-
-
-
                      cards.select("title").text(function(d) { return d.value; });
 
                      cards.exit().remove();
@@ -3000,21 +2995,11 @@ var xmouse, ymouse;
                                  }
                            }
                            console.info(sel_goal_arr)
-
-                         //  if ($('body').css('overflow') !== 'hidden')
-                                   $('.sidenav_trigger').trigger('click');
-
-                         //materialize.js hacked
-
-
-
-                           //all CHECKED values in select
-                           //to_change
+                           $('.sidenav_trigger').trigger('click');
                            var sel_goals_arr=sel_goal_arr;
                            selected_goals_arr=sel_goal_arr;
 
                          },500)
-                  // selected.hide();
                  });
 
 
@@ -3033,14 +3018,6 @@ var xmouse, ymouse;
            $('.dropdown-button').dropdown();
 
            $('select').material_select();
-
-   /*    $('.card-action:first a').trigger('click')
-           $('.sidenav_trigger').trigger('click');
-
-           $('#check_all_goal_1').trigger('click')
-           $('#sidenav-overlay').css('opacity',0);*/
-
-
 
 
    var showChar = 30;  // How many characters are shown by default
@@ -3080,45 +3057,6 @@ var xmouse, ymouse;
        });
 
 
-
-
-// document.addEventListener('DOMContentLoaded', function() {
-//    var elem = document.querySelectorAll('.side-nav');
-
-//     var sidenav_instance = M.Sidenav.init(elem,{
-//     edge: 'left',
-//     draggable: true,
-//     inDuration: 250,
-//     outDuration: 200,
-//     onOpenStart: null,
-//     onOpenEnd: null,
-//     onCloseStart: null,
-//     onCloseEnd: null,
-//     preventScrolling: true
-// })//, options);
-// console.dir(sidenav_instance)
-//      $('.sidenav_trigger').on('click',function()
-//              {
-
-//               if ($('.side-nav').is(':visible'))
-//               {
-//                 //sidenav_instance.open();
-//                 $('.side-nav').sidenav('open');
-//               }
-//               else
-//               {
-//                //sidenav_instance.close();
-//                $('.side-nav').sidenav('close');
-//               }
-//              })
-// });
-
-
-    //var sidenav_instance = M.Sidenav.getInstance(elem);
-
-
-
-
-          </script>
-
-</body></html>
+</script>
+</body>
+</html>
